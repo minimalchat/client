@@ -1,0 +1,14 @@
+{
+  "name": "letschat-client",
+  "version": "0.0.1",
+  "description": "Client library for Let's Chat",
+  "author": "Matthew Mihok <matthew@mihok.computer>",
+  "license": "BSD",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-file build/letschat-0.0.1.js --source-maps"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4"
+  }
+}
