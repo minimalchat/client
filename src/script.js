@@ -28,6 +28,11 @@
 
   const CHAT_CONNECTED = 'CHAT_CONNECTED';
   const CHAT_DISCONNECTED = 'CHAT_DISCONNECTED';
+  const CHAT_MESSAGE_CLIENT = 'CHAT_MESSAGE_CLIENT';
+  const CHAT_MESSAGE_OPERATOR = 'CHAT_MESSAGE_OPERATOR';
+
+  const CHAT_CLIENT = 'CLIENT';
+  const CHAT_OPERATOR = 'OPERATOR';
 
   // State
   const { combineReducers, createStore } = Redux;
@@ -53,8 +58,27 @@
     messages: []
   };
   const chatReducer = function ChatReducer (state = chatInitialState, action) {
+    let messages = [];
+
     console.log('CHAT', action.type);
+
     switch (action.type) {
+      case CHAT_MESSAGE_CLIENT:
+        messages = state.messages;
+
+        // Is the last message from client? (e.g. can we combine it)
+        if (messages.length > 0 && messages[messages.length-1].author == CHAT_CLIENT) {
+          messages[messages.length-1].content.push(action.message);
+        } else {
+          messages.push({
+            author: CHAT_CLIENT,
+            content: [action.message]
+          });
+        }
+
+        return Object.assign({}, state, {
+          messages: messages
+        })
       default:
         return state;
     }
@@ -69,61 +93,125 @@
 
   // React Components
 
-  class Notification extends React.Component {
-    render () {
-      return (
-        <ul className="letschat-alert" style={{margin: 0, listStyle: 'none'}}>
-        </ul>
-      )
-    }
-  }
+  // class Notification extends React.Component {
+  //   render () {
+  //     return (
+  //       <ul className="letschat-alert" style={{margin: 0, listStyle: 'none'}}>
+  //       </ul>
+  //     )
+  //   }
+  // }
 
-  class Status extends React.Component {
-    constructor (props) {
-      super(...arguments);
+  // class Status extends React.Component {
+  //   constructor (props) {
+  //     super(...arguments);
 
-      this.socket = props.socket;
-      this.socket.on('operator:typing', this.onTyping);
+  //     this.socket = props.socket;
+  //     this.socket.on('operator:typing', this.onTyping);
 
-      this.state = {
-        typing: false,
-        style: {}
-      };
-    }
+  //     this.state = {
+  //       typing: false,
+  //       style: {}
+  //     };
+  //   }
 
-    onTyping () {
-      console.log('OPERATOR TYPING ...');
-    }
+  //   onTyping () {
+  //     console.log('OPERATOR TYPING ...');
+  //   }
 
-    render () {
-      return (
-          <ul className="letschat-message-status" style={{
-            position: 'fixed',
-            bottom: '48px',
-            margin: 0,
-            boxSizing: 'border-box',
-            padding: '4px 8px',
-            height: '24px',
-            width: '265px',
-            fontSize: '13px',
-            fontFamily: 'sans-serif',
-            fontStyle: 'italic',
-            listStyle: 'none',
-            color: '#D1D1D1'
-          }}>
-            <li><span>John is typing...</span></li>
-          </ul>
-        )
-    }
-  }
+  //   render () {
+  //     return (
+  //         <ul className="letschat-message-status" style={{
+  //           position: 'fixed',
+  //           bottom: '48px',
+  //           margin: 0,
+  //           boxSizing: 'border-box',
+  //           padding: '4px 8px',
+  //           height: '24px',
+  //           width: '265px',
+  //           fontSize: '13px',
+  //           fontFamily: 'sans-serif',
+  //           fontStyle: 'italic',
+  //           listStyle: 'none',
+  //           color: '#D1D1D1'
+  //         }}>
+  //           <li><span>John is typing...</span></li>
+  //         </ul>
+  //       )
+  //   }
+  // }
 
   const Message = (props) => {
-    return (
-      <li id="message_{props.id}" className="letschat-message">
-        <span className="author">
+    let style = {
+      right: {
+        content: {
+          margin: 0,
+          listStyle: 'none',
+          width: '160px',
+          float: 'right',
+          textAlign: 'right',
+          background: '#0a6bef',
+          borderRadius: '10px 0 10px 10px',
+          padding: '6px',
+          color: 'white'
+        }
+      },
+      left: {
+        picture: {
+          width: '48px',
+          height: '48px',
+          float: 'left',
+          marginTop: '6px',
+          boxSizing: 'border-box',
+          padding: '0 4px'
+        },
+        content: {
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          width: '160px',
+          marginTop: '6px',
+          borderRadius: '0 10px 10px 10px',
+          padding: '6px',
+          background: '#e1e1e1',
+          float: 'left',
+          textAlign: 'left'
+        }
+      }
+    }
 
-        </span>
-        <span className="letschat-message-content">{props.children}</span>
+    console.log(props);
+
+    let content = props.content.map((message, index) => {
+      return (
+          <li key={index}>{message}</li>
+        )
+    });
+
+    let message = (
+        <div>
+          <div className="letschat-message-operator" style={style.left.picture}>
+            <img src="http://placehold.it/40x40/" style={{width: '40px', height: '40px'}} />
+          </div>
+          <ul style={style.left.content}>
+            {content}
+          </ul>
+        </div>
+      );
+
+    if (props.author == CHAT_OPERATOR) {
+      message = (
+        <div>
+          <ul style={style.right.content}>
+            {content}
+          </ul>
+        </div>
+      );
+    }
+
+    return (
+      <li id="message_{props.id}" className="letschat-message" style={{clear:'both'}}>
+        {message}
         <span className="letschat-message-timestamp">{props.timestamp}</span>
       </li>
     )
@@ -140,6 +228,7 @@
     };
   }
   const MessageList = (props) => {
+    let state = store.getState();
     let socket = props.socket;
     let style = {
       position: 'absolute',
@@ -151,18 +240,15 @@
       borderRight: '1px solid #ccc'
     };
 
-    let messages = props.messages.map((message) => {
+    let messages = state.chat.messages.map((message, index) => {
       return (
-        <Message id={message.id}>
-          {message.content}
-        </Message>
+        <Message key={index} author={message.author} content={message.content}></Message>
       );
     });
 
     return (
       <div className="letschat-messages" style={style}>
         <div className="letschat-messages-wrapper" style={{position: 'relative', height: '100%'}}>
-          <Notification />
           <ul className="letschat-message-list" style={{
             margin: 0,
             padding: 0,
@@ -173,10 +259,11 @@
           }}>
             {messages}
           </ul>
-          <Status socket={socket} />
         </div>
       </div>
     )
+          // <Notification />
+          // <Status socket={socket} />
   }
 
   const Messages = connect(
@@ -234,6 +321,10 @@
 
           // Update message list
           store.dispatch({ type: UI_HARD_ENTER,  message: event.target.value });
+          store.dispatch({ type: CHAT_MESSAGE_CLIENT, message: event.target.value });
+
+          event.preventDefault();
+          event.target.value = '';
         } else {
           // Update input height
           store.dispatch({ type: UI_SOFT_ENTER });
@@ -432,6 +523,8 @@
     }
   }
 
+
+  // Init
 
   if (!React) {
     console.error('Required dependancy missing, React. https://facebook.github.io/react/downloads.html')
