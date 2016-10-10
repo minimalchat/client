@@ -63,6 +63,22 @@
     console.log('CHAT', action.type);
 
     switch (action.type) {
+      case CHAT_MESSAGE_OPERATOR:
+        messages = state.messages;
+
+        // Is the last message from client? (e.g. can we combine it)
+        if (messages.length > 0 && messages[messages.length-1].author == CHAT_OPERATOR) {
+          messages[messages.length-1].content.push(action.message);
+        } else {
+          messages.push({
+            author: CHAT_OPERATOR,
+            content: [action.message]
+          });
+        }
+
+        return Object.assign({}, state, {
+          messages: messages
+        })
       case CHAT_MESSAGE_CLIENT:
         messages = state.messages;
 
@@ -143,25 +159,27 @@
 
   const Message = (props) => {
     let style = {
-      right: {
+      left: {
         content: {
           margin: 0,
           listStyle: 'none',
           width: '160px',
-          float: 'right',
-          textAlign: 'right',
+          float: 'left',
+          textAlign: 'left',
           background: '#0a6bef',
-          borderRadius: '10px 0 10px 10px',
+          marginTop: '0',
+          marginLeft: '4px',
+          borderRadius: '10px 10px 10px 0',
           padding: '6px',
           color: 'white'
         }
       },
-      left: {
+      right: {
         picture: {
           width: '48px',
           height: '48px',
-          float: 'left',
-          marginTop: '6px',
+          float: 'right',
+          marginTop: '4px',
           boxSizing: 'border-box',
           padding: '0 4px'
         },
@@ -170,12 +188,13 @@
           padding: 0,
           listStyle: 'none',
           width: '160px',
-          marginTop: '6px',
-          borderRadius: '0 10px 10px 10px',
+          marginTop: '4px',
+          marginBottom: '4px',
+          borderRadius: '10px 0 10px 10px',
           padding: '6px',
           background: '#e1e1e1',
-          float: 'left',
-          textAlign: 'left'
+          float: 'right',
+          textAlign: 'right'
         }
       }
     }
@@ -190,9 +209,6 @@
 
     let message = (
         <div>
-          <div className="letschat-message-operator" style={style.left.picture}>
-            <img src="http://placehold.it/40x40/" style={{width: '40px', height: '40px'}} />
-          </div>
           <ul style={style.left.content}>
             {content}
           </ul>
@@ -202,6 +218,9 @@
     if (props.author == CHAT_OPERATOR) {
       message = (
         <div>
+          <div className="letschat-message-operator" style={style.right.picture}>
+            <img src="http://placehold.it/40x40/" style={{width: '40px', height: '40px'}} />
+          </div>
           <ul style={style.right.content}>
             {content}
           </ul>
@@ -236,8 +255,10 @@
       bottom: '48px',
       left: 0,
       right: 0,
+      paddingTop: '6px',
       overflowY: 'scroll',
-      borderRight: '1px solid #ccc'
+      borderRight: '1px solid #ccc',
+      boxSizing: 'border-box'
     };
 
     let messages = state.chat.messages.map((message, index) => {
@@ -374,7 +395,8 @@
       // this.socket.on('reconnect_error', socketConnectionError);
       this.socket.on('reconnect_failed', this.onSocketReconnectionFailed);
       this.socket.on('reconnect_timeout', this.onSocketTimeout);
-      // this.socket.on('operator:message', this.handleOperatorMessage);
+
+      this.socket.on('operator:message', this.handleOperatorMessage);
 
       // Initial state
       this.state = {
@@ -479,6 +501,12 @@
     onSocketConnectionError () {
       console.error('DEBUG', 'Socket connection error');
     };
+
+    handleOperatorMessage (data) {
+      console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
+
+      store.dispatch({ type: CHAT_MESSAGE_OPERATOR, message: data });
+    }
 
 
     // Actions
