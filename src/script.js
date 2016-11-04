@@ -371,9 +371,6 @@
     const state = store.getState();
     let { sheet: { classes } } = props;
     let socket = props.socket;
-    let style = {
-
-    };
 
     let messages = state.chat.messages.map((message, index) => {
       return (
@@ -551,14 +548,6 @@
       console.log('DEBUG', 'Close chat');
     }
 
-
-    style (changes) {
-      if (changes) {
-        this.state.style = Object.assign({}, this.state.style, changes);
-      }
-
-      return this.state.style;
-    }
 
     render () {
       let { sheet: { classes } } = this.props;
