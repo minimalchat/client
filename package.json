@@ -5,7 +5,7 @@
   "author": "Matthew Mihok <matthew@mihok.computer>",
   "license": "BSD",
   "scripts": {
-    "test": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "test": "mocha --compilers js:babel-core/register",
     "build": "babel src --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file build/letschat-0.0.1.js --source-maps"
   },
   "devDependencies": {
