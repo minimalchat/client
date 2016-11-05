@@ -1,12 +1,12 @@
 {
-  "name": "letschat-client",
+  "name": "mnml-client",
   "version": "0.0.1",
-  "description": "Client library for Let's Chat",
-  "author": "Matthew Mihok <matthew@mihok.computer>",
+  "description": "Client library for Minimal Chat",
+  "author": "Matthew Mihok <matthew@minimal.chat>",
   "license": "BSD",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
-    "build": "babel src --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file build/letschat-0.0.1.js --source-maps"
+    "build": "babel src --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file build/mnml-0.0.1.js --source-maps"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

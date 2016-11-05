@@ -1,13 +1,13 @@
-# Let's Chat client script
+# Minimal Chat client script
 
-[![Build Status](https://travis-ci.org/mihok/letschat-client.svg?branch=master)](https://travis-ci.org/mihok/letschat-client)
-[![Coverage Status](https://coveralls.io/repos/github/mihok/letschat-client/badge.svg?branch=master)](https://coveralls.io/github/mihok/letschat-client?branch=master)
+[![Build Status](https://travis-ci.org/minimalchat/mnml-client.svg?branch=master)](https://travis-ci.org/minimalchat/mnml-client)
+[![Coverage Status](https://coveralls.io/repos/github/minimalchat/mnml-client/badge.svg?branch=master)](https://coveralls.io/github/minimalchat/mnml-client?branch=master)
 
 ---
 
-Let's Chat is an open source live chat system providing live one on one messaging to a website visitor and an operator.
+Minimal Chat is an open source live chat system providing live one on one messaging to a website visitor and an operator.
 
-Let's Chat is:
+Minimal Chat is:
 -   **minimal**: simple, lightweight, accessible
 -   **extensible**: modular, pluggable, hookable, composable
 
@@ -36,7 +36,7 @@ Dependencies required:
 <script>
 !function() {
   o = document.createElement("script"),
-  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "/letschat-0.0.1.js",
+  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "/mnml-0.0.1.js",
   n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
 }();
 </script>

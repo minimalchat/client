@@ -2,6 +2,7 @@
 
   // Libraries
 
+  const LetsChat = w.LetsChat || {};
   const React = w.React || false;
   const Redux = w.Redux || false;
   const ReactDOM = w.ReactDOM || false;
