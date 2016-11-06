@@ -1,8 +1,9 @@
-(function (w) {
+const module = module || {};
+module.exports = (function (w) {
 
   // Libraries
 
-  const LetsChat = w.LetsChat || {};
+  const MnmlChat = w.MnmlChat || {};
   const React = w.React || false;
   const Redux = w.Redux || false;
   const ReactDOM = w.ReactDOM || false;
@@ -43,7 +44,7 @@
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
-    style: 'popup'
+    style: 'float'
   };
   const uiReducer = function UIReducer (state = uiInitialState, action) {
     console.log('UI', action.type);
@@ -247,7 +248,141 @@
         }
       }
     },
-    float: {},
+    float: {
+      Message: {
+        rightPicture: {
+          position: 'absolute',
+          left: '-48px',
+          width: '48px',
+          height: '48px',
+          float: 'right',
+          marginTop: '-16px',
+          boxSizing: 'border-box',
+          padding: '0 4px'
+        },
+        rightPictureImage: {
+          width: '40px',
+          height: '40px',
+          borderRadius: '20px'
+        },
+        rightContent: {
+          margin: 0,
+          listStyle: 'none',
+          width: '160px',
+          float: 'left',
+          textAlign: 'left',
+          background: '#ffffff',
+          marginTop: '4px',
+          marginLeft: '4px',
+          boxShadow: '#dddddd 1px 1px 8px 0',
+          borderRadius: '0 10px 10px 10px',
+          padding: '16px',
+        },
+        leftContent: {
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          width: '160px',
+          marginTop: '4px',
+          marginBottom: '4px',
+          boxShadow: '#dddddd 1px 1px 8px 0',
+          borderRadius: '10px 10px 0 10px',
+          padding: '16px',
+          background: '#0a6bef',
+          float: 'right',
+          textAlign: 'right',
+          color: 'white'
+        }
+      },
+      MessageList: {
+        messages: {
+          position: 'absolute',
+          bottom: '48px',
+          left: 0,
+          right: 0,
+          paddingTop: '6px',
+          paddingBottom: '6px',
+          boxSizing: 'border-box'
+        },
+        messagesWrapper: {
+          position: 'relative',
+          height: '100%'
+        },
+        messagesList: {
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          fontSize: '14px',
+          fontFamily: 'sans-serif',
+          width: '100%'
+        }
+      },
+      Input: {
+        input: {
+          position:' absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          height: '48px',
+          boxSizing: 'border-box',
+          boxShadow: '#dddddd 1px 1px 8px 0',
+          border: 0,
+          backgroundColor: '#fff',
+          borderRadius: '10px',
+          padding: '16px',
+          color: '#222',
+          fontSize: '13px',
+          resize: 'none',
+          outline: 0
+        }
+      },
+      Chat: {
+        innerWrapper: {
+          display: 'block',
+          width: '280px',
+          height: '360px'
+        },
+        outerWrapper: {
+          position: 'relative',
+          width: '90%',
+          margin: '0 auto'
+        },
+        box: {
+          position: 'absolute',
+          right: 0,
+          bottom: '120px',
+          backgroundColor: 'transparent'
+        },
+        header: {
+          position: 'absolute',
+          bottom: '-48px',
+          right: '-48px',
+          display: 'block',
+          width: '42px',
+          height: '42px',
+          padding: '12px 10px 12px 11px',
+          boxSizing: 'border-box',
+          borderRadius: '21px',
+          boxShadow: '#dddddd 1px 1px 8px 0',
+          fontSize: '13px',
+          fontFamily: '\'Arial\', sans-serif',
+          color: 'white',
+          background: '#ef7f7f'
+        },
+        headerText: {
+          display: 'none'
+        },
+        icon: {
+          float: 'right',
+          fontSize: '24px',
+          marginTop: '-5px',
+          fontWeight: '800',
+          cursor: 'pointer',
+          color: 'rgba(255,255,255,0.5)'
+        }
+      }
+    },
     sidebar: {}
   };
   const style = function Style (component) {
@@ -561,7 +696,7 @@
           <div className={classes.box}>
             <div className={classes.innerWrapper}>
               <div className={classes.header}>
-                <span><strong>{operator.firstName}</strong>&nbsp;from&nbsp;{company.name}</span>
+                <span className={classes.headerText}><strong>{operator.firstName}</strong>&nbsp;from&nbsp;{company.name}</span>
                 <i className={classes.icon} onClick={this.close}>&#215;</i>
               </div>
               <Messages store={store} socket={socket} />
@@ -642,4 +777,5 @@
   // Start by going into disconnected mode (and then connecting)
   store.dispatch({ type: CHAT_DISCONNECTED });
 
-}) (window)
+  return MnmlChat;
+}) (window);
