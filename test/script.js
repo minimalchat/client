@@ -2,18 +2,18 @@
 const jsdom = require('jsdom').jsdom;
 global.document = jsdom("<html><body></body></html>");
 global.window = document.defaultView; // Fake the window too
-global.navigator = global.window.navigator; // .. and navigator too
+global.navigator = document.defaultView.navigator; // .. and navigator too
 
-const React = global.React = require('react');
-const Redux = global.Redux = require('redux');
-const ReactTestUtils = global.ReactTestUtils = require('react-addons-test-utils');
-const ReactDOM = global.ReactDOM = require('react-dom');
-const ReactRedux = global.ReactRedux = require('react-redux');
-const ReactJSS = global.reactJss = require('react-jss');
-const io = global.io = require('socket.io-client');
+const React = global.window.React = require('react');
+const Redux = global.window.Redux = require('redux');
+const ReactTestUtils = global.window.ReactTestUtils = require('react-addons-test-utils');
+const ReactDOM = global.window.ReactDOM = require('react-dom');
+const ReactRedux = global.window.ReactRedux = require('react-redux');
+const ReactJSS = global.window.reactJss = require('react-jss');
+const io = global.window.io = require('socket.io-client');
 
 
-const mnml = require('../src/script');
+const { Message, MessageList, Input, Chat } = require('../src/script');
 
 const { assert } = require('chai');
 const { mount, shallow } = require('enzyme');

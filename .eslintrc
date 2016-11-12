@@ -11,9 +11,11 @@
     "arrow-body-style": ["error", "as-needed"],
     "no-unused-vars": ["warn"],
     "no-console": ["off"],
+    "no-underscore-dangle": ["off"],
     "no-prototype-builtins": ["off"],
     "no-multiple-empty-lines": ["off"],
     "no-use-before-define": ["warn"],
     "react/no-multi-comp": ["warn"],
+    "react/jsx-no-bind": ["warn"],
   },
 }

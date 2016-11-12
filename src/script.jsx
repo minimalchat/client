@@ -1,6 +1,3 @@
-const window = window || global || {}; // Trick mocha tests into working
-const module = global.module || {}; // Make eslint happy
-
 module.exports = (function script(w) {
   // Libraries
 
@@ -12,7 +9,7 @@ module.exports = (function script(w) {
   // const $ = w.jQuery || false;
   const io = w.io || false;
   // const mnml = w.mnml || {};
-  const socketPath = 'http://localhost:80000';
+  const socketPath = 'http://localhost:8000';
 
 
 
@@ -245,12 +242,15 @@ module.exports = (function script(w) {
           background: '#ef7f7f',
         },
         icon: {
+          border: 0,
           float: 'right',
           fontSize: '24px',
-          marginTop: '-5px',
+          marginRight: '-10px',
+          marginTop: '-7px',
           fontWeight: '800',
           cursor: 'pointer',
           color: 'rgba(255,255,255,0.5)',
+          background: 'rgba(0, 0, 0, 0)',
         },
       },
     },
@@ -510,12 +510,15 @@ module.exports = (function script(w) {
           background: '#ef7f7f',
         },
         icon: {
+          border: 0,
           float: 'right',
           fontSize: '24px',
-          marginTop: '-5px',
+          marginRight: '-10px',
+          marginTop: '-7px',
           fontWeight: '800',
           cursor: 'pointer',
           color: 'rgba(255,255,255,0.5)',
+          background: 'rgba(0, 0, 0, 0)',
         },
       },
     },
@@ -716,7 +719,7 @@ module.exports = (function script(w) {
           type="text"
           className={classes.input}
           placeholder="Type a message&hellip;"
-          onKeyDown={this.onKeyPress}
+          onKeyDown={this.onKeyPress.bind(this)}
         />
       );
     }
@@ -936,3 +939,5 @@ module.exports = (function script(w) {
     Chat,
   };
 }(window));
+
+// console.log('MNML', module.exports);
