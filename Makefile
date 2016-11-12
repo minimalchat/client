@@ -2,7 +2,7 @@
 NODE_CMD = node
 NPM_CMD = npm
 
-.PHONY: lint build test coverage
+.PHONY: coverage lint build
 
 lint:
 	$(NPM_CMD) run lint
