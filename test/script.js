@@ -12,11 +12,11 @@ const ReactRedux = global.window.ReactRedux = require('react-redux');
 const ReactJSS = global.window.reactJss = require('react-jss');
 const io = global.window.io = require('socket.io-client');
 
+const { assert } = require('chai');
+const { mount, shallow } = require('enzyme');
 
 const { Message, MessageList, Input, Chat } = require('../src/script');
 
-const { assert } = require('chai');
-const { mount, shallow } = require('enzyme');
 
 // What do I want to test/make sure works with absolution
 // - redux ACTIONS are doing what they intend to do (both sides, firing and
