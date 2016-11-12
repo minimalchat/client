@@ -1,4 +1,18 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+  },
+  "rules": {
+    "class-methods-use-this": ["warn"],
+    "space-before-function-paren": ["off"],
+    "arrow-body-style": ["error", "as-needed"],
+    "no-unused-vars": ["warn"],
+    "no-console": ["off"],
+    "no-prototype-builtins": ["off"],
+    "no-multiple-empty-lines": ["off"],
+    "react/no-multi-comp": ["warn"],
+  },
 }

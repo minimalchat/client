@@ -8,7 +8,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "build": "babel src --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file build/mnml-0.0.1.js --source-maps",
-    "lint": "eslint src"
+    "lint": "eslint src --ext .js,.jsx"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
