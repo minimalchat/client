@@ -2,16 +2,18 @@
 NODE_CMD = node
 NPM_CMD = npm
 
-.PHONY: coverage lint build
+.PHONY: build coverage test
+
+build: coverage lint compile
+
+coverage:
+	$(NPM_CMD) run coverage
 
 lint:
 	$(NPM_CMD) run lint
 
-test:
-	$(NPM_CMD) test
-
-build:
+compile:
 	$(NPM_CMD) run build
 
-coverage:
-	$(NPM_CMD) run coverage
+test:
+	$(NPM_CMD) test
