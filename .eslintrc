@@ -13,6 +13,7 @@
     "no-console": ["off"],
     "no-prototype-builtins": ["off"],
     "no-multiple-empty-lines": ["off"],
+    "no-use-before-define": ["warn"],
     "react/no-multi-comp": ["warn"],
   },
 }
