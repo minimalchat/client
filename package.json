@@ -38,6 +38,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.6.0",
+    "jsdom": "^9.8.3",
     "mocha": "^3.1.2",
     "mocha-lcov-reporter": "^1.2.0",
     "nyc": "^8.4.0",
