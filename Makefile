@@ -13,6 +13,7 @@ lint:
 	$(NPM_CMD) run lint
 
 compile:
+	[[ -d 'build' ]] || mkdir build 
 	$(NPM_CMD) run build
 
 test:
