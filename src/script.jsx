@@ -1,9 +1,9 @@
-const module = global.module || {}; // ESLint likes global but not module;
+const window = window || global || {}; // Trick mocha tests into working
+const module = global.module || {}; // Make eslint happy
 
 module.exports = (function script(w) {
   // Libraries
 
-  const MnmlChat = w.MnmlChat || {};
   const React = w.React || false;
   const Redux = w.Redux || false;
   const ReactDOM = w.ReactDOM || false;
@@ -11,8 +11,9 @@ module.exports = (function script(w) {
   const ReactJSS = w.reactJss || false;
   // const $ = w.jQuery || false;
   const io = w.io || false;
+  // const mnml = w.mnml || {};
   const socketPath = 'http://localhost:80000';
-  // let socket;
+
 
 
   // Constants
@@ -27,12 +28,12 @@ module.exports = (function script(w) {
   const UI_HARD_ENTER = 'UI_HARD_ENTER';
   const UI_STYLE_MESSANGER = 'UI_STYLE_MESSANGER';
   const UI_STYLE_FLOAT = 'UI_STYLE_FLOAT';
-  const UI_STYLE_SIDEBAR = 'UI_STYLE_SIDEBAR';
+  const UI_STYLE_SIDEPANEL = 'UI_STYLE_SIDEPANEL';
 
   const CHAT_CONNECTED = 'CHAT_CONNECTED';
   const CHAT_DISCONNECTED = 'CHAT_DISCONNECTED';
-  const CHAT_MESSAGE_CLIENT = 'CHAT_MESSAGE_CLIENT';
-  const CHAT_MESSAGE_OPERATOR = 'CHAT_MESSAGE_OPERATOR';
+  const CHAT_MESSAGE_CLIENT = 'CHAT_MESSAGE_CLIENT'; // Check
+  const CHAT_MESSAGE_OPERATOR = 'CHAT_MESSAGE_OPERATOR'; // Check
 
   const CHAT_CLIENT = 'CLIENT';
   const CHAT_OPERATOR = 'OPERATOR';
@@ -41,6 +42,7 @@ module.exports = (function script(w) {
   // State
   const { combineReducers, createStore } = Redux;
   const { connect } = ReactRedux;
+
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
@@ -106,6 +108,7 @@ module.exports = (function script(w) {
     }
   };
 
+  // If the latter happens, we in big dodo..
   const document = w.document || {};
   const store = document.store = createStore(
     combineReducers({
@@ -120,7 +123,7 @@ module.exports = (function script(w) {
   // TODO: This is ugly and I would really love to have these as seperate files
   //  or some way of not bloating the source file
   const styles = {
-    popup: {
+    messanger: {
       Message: {
         operatorPicture: {
           width: '48px',
@@ -856,30 +859,32 @@ module.exports = (function script(w) {
 
   if (!React) {
     console.error('Required dependancy missing, React. https://facebook.github.io/react/downloads.html');
+    return {};
   }
 
   if (!Redux) {
     console.error('Required dependancy missing, Redux. http://redux.js.org/#installation');
+    return {};
   }
 
   if (!ReactDOM) {
     console.error('Required dependancy missing, ReactDOM. https://facebook.github.io/react/downloads.html');
+    return {};
   }
 
   if (!ReactRedux) {
     console.error('Required dependancy missing, ReactRedux. https://github.com/reactjs/react-redux#installation');
+    return {};
   }
 
   if (!ReactJSS) {
     console.error('Required dependancy missing, ReactJSS. https://github.com/cssinjs/react-jss');
+    return {};
   }
 
   if (!io) {
     console.error('Required dependancy missing, Socket.io. http://socket.io/download/');
-  }
-
-  if (!React || !ReactDOM || !io) {
-    return;
+    return {};
   }
 
   // Our generic
@@ -923,4 +928,11 @@ module.exports = (function script(w) {
 
   // Start by going into disconnected mode (and then connecting)
   store.dispatch({ type: CHAT_DISCONNECTED });
+
+  return {
+    Message,
+    MessageList,
+    Input,
+    Chat,
+  };
 }(window));
