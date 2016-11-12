@@ -1,3 +1,5 @@
+const module = module || {};
+
 module.exports = (function script(w) {
   // Libraries
 
