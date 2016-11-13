@@ -8,7 +8,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive test/*.js",
     "test:watch": "npm test -- --watch",
-    "build": "babel src  --source-maps --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file build/mnml-0.0.1.js",
+    "build": "babel src  --source-maps --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file dist/mnml-0.0.1.js",
     "lint": "eslint src --ext .js,.jsx",
     "coverage": "nyc --require babel-core/register --extension .jsx npm test && nyc report --reporter=text-lcov | coveralls"
   },
