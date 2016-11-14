@@ -1,6 +1,4 @@
-const module = module || {};
-
-module.exports = (function script(w) {
+const script = (function script(w) {
   // Libraries
 
   const React = w.React || false;
@@ -37,6 +35,9 @@ module.exports = (function script(w) {
   const CHAT_CLIENT = 'CLIENT';
   const CHAT_OPERATOR = 'OPERATOR';
 
+  const STYLE_MESSANGER = 'MESSANGER';
+  const STYLE_FLOAT = 'FLOAT';
+  const STYLE_SIDEPANEL = 'SIDEPANEL';
 
   // State
   const { combineReducers, createStore } = Redux;
@@ -45,7 +46,7 @@ module.exports = (function script(w) {
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
-    style: 'sidepanel',
+    style: STYLE_SIDEPANEL,
   };
   const uiReducer = function UIReducer (state = uiInitialState, action) {
     console.log('UI', action.type);
@@ -122,7 +123,7 @@ module.exports = (function script(w) {
   // TODO: This is ugly and I would really love to have these as seperate files
   //  or some way of not bloating the source file
   const styles = {
-    messanger: {
+    MESSANGER: {
       Message: {
         operatorPicture: {
           width: '48px',
@@ -247,7 +248,7 @@ module.exports = (function script(w) {
           border: 0,
           float: 'right',
           fontSize: '24px',
-          marginRight: '-10px',
+          marginRight: '-8px',
           marginTop: '-7px',
           fontWeight: '800',
           cursor: 'pointer',
@@ -256,7 +257,7 @@ module.exports = (function script(w) {
         },
       },
     },
-    float: {
+    FLOAT: {
       Message: {
         operatorPicture: {
           position: 'absolute',
@@ -368,7 +369,7 @@ module.exports = (function script(w) {
           display: 'block',
           width: '42px',
           height: '42px',
-          padding: '12px 10px 12px 11px',
+          padding: '11px 5px 11px 6px',
           boxSizing: 'border-box',
           borderRadius: '21px',
           boxShadow: '#dddddd 1px 1px 8px 0',
@@ -390,7 +391,7 @@ module.exports = (function script(w) {
         },
       },
     },
-    sidepanel: {
+    SIDEPANEL: {
       Message: {
         operatorPicture: {
           width: '48px',
@@ -433,12 +434,11 @@ module.exports = (function script(w) {
       MessageList: {
         messages: {
           position: 'absolute',
-          top: '32px',
+          top: 0,
           bottom: '48px',
           left: 0,
           right: 0,
           paddingTop: '6px',
-          overflowY: 'scroll',
           borderRight: '1px solid #ccc',
           boxSizing: 'border-box',
         },
@@ -479,7 +479,7 @@ module.exports = (function script(w) {
         innerWrapper: {
           display: 'block',
           width: '280px',
-          height: '360px',
+          height: '100%',
           boxShadow: '#dddddd 1px 1px 8px 0',
           borderWidth: '0 1px 1px 0',
           borderRadius: '3px 3px 0 0',
@@ -489,27 +489,19 @@ module.exports = (function script(w) {
         },
         outerWrapper: {
           position: 'relative',
+          height: '100%',
           width: '80%',
           margin: '0 auto',
         },
         box: {
           position: 'absolute',
-          right: 0,
+          top: 0,
           bottom: 0,
+          right: 0,
           backgroundColor: '#ffffff',
         },
         header: {
-          display: 'block',
-          width: '100%',
-          height: '32px',
-          padding: '8px',
-          boxSizing: 'border-box',
-          borderRadius: '3px 3px 0 0',
-          boxShadow: '0 1px 1px 0 rgba(0,0,0,0.15)',
-          fontSize: '13px',
-          fontFamily: '\'Arial\', sans-serif',
-          color: 'white',
-          background: '#ef7f7f',
+          display: 'none',
         },
         icon: {
           border: 0,
@@ -896,9 +888,27 @@ module.exports = (function script(w) {
 
   // stylesrender function
   const render = function render () {
+    const root = document.getElementById('lets-chat');
+    const state = store.getState();
+
+    root.style.top = 'auto';
+    root.style.bottom = 'auto';
+    root.style.right = 'auto';
+    root.style.left = 'auto';
+
+    if (state.ui.style === STYLE_SIDEPANEL) {
+      root.style.top = 0;
+      root.style.bottom = 0;
+      root.style.right = 0;
+    } else if (state.ui.style === STYLE_FLOAT || state.ui.style === STYLE_MESSANGER) {
+      root.style.bottom = 0;
+      root.style.right = 0;
+      root.style.left = 0;
+    }
+
     ReactDOM.render(
       <Chat store={store} />,
-      document.getElementById('lets-chat'),
+      root,
     );
   };
 
@@ -924,9 +934,9 @@ module.exports = (function script(w) {
   const div = document.createElement('div');
   div.id = 'lets-chat';
   div.style.position = 'fixed';
-  div.style.bottom = 0;
-  div.style.right = 0;
-  div.style.left = 0;
+  // div.style.bottom = 0;
+  // div.style.right = 0;
+  // div.style.left = 0;
 
   document.body.appendChild(div);
   // document.body.insertBefore(styles, div);
@@ -935,6 +945,7 @@ module.exports = (function script(w) {
   store.dispatch({ type: CHAT_DISCONNECTED });
 
   return {
+    store,
     Message,
     MessageList,
     Input,
@@ -942,4 +953,7 @@ module.exports = (function script(w) {
   };
 }(window));
 
+if (typeof module !== 'undefined') {
+  module.exports = script;
+}
 // console.log('MNML', module.exports);
