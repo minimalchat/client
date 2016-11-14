@@ -46,7 +46,7 @@ const script = (function script(w) {
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
-    style: STYLE_SIDEPANEL,
+    style: STYLE_FLOAT,
   };
   const uiReducer = function UIReducer (state = uiInitialState, action) {
     console.log('UI', action.type);
