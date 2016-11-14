@@ -1,6 +1,4 @@
-const module = module || {};
-
-module.exports = (function script(w) {
+const script = (function script(w) {
   // Libraries
 
   const React = w.React || false;
@@ -935,6 +933,7 @@ module.exports = (function script(w) {
   store.dispatch({ type: CHAT_DISCONNECTED });
 
   return {
+    store,
     Message,
     MessageList,
     Input,
@@ -942,4 +941,7 @@ module.exports = (function script(w) {
   };
 }(window));
 
+if (typeof module !== 'undefined') {
+  module.exports = script;
+}
 // console.log('MNML', module.exports);
