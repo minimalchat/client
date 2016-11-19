@@ -13,9 +13,10 @@
     "coverage": "jest --coverage && cat coverage/lcov.info | coveralls"
   },
   "jest": {
-    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**", "!**/dist/**", "!**/coverage/**"],
+    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**", "!**/dist/**", "!**/coverage/**", "!**/test/**"],
     "coverageReporters": ["lcov", "text"],
-    "coverageDirectory": "coverage"
+    "coverageDirectory": "coverage",
+    "testRegex": "(/test/.*|\\.(test|spec))\\.(js|jsx)$"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
