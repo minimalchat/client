@@ -45,10 +45,8 @@ const { store, Message, MessageList, Input, Chat } = require('../src/script');
 test('state has a ui.style property', () => {
   const state = store.getState();
 
-  console.log(state);
-
   expect(state.ui.hasOwnProperty('style')).toBe(true);
-  expect(state.ui.style).toBe('FLOAT');
+  expect(state.ui.style).not.toBe(undefined);
 })
 
 // Old mocha tests

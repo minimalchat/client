@@ -530,7 +530,7 @@ const script = (function script(w) {
       throw new Error('UnknownComponentStyleError');
     }
 
-    console.log('CSS', styles[state.ui.style][component]);
+    // console.log('CSS', styles[state.ui.style][component]);
     return styles[state.ui.style][component];
   };
 
@@ -944,7 +944,9 @@ const script = (function script(w) {
   // document.body.insertBefore(styles, div);
 
   // Start by going into disconnected mode (and then connecting)
-  store.dispatch({ type: CHAT_DISCONNECTED });
+  if (typeof module === 'undefined') {
+    store.dispatch({ type: CHAT_DISCONNECTED });
+  }
 
   return {
     store,
