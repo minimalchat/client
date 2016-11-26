@@ -9,6 +9,7 @@
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
     "space-before-function-paren": ["off"],
+    "prefer-const": ["warn"],
     "no-unused-vars": ["warn"],
     "no-console": ["warn"],
     "no-prototype-builtins": ["off"],

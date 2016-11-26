@@ -1,4 +1,5 @@
-const script = (function script(w) {
+let chat = chat || {};
+chat = Object.assign({}, chat, (function script(w) {
   // Libraries
 
   const React = w.React || false;
@@ -10,7 +11,6 @@ const script = (function script(w) {
   const io = w.io || false;
   // const mnml = w.mnml || {};
   const socketPath = 'http://localhost:8000';
-
 
 
   // Constants
@@ -74,7 +74,7 @@ const script = (function script(w) {
       case CHAT_MESSAGE_OPERATOR:
         messages = state.messages;
 
-        // Is the last message from client? (e.g. can we combine it)
+        // Is the last message from client? (https://github.com/minimalchat/mnml-clienthttps://github.com/minimalchat/mnml-cliente.g. can we combine it)
         if (messages.length > 0 && messages[messages.length - 1].author === CHAT_OPERATOR) {
           messages[messages.length - 1].content.push(action.message);
         } else {
@@ -853,7 +853,6 @@ const script = (function script(w) {
     }
   }
 
-
   // Init
 
   if (!React) {
@@ -953,9 +952,9 @@ const script = (function script(w) {
     Input,
     Chat,
   };
-}(window));
+}(window)));
 
 if (typeof module !== 'undefined') {
-  module.exports = script;
+  module.exports = chat;
 }
 // console.log('MNML', module.exports);
