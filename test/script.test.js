@@ -1,18 +1,3 @@
-// // Fake the document
-// var jsdom = require('jsdom').jsdom;
-//
-// global.document = jsdom('');
-// global.window = document.defaultView;
-// Object.keys(document.defaultView).forEach((property) => {
-//   if (typeof global[property] === 'undefined') {
-//     global[property] = document.defaultView[property];
-//   }
-// });
-//
-// global.navigator = {
-//   userAgent: 'node.js'
-// };
-
 const React = global.window.React = require('react');
 const Redux = global.window.Redux = require('redux');
 const ReactTestUtils = global.window.ReactTestUtils = require('react-addons-test-utils');
@@ -20,10 +5,6 @@ const ReactDOM = global.window.ReactDOM = require('react-dom');
 const ReactRedux = global.window.ReactRedux = require('react-redux');
 const ReactJSS = global.window.reactJss = require('react-jss');
 const io = global.window.io = require('socket.io-client');
-// const sinon = require('sinon');
-
-// const { expect } = require('chai');
-// const { mount, shallow, render } = require('enzyme');
 
 const { store, Message, MessageList, Input, Chat } = require('../src/script');
 
@@ -39,7 +20,7 @@ const { store, Message, MessageList, Input, Chat } = require('../src/script');
 //    - CHAT_DISCONNECTED
 //    - CHAT_MESSAGE_OPERATOR
 //    - CHAT_MESSAGE_CLIENT
-// - styling works
+// - styling is available
 //
 
 test('state has a ui.style property', () => {
@@ -48,55 +29,3 @@ test('state has a ui.style property', () => {
   expect(state.ui.hasOwnProperty('style')).toBe(true);
   expect(state.ui.style).not.toBe(undefined);
 })
-
-// Old mocha tests
-// describe('MnmlChat', function () {
-//
-//   describe('<Message />', function () {
-//     it ('Does something', function () {
-//       const wrapper = shallow(<Message />);
-//
-//       // assert.isNotEmpty(wrapper.prop(content));
-//     });
-//   });
-//
-//   describe('<MessageList />', function () {
-//     it ('Does something', function (done) {
-//       done();
-//     });
-//   });
-//
-//   describe('<Input />', function () {
-//
-//     beforeEach (function () {
-//       sinon.spy(Input.prototype, 'render');
-//       // sinon.spy(store, 'dispatch');
-//     });
-//
-//     afterEach(function () {
-//       Input.prototype.render.restore();
-//       // store.dispatch.restore();
-//     })
-//
-//     it ('renders', function () {
-//       const wrapper = render(<Input socket={{}} />);
-//
-//       expect(Input.prototype.render.calledOnce).to.equal(true);
-//     });
-//
-//     // it ('dispatches a UI_TYPING action on key press', function () {
-//     //   const wrapper = mount(<Input socket={{}} />);
-//     //   wrapper.find('textarea').simulate('keypress', {keyCode: 13}) // Enter
-//     //
-//     //   // console.log('DISPATCH', wrapper.find('textarea').node);
-//     //   expect(store.dispatch.called).to.equal(true);
-//     // })
-//   });
-//
-//   describe('<Chat />', function () {
-//     it ('Does something', function (done) {
-//       done();
-//     });
-//   });
-//
-// });
