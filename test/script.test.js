@@ -8,6 +8,9 @@ const io = global.window.io = require('socket.io-client');
 const snapshot = require('react-test-renderer');
 const { shallow, mount, render } = require('enzyme');
 
+// Include the theme
+// let chat = require('../src/css');
+
 // Mock the Socket.io connect function for all tests
 const socket = {
   on: jest.fn(),

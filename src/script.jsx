@@ -1,4 +1,5 @@
 let chat = chat || {};
+chat.theme = chat.theme || {};
 chat = Object.assign({}, chat, (function script(w) {
   // Libraries
 
