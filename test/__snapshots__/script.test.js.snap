@@ -1,4 +1,4 @@
-exports[`Chat starts a socket connection 1`] = `
+exports[`Chat matches snapshot 1`] = `
 <div
   className="outerWrapper-446542585">
   <div
@@ -35,6 +35,47 @@ exports[`Chat starts a socket connection 1`] = `
         placeholder="Type a message…"
         type="text" />
     </div>
+  </div>
+</div>
+`;
+
+exports[`Input matches snapshot 1`] = `
+<textarea
+  className="input-2257669887"
+  onKeyDown={[Function]}
+  placeholder="Type a message…"
+  type="text" />
+`;
+
+exports[`Message matches snapshot 1`] = `
+<li
+  className="letschat-message"
+  id="message_undefined"
+  style={
+    Object {
+      "clear": "both",
+    }
+  }>
+  <div>
+    <ul
+      className="userContent-2427757672">
+      <li>
+        Foo Bar
+      </li>
+    </ul>
+  </div>
+  <span
+    className="letschat-message-timestamp" />
+</li>
+`;
+
+exports[`MessageList matches snapshot 1`] = `
+<div
+  className="messages-3666550760">
+  <div
+    className="messagesWrapper-901972915">
+    <ul
+      className="messagesList-539233948" />
   </div>
 </div>
 `;
