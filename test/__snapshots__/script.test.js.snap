@@ -1,0 +1,40 @@
+exports[`Chat starts a socket connection 1`] = `
+<div
+  className="outerWrapper-446542585">
+  <div
+    className="box-730084421">
+    <div
+      className="innerWrapper-2527338721">
+      <div
+        className="header-89782836">
+        <span
+          className="headerText-5987815">
+          <strong>
+            John
+          </strong>
+           from 
+          ACME
+        </span>
+        <button
+          className="icon-1953293147"
+          onClick={[Function]}>
+          ×
+        </button>
+      </div>
+      <div
+        className="messages-3666550760">
+        <div
+          className="messagesWrapper-901972915">
+          <ul
+            className="messagesList-539233948" />
+        </div>
+      </div>
+      <textarea
+        className="input-2257669887"
+        onKeyDown={[Function]}
+        placeholder="Type a message…"
+        type="text" />
+    </div>
+  </div>
+</div>
+`;

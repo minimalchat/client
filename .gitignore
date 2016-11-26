@@ -14,9 +14,6 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-# jest snapshots
-__snapshots__
-
 # nyc test coverage
 .nyc_output
 
