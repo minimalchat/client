@@ -75,7 +75,7 @@ chat = Object.assign({}, chat, (function script(w) {
       case CHAT_MESSAGE_OPERATOR:
         messages = state.messages;
 
-        // Is the last message from client? (https://github.com/minimalchat/mnml-clienthttps://github.com/minimalchat/mnml-cliente.g. can we combine it)
+        // Is the last message from client? (e.g. can we combine it)
         if (messages.length > 0 && messages[messages.length - 1].author === CHAT_OPERATOR) {
           messages[messages.length - 1].content.push(action.message);
         } else {
