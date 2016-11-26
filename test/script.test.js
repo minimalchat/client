@@ -6,8 +6,10 @@ const ReactRedux = global.window.ReactRedux = require('react-redux');
 const ReactJSS = global.window.reactJss = require('react-jss');
 const io = global.window.io = require('socket.io-client');
 
-const { store, Message, MessageList, Input, Chat } = require('../src/script');
+// Mock the Socket.io connect function for all tests
+io.connect = jest.fn(() => ({on: jest.fn()}));
 
+const { store, Message, MessageList, Input, Chat } = require('../src/script');
 
 // What do I want to test/make sure works with absolution
 // - redux ACTIONS are doing what they intend to do (both sides, firing and
@@ -27,5 +29,6 @@ test('state has a ui.style property', () => {
   const state = store.getState();
 
   expect(state.ui.hasOwnProperty('style')).toBe(true);
+
   expect(state.ui.style).not.toBe(undefined);
 })

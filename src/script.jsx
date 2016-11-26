@@ -944,9 +944,7 @@ const script = (function script(w) {
   // document.body.insertBefore(styles, div);
 
   // Start by going into disconnected mode (and then connecting)
-  if (typeof module === 'undefined') {
-    store.dispatch({ type: CHAT_DISCONNECTED });
-  }
+  store.dispatch({ type: CHAT_DISCONNECTED });
 
   return {
     store,
