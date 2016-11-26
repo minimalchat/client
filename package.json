@@ -13,8 +13,17 @@
     "coverage": "jest --coverage && cat coverage/lcov.info | coveralls"
   },
   "jest": {
-    "collectCoverageFrom": ["**/*.{js,jsx}", "!**/node_modules/**", "!**/dist/**", "!**/coverage/**", "!**/test/**"],
-    "coverageReporters": ["lcov", "text"],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/coverage/**",
+      "!**/test/**"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
     "coverageDirectory": "coverage",
     "testRegex": "(/test/.*|\\.(test|spec))\\.(js|jsx)$"
   },
@@ -34,10 +43,10 @@
     "eslint-plugin-react": "^6.6.0",
     "jest-cli": "^17.0.3",
     "react": "^15.3.2",
-    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-jss": "^4.1.3",
     "react-redux": "^4.4.5",
+    "react-test-renderer": "^15.4.1",
     "redux": "^3.6.0",
     "socket.io-client": "^1.5.1"
   }

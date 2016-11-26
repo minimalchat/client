@@ -1,10 +1,11 @@
 const React = global.window.React = require('react');
 const Redux = global.window.Redux = require('redux');
-const ReactTestUtils = global.window.ReactTestUtils = require('react-addons-test-utils');
 const ReactDOM = global.window.ReactDOM = require('react-dom');
 const ReactRedux = global.window.ReactRedux = require('react-redux');
 const ReactJSS = global.window.reactJss = require('react-jss');
 const io = global.window.io = require('socket.io-client');
+
+const renderer = require('react-test-renderer');
 
 // Mock the Socket.io connect function for all tests
 io.connect = jest.fn(() => ({on: jest.fn()}));
@@ -22,13 +23,38 @@ const { store, Message, MessageList, Input, Chat } = require('../src/script');
 //    - CHAT_DISCONNECTED
 //    - CHAT_MESSAGE_OPERATOR
 //    - CHAT_MESSAGE_CLIENT
-// - styling is available
+// - styling is available in state
+// - ?
 //
 
-test('state has a ui.style property', () => {
-  const state = store.getState();
+describe('state', () => {
+  it('has a ui.style property', () => {
+    const state = store.getState();
 
-  expect(state.ui.hasOwnProperty('style')).toBe(true);
+    expect(state.ui.hasOwnProperty('style')).toBe(true);
 
-  expect(state.ui.style).not.toBe(undefined);
-})
+    expect(state.ui.style).not.toBe(undefined);
+  });
+});
+
+describe('Message', () => {});
+
+describe('MessageList', () => {});
+
+describe('Messages', () => {});
+
+describe('Input', () => {});
+
+describe('Chat', () => {
+  it('starts a socket connection', () => {
+    const component = renderer.create(
+      <Chat store={store} />
+    );
+
+    let tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+
+    expect(io.connect).toHaveBeenCalled();
+  })
+});
