@@ -10,7 +10,8 @@
     "test:watch": "jest --watch",
     "build": "babel src  --source-maps --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file dist/mnml-0.0.1.js",
     "lint": "eslint src --ext .js,.jsx",
-    "coverage": "jest --coverage && cat coverage/lcov.info | coveralls"
+    "coverage": "jest --coverage && cat coverage/lcov.info | coveralls",
+    "dev": "webpack --watch --progress --colors"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "node_modules/jest-enzyme/lib/index.js",
@@ -34,6 +35,7 @@
     "babel-plugin-istanbul": "^2.0.3",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.6.0",
+    "babel-loader": "^6.2.10",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "coveralls": "^2.11.14",
@@ -52,6 +54,7 @@
     "react-redux": "^4.4.5",
     "react-test-renderer": "^15.4.1",
     "redux": "^3.6.0",
-    "socket.io-client": "^1.5.1"
+    "socket.io-client": "^1.5.1",
+    "webpack": "^1.14.0"
   }
 }
