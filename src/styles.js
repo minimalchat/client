@@ -1,4 +1,4 @@
-export const styles = {
+const styles = {
   MESSANGER: {
     Message: {
       operatorPicture: {
@@ -395,3 +395,5 @@ export const styles = {
     },
   },
 };
+
+export default styles;

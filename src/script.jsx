@@ -1,4 +1,4 @@
-import styles from './styles.js'
+import styles from './styles';
 
 const script = (function script(w) {
   // Libraries

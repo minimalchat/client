@@ -9,7 +9,7 @@ var PATHS = {
 module.exports = {
   context: __dirname,
   devtool: development ? "inline-sourcemap" : null,
-  entry: PATHS.APP + "/index.js",
+  entry: PATHS.APP + "/script.jsx",
   output: {
     path: PATHS.BUILD,
     filename: "scripts.js"
