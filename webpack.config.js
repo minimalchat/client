@@ -1,8 +1,9 @@
 var webpack = require('webpack');
 var development = process.env.NODE_ENV !== "production";
+var path = require('path');
 
 var PATHS = {
-  BUILD: __dirname + '/dist',
+  BUILD: path.join(__dirname, '..', 'example_site/public'),
   APP: __dirname + '/src'
 }
 
