@@ -1,4 +1,5 @@
 import styles from './styles';
+import Message from './components/Message/Message.js';
 
 const script = (function script(w) {
   // Libraries
@@ -12,7 +13,6 @@ const script = (function script(w) {
   const io = w.io || false;
   // const mnml = w.mnml || {};
   const socketPath = 'http://localhost:8000';
-
 
 
   // Constants
@@ -40,6 +40,7 @@ const script = (function script(w) {
   const STYLE_MESSANGER = 'MESSANGER';
   const STYLE_FLOAT = 'FLOAT';
   const STYLE_SIDEPANEL = 'SIDEPANEL';
+
 
   // State
   const { combineReducers, createStore } = Redux;
@@ -193,38 +194,7 @@ const script = (function script(w) {
   //   }
   // }
 
-  const Message = injectSheet(style('Message'))((props) => {
-    const content = props.content.map((message, index) => <li key={index}>{message}</li>);
-    const { sheet: { classes } } = props;
-
-    let message = (
-      <div>
-        <ul className={classes.userContent}>
-          {content}
-        </ul>
-      </div>
-    );
-
-    if (props.author === CHAT_OPERATOR) {
-      message = (
-        <div>
-          <div className={classes.operatorPicture}>
-            <img alt="Operator" className={classes.operatorPictureImage} src="http://placehold.it/40x40/" />
-          </div>
-          <ul className={classes.operatorContent}>
-            {content}
-          </ul>
-        </div>
-      );
-    }
-
-    return (
-      <li id={`message_${props.id}`} className="letschat-message" style={{ clear: 'both' }}>
-        {message}
-        <span className="letschat-message-timestamp">{props.timestamp}</span>
-      </li>
-    );
-  });
+  
 
   const messageListMapStateToProps = state => ({
     messages: state.messages || [],
