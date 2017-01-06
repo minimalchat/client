@@ -56,5 +56,8 @@
     "redux": "^3.6.0",
     "socket.io-client": "^1.5.1",
     "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "react-jss": "^4.2.0"
   }
 }
