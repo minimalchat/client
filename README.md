@@ -30,6 +30,18 @@ Dependencies:
 -   [ReactRedux](https://github.com/reactjs/react-redux) `>=4.4.5`
 -   [ReactJSS](https://github.com/cssinjs/react-jss) `>=4.1.2`
 
+### Development
+
+Developing for the client is fairly easy, but does require a seperate example website that is not included in this repository currently. All of the Minimal Chat repositories are run through `make`. To get the code running:
+
+1.  Close the repository
+2.  `npm install`
+3.  `make`
+4.  Copy the contents of the `dist/` folder into your test website
+5.  Add the embed code (found below) into your test website
+6.  Run test website
+7.  Profit!
+
 ### Usage
 
 ```javascript
