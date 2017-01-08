@@ -1,0 +1,25 @@
+.Messages {
+  position: absolute;
+  top: 32px;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  padding-top: 6px;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.Messages-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.Messages-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  font-family: sans-serif;
+  width: 100%;
+}

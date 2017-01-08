@@ -1,6 +1,7 @@
+import { Provider } from 'react-redux';
 import styles from './styles';
 import Message from './components/Message/Message.js';
-import testC from './components/testC/testC'
+import Chat from './components/Chat/Chat';
 
 const script = (function script(w) {
   // Libraries
@@ -119,6 +120,8 @@ const script = (function script(w) {
       ui: uiReducer,
       chat: chatReducer,
     }),
+
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
 
@@ -127,8 +130,8 @@ const script = (function script(w) {
   // TODO: This is ugly and I would really love to have these as seperate files
   //  or some way of not bloating the source file
 
-  const style = function Style (component) {
     const state = store.getState();
+  const style = function Style (component) {
 
     if (!styles.hasOwnProperty(state.ui.style)) {
       throw new Error('UnknownStyleError');
@@ -145,58 +148,10 @@ const script = (function script(w) {
   const injectSheet = ReactJSS.create();
 
 
-  // React Components
-
-  // class Notification extends React.Component {
-  //   render () {
-  //     return (
-  //       <ul className="letschat-alert" style={{margin: 0, listStyle: 'none'}}>
-  //       </ul>
-  //     )
-  //   }
-  // }
-
-  // class Status extends React.Component {
-  //   constructor (props) {
-  //     super(...arguments);
-
-  //     this.socket = props.socket;
-  //     this.socket.on('operator:typing', this.onTyping);
-
-  //     this.state = {
-  //       typing: false,
-  //       style: {}
-  //     };
-  //   }
-
-  //   onTyping () {
-  //     console.log('OPERATOR TYPING ...');
-  //   }
-
-  //   render () {
-  //     return (
-  //         <ul className="letschat-message-status" style={{
-  //           position: 'fixed',
-  //           bottom: '48px',
-  //           margin: 0,
-  //           boxSizing: 'border-box',
-  //           padding: '4px 8px',
-  //           height: '24px',
-  //           width: '265px',
-  //           fontSize: '13px',
-  //           fontFamily: 'sans-serif',
-  //           fontStyle: 'italic',
-  //           listStyle: 'none',
-  //           color: '#D1D1D1'
-  //         }}>
-  //           <li><span>John is typing...</span></li>
-  //         </ul>
-  //       )
-  //   }
-  // }
-
   
 
+  
+  /*
   const messageListMapStateToProps = state => ({
     messages: state.messages || [],
   });
@@ -227,210 +182,78 @@ const script = (function script(w) {
     messageListMapStateToProps,
     messageListMapDispatchToProps,
   )(MessageList);
+  */
 
 
-  @injectSheet(style('Input'))
-  class Input extends React.Component {
-    static propTypes = {
-      socket: (props, propName) => {
-        if (!(propName in props)) {
-          throw new Error('socket must be set.');
-        }
-      },
-      sheet: (props, propName) => {
-        if (!(propName in props)) {
-          throw new Error('sheet must be set.');
-        }
-      },
-    }
-    constructor (props) {
-      super(props);
+  // @injectSheet(style('Input'))
+  // class Input extends React.Component {
+  //   static propTypes = {
+  //     socket: (props, propName) => {
+  //       if (!(propName in props)) {
+  //         throw new Error('socket must be set.');
+  //       }
+  //     },
+  //     sheet: (props, propName) => {
+  //       if (!(propName in props)) {
+  //         throw new Error('sheet must be set.');
+  //       }
+  //     },
+  //   }
+  //   constructor (props) {
+  //     super(props);
 
-      this.socket = props.socket;
-    }
-
-
-    // Event Handler
-
-    onKeyPress (event) {
-      const key = event.key;
-      const keyCode = event.keyCode;
-      const shiftKey = event.shiftKey;
-      const ctrlKey = event.ctrlKey;
-      const altKey = event.altKey;
-      const input = event.target;
-
-      console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
-
-      if (keyCode === KEY_ENTER) {
-        if (!shiftKey) {
-          console.log('SENDING MESSAGE ...');
-          // Send data
-          this.socket.emit('client:message', event.target.value);
-
-          // Update message list
-          store.dispatch({ type: UI_HARD_ENTER, message: event.target.value });
-          store.dispatch({ type: CHAT_MESSAGE_CLIENT, message: event.target.value });
-
-          event.preventDefault();
-          input.value = '';
-        } else {
-          // Update input height
-          store.dispatch({ type: UI_SOFT_ENTER });
-        }
-      }
-
-      this.socket.emit('client:typing');
-    }
+  //     this.socket = props.socket;
+  //   }
 
 
-    render () {
-      const { sheet: { classes } } = this.props;
+  //   // Event Handler
 
-      return (
-        <textarea
-          type="text"
-          className={classes.input}
-          placeholder="Type a message&hellip;"
-          onKeyDown={this.onKeyPress.bind(this)}
-        />
-      );
-    }
-  }
+  //   onKeyPress (event) {
+  //     const key = event.key;
+  //     const keyCode = event.keyCode;
+  //     const shiftKey = event.shiftKey;
+  //     const ctrlKey = event.ctrlKey;
+  //     const altKey = event.altKey;
+  //     const input = event.target;
 
-  // Create chat box wrapper
-  @injectSheet(style('Chat'))
-  class Chat extends React.Component {
-    static propTypes = {
-      sheet: (props, propName) => {
-        if (!(propName in props)) {
-          throw new Error('sheet must be set.');
-        }
-      },
-    }
-    constructor (props) {
-      super(props);
+  //     console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
 
-      this.socket = io.connect(socketPath, {
-        reconnectionAttempts: 10,
-      });
+  //     if (keyCode === KEY_ENTER) {
+  //       if (!shiftKey) {
+  //         console.log('SENDING MESSAGE ...');
+  //         // Send data
+  //         this.socket.emit('client:message', event.target.value);
 
-      this.socket.on('connect', this.onSocketConnected);
-      this.socket.on('connect_error', this.onSocketConnectionError);
-      this.socket.on('connect_timeout', this.onSocketTimeout);
-      this.socket.on('disconnect', this.onSocketDisconnected);
-      this.socket.on('reconnect', this.onSocketReconnected);
-      this.socket.on('reconnecting', this.onSocketReconnecting);
-      // this.socket.on('reconnect_error', socketConnectionError);
-      this.socket.on('reconnect_failed', this.onSocketReconnectionFailed);
-      this.socket.on('reconnect_timeout', this.onSocketTimeout);
+  //         // Update message list
+  //         store.dispatch({ type: UI_HARD_ENTER, message: event.target.value });
+  //         store.dispatch({ type: CHAT_MESSAGE_CLIENT, message: event.target.value });
 
-      this.socket.on('operator:message', this.handleOperatorMessage);
+  //         event.preventDefault();
+  //         input.value = '';
+  //       } else {
+  //         // Update input height
+  //         store.dispatch({ type: UI_SOFT_ENTER });
+  //       }
+  //     }
 
-      // Initial state
-      this.state = {
-        operator: {
-          firstName: 'John',
-        },
-        company: {
-          name: 'ACME',
-        },
-      };
-    }
+  //     this.socket.emit('client:typing');
+  //   }
 
 
-    // Event Handlers
+  //   render () {
+  //     const { sheet: { classes } } = this.props;
 
-    // Successful connection
-    onSocketConnected () {
-      const state = store.getState();
-      console.log('DEBUG', 'Socket connected');
+  //     return (
+  //       <textarea
+  //         type="text"
+  //         className={classes.input}
+  //         placeholder="Type a message&hellip;"
+  //         onKeyDown={this.onKeyPress.bind(this)}
+  //       />
+  //     );
+  //   }
+  // }
 
-      if (!state.chat.connected) {
-        store.dispatch({ type: CHAT_CONNECTED });
-      }
-    }
-
-    // Disconnected
-    onSocketDisconnected () {
-      const state = store.getState();
-      console.warn('DEBUG', 'Socket disconnected');
-
-      if (state.chat.connected) {
-        store.dispatch({ type: CHAT_DISCONNECTED });
-      }
-    }
-
-    // Successful re-connected
-    onSocketReconnected () {
-      console.log('DEBUG', 'Socket reconnected');
-    }
-
-    // Attempting to re-connect
-    onSocketReconnecting () {
-      console.log('DEBUG', 'Socket reconnecting ...');
-    }
-
-    // Failed to re-connect after manager.reconnectionAttempts tried
-    onSocketReconnectionFailed () {
-      console.error('DEBUG', 'Socket failed reconnection');
-    }
-
-    // Timeout either connecting or re-connecting
-    onSocketTimeout () {
-      console.warn('DEBUG', 'Socket timeout');
-    }
-
-    // Error when connecting or re-connecting
-    onSocketConnectionError () {
-      console.error('DEBUG', 'Socket connection error');
-    }
-
-    handleOperatorMessage (data) {
-      console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
-
-      store.dispatch({ type: CHAT_MESSAGE_OPERATOR, message: data });
-    }
-
-
-    // Actions
-
-    open () {
-      console.log('DEBUG', 'Open chat');
-    }
-
-    close () {
-      console.log('DEBUG', 'Close chat');
-    }
-
-
-    render () {
-      const { sheet: { classes } } = this.props;
-      const socket = this.socket;
-      const operator = this.state.operator;
-      const company = this.state.company;
-
-      return (
-        <div className={classes.outerWrapper}>
-          <div className={classes.box}>
-            <div className={classes.innerWrapper}>
-              <div className={classes.header}>
-                <span className={classes.headerText}>
-                  <strong>{operator.firstName}</strong>
-                  &nbsp;from&nbsp;{company.name}
-
-                  <testC></testC>
-                </span>
-                <button className={classes.icon} onClick={this.close}>&#215;</button>
-              </div>
-              <Messages store={store} socket={socket} />
-              <Input socket={socket} />
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
 
 
   // Init
@@ -487,8 +310,12 @@ const script = (function script(w) {
       root.style.left = 0;
     }
 
+    console.log('the store is,', store)
+
     ReactDOM.render(
-      <Chat store={store} />,
+      <Provider store={store}>
+        <Chat />
+      </Provider>,
       root,
     );
   };
@@ -527,10 +354,10 @@ const script = (function script(w) {
 
   return {
     store,
-    Message,
-    MessageList,
-    Input,
-    Chat,
+    // Message,
+    // MessageList,
+    // Input,
+    // Chat,
   };
 }(window));
 
