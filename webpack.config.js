@@ -21,6 +21,9 @@ module.exports = {
         test : /\.jsx?/,
         include : PATHS.APP,
         loader : 'babel'
+      },
+      {
+        test: /\.css$/, loader: 'style-loader!css-loader'
       }
     ]
   },

@@ -1,5 +1,6 @@
 import styles from './styles';
 import Message from './components/Message/Message.js';
+import testC from './components/testC/testC'
 
 const script = (function script(w) {
   // Libraries
@@ -49,7 +50,7 @@ const script = (function script(w) {
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
-    style: STYLE_FLOAT,
+    style: STYLE_MESSANGER,
   };
   const uiReducer = function UIReducer (state = uiInitialState, action) {
     console.log('UI', action.type);
@@ -417,6 +418,8 @@ const script = (function script(w) {
                 <span className={classes.headerText}>
                   <strong>{operator.firstName}</strong>
                   &nbsp;from&nbsp;{company.name}
+
+                  <testC></testC>
                 </span>
                 <button className={classes.icon} onClick={this.close}>&#215;</button>
               </div>
