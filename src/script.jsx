@@ -1,4 +1,14 @@
-import styles from './styles';
+const css = require('./styles');
+
+window.React = require('react');
+window.Redux = require('redux');
+window.ReactDOM = require('react-dom');
+window.ReactRedux = require('react-redux');
+window.ReactJSS = require('react-jss');
+window.io = require('socket.io-client');
+
+// window.{ combineReducers, createStore } = require('redux');
+// window.{ connect } = require('react-redux');
 
 const script = (function script(w) {
   // Libraries
@@ -7,12 +17,11 @@ const script = (function script(w) {
   const Redux = w.Redux || false;
   const ReactDOM = w.ReactDOM || false;
   const ReactRedux = w.ReactRedux || false;
-  const ReactJSS = w.reactJss || false;
+  const ReactJSS = w.ReactJSS || false;
   // const $ = w.jQuery || false;
   const io = w.io || false;
   // const mnml = w.mnml || {};
   const socketPath = 'http://localhost:8000';
-
 
 
   // Constants
@@ -122,22 +131,19 @@ const script = (function script(w) {
 
   // Styles
 
-  // TODO: This is ugly and I would really love to have these as seperate files
-  //  or some way of not bloating the source file
-
   const style = function Style (component) {
     const state = store.getState();
 
-    if (!styles.hasOwnProperty(state.ui.style)) {
+    if (!css.hasOwnProperty(state.ui.style)) {
       throw new Error('UnknownStyleError');
     }
 
-    if (!styles[state.ui.style].hasOwnProperty(component)) {
+    if (!css[state.ui.style].hasOwnProperty(component)) {
       throw new Error('UnknownComponentStyleError');
     }
 
-    // console.log('CSS', styles[state.ui.style][component]);
-    return styles[state.ui.style][component];
+    // console.log('CSS', css[state.ui.style][component]);
+    return css[state.ui.style][component];
   };
 
   const injectSheet = ReactJSS.create();
