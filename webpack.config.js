@@ -1,24 +1,33 @@
-var webpack = require('webpack');
-var development = process.env.NODE_ENV !== "production";
+let webpack = require('webpack');
+let config = require('./package.json');
 
-var PATHS = {
+let development = process.env.NODE_ENV !== "production";
+
+let PATHS = {
   BUILD: __dirname + '/dist',
-  APP: __dirname + '/src'
+  SRC: __dirname + '/src'
 }
+
+// Some gymnastics to get a nicer script file name
+let entries = {
+  includes: ['socket.io-client', 'react', 'react-dom', 'redux', 'react-redux', 'react-jss'],
+};
+
+entries["mnml-" + config.version] = './src/script.jsx';
 
 module.exports = {
   context: __dirname,
-  devtool: development ? "inline-sourcemap" : null,
-  entry: PATHS.APP + "/script.jsx",
+  devtool: development ? "source-map" : null,
+  entry: entries,
   output: {
+    filename: "[name]" + (!development ? '.min' : '') + ".js",
     path: PATHS.BUILD,
-    filename: "scripts.js"
   },
   module : {
     loaders : [
       {
         test : /\.jsx?/,
-        include : PATHS.APP,
+        include : PATHS.SRC,
         loader : 'babel'
       }
     ]
@@ -26,6 +35,9 @@ module.exports = {
   plugins: development ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['includes', 'manifest'] // Specify the common bundle's name.
+    }),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false, minimize: !development }),
   ],
 };
