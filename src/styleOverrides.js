@@ -1,5 +1,4 @@
-let chat = {};
-chat.theme = {
+module.exports = {
   // rtl: false,
   // avatar: true,
   // showTyping: true,

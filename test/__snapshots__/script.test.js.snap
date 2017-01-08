@@ -6,7 +6,7 @@ exports[`Chat matches snapshot 1`] = `
     <div
       className="innerWrapper-796889303">
       <div
-        className="header-181289956">
+        className="header-1678930929">
         <span
           className={undefined}>
           <strong>
@@ -16,7 +16,7 @@ exports[`Chat matches snapshot 1`] = `
           ACME
         </span>
         <button
-          className="icon-1322118302"
+          className="icon-3194709395"
           onClick={[Function]}>
           ×
         </button>
@@ -30,7 +30,7 @@ exports[`Chat matches snapshot 1`] = `
         </div>
       </div>
       <textarea
-        className="input-425402174"
+        className="input-886653550"
         onKeyDown={[Function]}
         placeholder="Type a message…"
         type="text" />
@@ -41,7 +41,7 @@ exports[`Chat matches snapshot 1`] = `
 
 exports[`Input matches snapshot 1`] = `
 <textarea
-  className="input-425402174"
+  className="input-886653550"
   onKeyDown={[Function]}
   placeholder="Type a message…"
   type="text" />
@@ -58,7 +58,7 @@ exports[`Message matches snapshot 1`] = `
   }>
   <div>
     <ul
-      className="userContent-1750191772">
+      className="userContent-3405608545">
       <li>
         Foo Bar
       </li>
