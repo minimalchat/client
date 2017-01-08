@@ -10,7 +10,7 @@ window.io = require('socket.io-client');
 // window.{ combineReducers, createStore } = require('redux');
 // window.{ connect } = require('react-redux');
 
-const script = (function script(w) {
+let chat = Object.assign({}, chat, (function script(w) {
   // Libraries
 
   const React = w.React || false;
@@ -57,7 +57,7 @@ const script = (function script(w) {
 
   // UI based actions (open, close)  will go through the uiReducer
   const uiInitialState = {
-    style: STYLE_FLOAT,
+    style: STYLE_MESSANGER,
   };
   const uiReducer = function UIReducer (state = uiInitialState, action) {
     console.log('UI', action.type);
@@ -465,7 +465,6 @@ const script = (function script(w) {
     }
   }
 
-
   // Init
 
   if (!React) {
@@ -565,9 +564,9 @@ const script = (function script(w) {
     Input,
     Chat,
   };
-}(window));
+}(window)));
 
 if (typeof module !== 'undefined') {
-  module.exports = script;
+  module.exports = chat;
 }
 // console.log('MNML', module.exports);
