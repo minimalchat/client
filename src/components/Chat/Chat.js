@@ -1,16 +1,21 @@
-import React, {PropTypes} from 'react';
+/* eslint react/jsx-filename-extension:0*/
+
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import './Chat_styles.css';
 import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
-import {rotateChatStyle} from '../../containers/UI/actions.js'
+import { rotateChatStyle } from '../../containers/UI/actions';
 
 const socketPath = 'http://localhost:8000';
 
 // Create chat box wrapper
 class Chat extends React.Component {
   static propTypes = {
+    chatStyle: PropTypes.string,
+    dispatch: PropTypes.func,
+
   }
 
   constructor (props) {
@@ -58,12 +63,12 @@ class Chat extends React.Component {
 
   // Disconnected
   onSocketDisconnected() {
-    const state = store.getState();
+    // const state = store.getState();
     console.warn('DEBUG', 'Socket disconnected');
 
-    if (state.chat.connected) {
-      store.dispatch({ type: CHAT_DISCONNECTED });
-    }
+    // if (state.chat.connected) {
+    //   store.dispatch({ type: CHAT_DISCONNECTED });
+    // }
   }
 
   // Successful re-connected
@@ -94,7 +99,7 @@ class Chat extends React.Component {
   handleOperatorMessage (data) {
     console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
 
-    store.dispatch({ type: CHAT_MESSAGE_OPERATOR, message: data });
+    // store.dispatch({ type: CHAT_MESSAGE_OPERATOR, message: data });
   }
 
 
@@ -114,8 +119,8 @@ class Chat extends React.Component {
     const socket = this.socket;
     const operator = this.state.operator;
     const company = this.state.company;
-    const {chatStyle, dispatch} = this.props 
-    
+    const { chatStyle, dispatch } = this.props;
+
 
     return (
       <div className={`Chat-outerWrapper_${chatStyle}`}>
@@ -128,7 +133,7 @@ class Chat extends React.Component {
 
               </span>
 
-              <div className="demo-rotate"> {/*some demo buttons for testing redux / changing ui state*/}
+              <div className="demo-rotate"> {/* some demo buttons for testing redux / changing ui state*/}
                 <button onClick={() => dispatch(rotateChatStyle('FLOAT'))}> FLOAT </button>
                 <button onClick={() => dispatch(rotateChatStyle('MESSENGER'))}> MESSENGER </button>
                 <button onClick={() => dispatch(rotateChatStyle('SIDEPANEL'))}> SIDEPANEL </button>
@@ -146,6 +151,6 @@ class Chat extends React.Component {
 }
 
 export default connect(
-	state => ({chatStyle: state.ui.chatStyle}),
-	dispatch => ({dispatch})
-	)(Chat);
+  state => ({ chatStyle: state.ui.chatStyle }),
+  dispatch => ({ dispatch }),
+)(Chat);

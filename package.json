@@ -58,6 +58,9 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
-    "react-jss": "^4.2.0"
+    "react-jss": "^4.2.0",
+    "react-redux": "^4.4.5",
+    "react": "^15.3.2",
+    "socket.io-client": "^1.5.1"
   }
 }

@@ -157,10 +157,11 @@
   top: 0;
   left: 0;
   padding: 100;
-  background: red;
-
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .demo-rotate button {
-  padding: 50px;
+  padding: 20px;
+  margin: 20px;
+  background: #efefef;
 }

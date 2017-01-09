@@ -4,7 +4,7 @@ import {
   UI_HARD_ENTER,
   UI_SOFT_ENTER,
   TOGGLE_CHAT_STYLE,
-} from './constants.js'
+} from './constants';
 
 const uiInitialState = {
   chatStyle: 'MESSENGER', //TODO: connect to App constants (make a global constants file // SIDEPANEL, FLOAT, MESSENGER)
@@ -23,7 +23,7 @@ const uiReducer = function UIReducer(state = uiInitialState, action) {
       return state;
 
     case TOGGLE_CHAT_STYLE:
-      return {...state, chatStyle: action.payload}
+      return { ...state, chatStyle: action.payload };
 
     default:
       return state;

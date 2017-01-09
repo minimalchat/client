@@ -1,10 +1,9 @@
 import { Provider } from 'react-redux';
-// import styles from './styles';
 import Chat from './components/Chat/Chat';
 
 // reducers
-import chatReducer from './containers/Chat/reducer'
-import uiReducer from './containers/UI/reducer'
+import chatReducer from './containers/Chat/reducer';
+import uiReducer from './containers/UI/reducer';
 
 
 const script = (function script(w) {
@@ -21,7 +20,7 @@ const script = (function script(w) {
   const socketPath = 'http://localhost:8000';
 
 
-  /*** Constants ***/
+  /**  Constants **/
 
   // KeyCode Constants
   const KEY_ENTER = 13;
@@ -53,7 +52,7 @@ const script = (function script(w) {
       chat: chatReducer,
     }),
 
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line
   );
 
 
@@ -82,7 +81,7 @@ const script = (function script(w) {
   */
 
 
-  
+
 
   // Init
 
@@ -128,12 +127,12 @@ const script = (function script(w) {
     root.style.right = 'auto';
     root.style.left = 'auto';
 
-    // TODO: Replace these with new constants. 
+    // TODO: Replace these with new constants.
     if (state.ui.chatStyle === 'SIDEPANEL') {
       root.style.top = 0;
       root.style.bottom = 0;
       root.style.right = 0;
-    } else if (state.ui.chatStyle === 'FLOAT' || state.ui.chatStyle === "MESSENGER") {
+    } else if (state.ui.chatStyle === 'FLOAT' || state.ui.chatStyle === 'MESSENGER') {
       root.style.bottom = 0;
       root.style.right = 0;
       root.style.left = 0;
