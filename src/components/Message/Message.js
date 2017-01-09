@@ -6,23 +6,24 @@ import './Message_styles.css';
 const CHAT_OPERATOR = 'OPERATOR'
 
 const Message = props => {
+  const {chatStyle, author, timestamp, id} = props;
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
 
   let message = (
     <div>
-      <ul className="Message-userContent">
+      <ul className={`Message-userContent_${chatStyle}`}>
         {content}
       </ul>
     </div>
   );
 
-  if (props.author === CHAT_OPERATOR) {
+  if (author === CHAT_OPERATOR) {
     message = (
       <div>
-        <div className="Message-operatorPicture">
-          <img alt="Operator" className="Message-operatorPictureImage" src="http://placehold.it/40x40/" />
+        <div className={`Message-operatorPicture_${chatStyle}`}>
+          <img alt="Operator" className={`Message-operatorPictureImage_${chatStyle}`} src="http://placehold.it/40x40/" />
         </div>
-        <ul className="Message-operatorContent">
+        <ul className={`Message-operatorContent_${chatStyle}`}>
           {content}
         </ul>
       </div>
@@ -30,9 +31,9 @@ const Message = props => {
   }
 
   return (
-    <li id={`message_${props.id}`} className="letschat-message" style={{ clear: 'both' }}>
+    <li id={`message_${id}`} className="letschat-message" style={{ clear: 'both' }}>
       {message}
-      <span className="letschat-message-timestamp">{props.timestamp}</span>
+      <span className="letschat-message-timestamp">{timestamp}</span>
     </li>
   );
 };
@@ -42,4 +43,7 @@ Message.propTypes = {
   content: PropTypes.array,
 };
 
-export default Message;
+export default connect(
+  state => ({chatStyle: state.ui.style}), 
+  dispatch => ({})
+)(Message)

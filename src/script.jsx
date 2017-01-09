@@ -10,14 +10,14 @@ import uiReducer from './containers/UI/reducer'
 const script = (function script(w) {
   // Libraries
 
-  // const React = w.React || false;
-  // const Redux = w.Redux || false;
-  // const ReactDOM = w.ReactDOM || false;
-  // const ReactRedux = w.ReactRedux || false;
-  // const ReactJSS = w.reactJss || false;
-  // // const $ = w.jQuery || false;
-  // const io = w.io || false;
-  // const mnml = w.mnml || {};
+  const React = w.React || false;
+  const Redux = w.Redux || false;
+  const ReactDOM = w.ReactDOM || false;
+  const ReactRedux = w.ReactRedux || false;
+  const ReactJSS = w.reactJss || false;
+  // const $ = w.jQuery || false;
+  const io = w.io || false;
+  const mnml = w.mnml || {};
   const socketPath = 'http://localhost:8000';
 
 
