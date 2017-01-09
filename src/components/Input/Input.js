@@ -50,10 +50,12 @@ class Input extends Component {
 
 
   render() {
+		const chatStyle = this.props.chatStyle;
+
     return (
       <textarea
         type="text"
-        className="Input-input"
+        className={`Input_${chatStyle}`}
         placeholder="Type a message&hellip;"
         onKeyDown={this.onKeyPress}
         onChange={this.handleChange}
@@ -63,7 +65,7 @@ class Input extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({chatStyle: state.ui.chatStyle})
 const mapDispatchToProps = dispatch => ({
   dispatch
 })
