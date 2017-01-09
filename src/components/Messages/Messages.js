@@ -2,11 +2,9 @@ import Message from '../Message/Message';
 import { connect } from 'react-redux';
 
 
-
 const MessageList = (props) => {
-  console.log(props);
-  // const state = store.getState();
   const socket = props.socket;
+  console.log(props);
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
@@ -27,8 +25,8 @@ const MessageList = (props) => {
         // <Status socket={socket} />
 };
 
-const messageListMapStateToProps = state => ({
-  messages: state.messages || [],
+const messageListMapStateToProps = state =>  ({
+  messages: state.chat.messages, // used to be state.messages..
 });
 
 const messageListMapDispatchToProps = dispatch => ({ });

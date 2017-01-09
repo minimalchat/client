@@ -3,6 +3,11 @@ import styles from './styles';
 import Message from './components/Message/Message.js';
 import Chat from './components/Chat/Chat';
 
+// reducers
+import chatReducer from './containers/Chat/reducer'
+import uiReducer from './containers/UI/reducer'
+
+
 const script = (function script(w) {
   // Libraries
 
@@ -23,13 +28,13 @@ const script = (function script(w) {
   const KEY_ENTER = 13;
 
   // React Constants
-  const UI_OPEN = 'UI_OPEN';
-  const UI_CLOSE = 'UI_CLOSE';
-  const UI_SOFT_ENTER = 'UI_SOFT_ENTER';
-  const UI_HARD_ENTER = 'UI_HARD_ENTER';
-  const UI_STYLE_MESSANGER = 'UI_STYLE_MESSANGER';
-  const UI_STYLE_FLOAT = 'UI_STYLE_FLOAT';
-  const UI_STYLE_SIDEPANEL = 'UI_STYLE_SIDEPANEL';
+  // const UI_OPEN = 'UI_OPEN';
+  // const UI_CLOSE = 'UI_CLOSE';
+  // const UI_SOFT_ENTER = 'UI_SOFT_ENTER';
+  // const UI_HARD_ENTER = 'UI_HARD_ENTER';
+  // const UI_STYLE_MESSANGER = 'UI_STYLE_MESSANGER';
+  // const UI_STYLE_FLOAT = 'UI_STYLE_FLOAT';
+  // const UI_STYLE_SIDEPANEL = 'UI_STYLE_SIDEPANEL';
 
   const CHAT_CONNECTED = 'CHAT_CONNECTED';
   const CHAT_DISCONNECTED = 'CHAT_DISCONNECTED';
@@ -50,68 +55,68 @@ const script = (function script(w) {
 
 
   // UI based actions (open, close)  will go through the uiReducer
-  const uiInitialState = {
-    style: STYLE_MESSANGER,
-  };
-  const uiReducer = function UIReducer (state = uiInitialState, action) {
-    console.log('UI', action.type);
-    switch (action.type) {
-      case UI_CLOSE:
-        return Object.assign({}, state, {
-          open: false,
-        });
-      case UI_OPEN:
-      default:
-        return state;
-    }
-  };
+  // const uiInitialState = {
+  //   style: STYLE_MESSANGER,
+  // };
+  // const uiReducer = function UIReducer (state = uiInitialState, action) {
+  //   console.log('UI', action.type);
+  //   switch (action.type) {
+  //     case UI_CLOSE:
+  //       return Object.assign({}, state, {
+  //         open: false,
+  //       });
+  //     case UI_OPEN:
+  //     default:
+  //       return state;
+  //   }
+  // };
 
-  // Chat based actions (send, recieve) will go through the chatReducer
-  const chatInitialState = {
-    messages: [],
-  };
-  const chatReducer = function ChatReducer (state = chatInitialState, action) {
-    let messages = [];
+  // // Chat based actions (send, recieve) will go through the chatReducer
+  // const chatInitialState = {
+  //   messages: [],
+  // };
+  // const chatReducer = function ChatReducer (state = chatInitialState, action) {
+  //   let messages = [];
 
-    console.log('CHAT', action.type);
+  //   console.log('CHAT', action.type);
 
-    switch (action.type) {
-      case CHAT_MESSAGE_OPERATOR:
-        messages = state.messages;
+  //   switch (action.type) {
+  //     case CHAT_MESSAGE_OPERATOR:
+  //       messages = state.messages;
 
-        // Is the last message from client? (e.g. can we combine it)
-        if (messages.length > 0 && messages[messages.length - 1].author === CHAT_OPERATOR) {
-          messages[messages.length - 1].content.push(action.message);
-        } else {
-          messages.push({
-            author: CHAT_OPERATOR,
-            content: [action.message],
-          });
-        }
+  //       // Is the last message from client? (e.g. can we combine it)
+  //       if (messages.length > 0 && messages[messages.length - 1].author === CHAT_OPERATOR) {
+  //         messages[messages.length - 1].content.push(action.message);
+  //       } else {
+  //         messages.push({
+  //           author: CHAT_OPERATOR,
+  //           content: [action.message],
+  //         });
+  //       }
 
-        return Object.assign({}, state, {
-          messages,
-        });
-      case CHAT_MESSAGE_CLIENT:
-        messages = state.messages;
+  //       return Object.assign({}, state, {
+  //         messages,
+  //       });
+  //     case CHAT_MESSAGE_CLIENT:
+  //       messages = state.messages;
 
-        // Is the last message from client? (e.g. can we combine it)
-        if (messages.length > 0 && messages[messages.length - 1].author === CHAT_CLIENT) {
-          messages[messages.length - 1].content.push(action.message);
-        } else {
-          messages.push({
-            author: CHAT_CLIENT,
-            content: [action.message],
-          });
-        }
+  //       // Is the last message from client? (e.g. can we combine it)
+  //       if (messages.length > 0 && messages[messages.length - 1].author === CHAT_CLIENT) {
+  //         messages[messages.length - 1].content.push(action.message);
+  //       } else {
+  //         messages.push({
+  //           author: CHAT_CLIENT,
+  //           content: [action.message],
+  //         });
+  //       }
 
-        return Object.assign({}, state, {
-          messages,
-        });
-      default:
-        return state;
-    }
-  };
+  //       return Object.assign({}, state, {
+  //         messages,
+  //       });
+  //     default:
+  //       return state;
+  //   }
+  // };
 
   // If the latter happens, we in big dodo..
   const document = w.document || {};
@@ -129,7 +134,8 @@ const script = (function script(w) {
 
   // TODO: This is ugly and I would really love to have these as seperate files
   //  or some way of not bloating the source file
-
+  // TODO: Can this be deleted?
+/*
     const state = store.getState();
   const style = function Style (component) {
 
@@ -145,7 +151,8 @@ const script = (function script(w) {
     return styles[state.ui.style][component];
   };
 
-  const injectSheet = ReactJSS.create();
+  // const injectSheet = ReactJSS.create();
+  */
 
 
   
@@ -204,7 +211,6 @@ const script = (function script(w) {
       root.style.left = 0;
     }
 
-    console.log('the store is,', store)
 
     ReactDOM.render(
       <Provider store={store}>

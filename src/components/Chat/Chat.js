@@ -5,21 +5,13 @@ import './Chat_styles.css';
 import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
 
-console.log(Messages);
-
 const socketPath = 'http://localhost:8000';
 
-
 // Create chat box wrapper
-// @injectSheet(style('Chat'))
 class Chat extends React.Component {
   static propTypes = {
-    sheet: (props, propName) => {
-      if (!(propName in props)) {
-        throw new Error('sheet must be set.');
-      }
-    },
   }
+
   constructor (props) {
     super(props);
 
@@ -54,7 +46,7 @@ class Chat extends React.Component {
   // Event Handlers
 
   // Successful connection
-  onSocketConnected () {
+  onSocketConnected() {
     // const state = store.getState();
     console.log('DEBUG', 'Socket connected');
 
@@ -64,7 +56,7 @@ class Chat extends React.Component {
   }
 
   // Disconnected
-  onSocketDisconnected () {
+  onSocketDisconnected() {
     const state = store.getState();
     console.warn('DEBUG', 'Socket disconnected');
 
@@ -134,7 +126,6 @@ class Chat extends React.Component {
               </span>
               <button className="Chat-icon" onClick={this.close}>&#215;</button>
             </div>
-            {/*TODO: This is broken*/}
             <Messages  socket={socket} />
             <Input socket={socket} />
           </div>
