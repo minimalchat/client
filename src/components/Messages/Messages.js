@@ -5,7 +5,6 @@ import './Messages_styles.css';
 
 const MessageList = (props) => {
   const socket = props.socket;
-  console.log('props for message list', props);
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
@@ -24,10 +23,15 @@ const MessageList = (props) => {
         // <Status socket={socket} />
 };
 
-const messageListMapStateToProps = state =>  ({
-  messages: state.chat.messages, // used to be state.messages..
-  chodes: 'daildck',
-});
+const messageListMapStateToProps = state => {
+  console.log(state)
+  return {
+    messages: state.chat.messages
+  }
+}
+//  ({
+//   messages: state.chat.messages, // used to be state.messages..
+// });
 
 const messageListMapDispatchToProps = dispatch => ({ });
 

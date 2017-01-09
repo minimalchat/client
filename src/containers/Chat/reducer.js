@@ -44,20 +44,24 @@ import {
         console.log('chat message from client, content is', action.payload)
         messages = state.messages;
 
-        // Is the last message from client? (e.g. can we combine it)
+        // // Is the last message from client? (e.g. can we combine it)
+        // this got ugly. Resource for not mutating state in this case: http://stackoverflow.com/questions/35362460/replace-array-item-with-another-one-without-mutating-state#35362981
         if (messages.length > 0 && messages[messages.length - 1].author === CHAT_CLIENT) {
-          messages[messages.length - 1].content.push(action.payload);
-        } else {
-          messages.push({
-            author: CHAT_CLIENT,
-            content: [action.payload],
-          });
-        }
+          let lastMsg = [...state.messages[state.messages.length - 1].content] // clone the array of prev. messages
+          let newLast = [...lastMsg, [action.payload]] // add the "addendum"
+          
+          return {
+            ...state,
+            messages: [...state.messages.slice(0, state.messages.length -1), {author: CHAT_CLIENT, content: newLast} ]
+          }
 
-        // return { ...state, messages}
-        return Object.assign({}, state, {
-          messages,
-        });
+        // if operator has spoken since last input, create a new bubble.
+        } else {
+            return { 
+              ...state, 
+              messages: [...state.messages, {author: CHAT_CLIENT, content: [action.payload]}] 
+            }
+        }
         
       default:
         return state;
