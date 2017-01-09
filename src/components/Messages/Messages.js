@@ -1,16 +1,15 @@
 import Message from '../Message/Message';
 import { connect } from 'react-redux';
+import './Messages_styles.css';
 
 
 const MessageList = (props) => {
   const socket = props.socket;
-  console.log(props);
+  console.log('props for message list', props);
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
   );
-
-  // const { sheet: { classes } } = props;
 
   return (
     <div className="Messages">
@@ -27,6 +26,7 @@ const MessageList = (props) => {
 
 const messageListMapStateToProps = state =>  ({
   messages: state.chat.messages, // used to be state.messages..
+  chodes: 'daildck',
 });
 
 const messageListMapDispatchToProps = dispatch => ({ });

@@ -126,7 +126,7 @@ class Chat extends React.Component {
               </span>
               <button className="Chat-icon" onClick={this.close}>&#215;</button>
             </div>
-            <Messages  socket={socket} />
+            <Messages socket={socket} />
             <Input socket={socket} />
           </div>
         </div>

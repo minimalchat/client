@@ -25,7 +25,7 @@ class Input extends Component {
 
   onKeyPress = (event) => {
     const {key, keyCode, shiftKey, ctrlKey, altKey, input} = event;
-    console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
+    // console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
 
     if (keyCode === KEY_ENTER) {
       if (!shiftKey) {

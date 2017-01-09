@@ -10,11 +10,12 @@ import {
 
 // Chat based actions (send, recieve) will go through the chatReducer
   const chatInitialState = {
-    // messages: [
-    //   {author: 'CLIENT', content: ['Im a client']},
-    //   {author: 'OPERATOR', content: ['Im an operator']}
-    //   ],
-    messages:[]
+    messages: [
+      {author: 'CLIENT', content: ['Im a client']},
+      {author: 'OPERATOR', content: ['Im an operator']}
+      ],
+    // messages: [],
+
   };
   const chatReducer = function ChatReducer (state = chatInitialState, action) {
     let messages = [];
@@ -52,8 +53,8 @@ import {
             content: [action.payload],
           });
         }
-        console.log(messages);
 
+        // return { ...state, messages}
         return Object.assign({}, state, {
           messages,
         });

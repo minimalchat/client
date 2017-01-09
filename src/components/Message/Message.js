@@ -3,12 +3,11 @@ import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import './Message_styles.css';
 
-// TODO: CHAT_OPERATOR mocked - this will be in the redux store.
-const CHAT_OPERATOR = 'client';
+const CHAT_OPERATOR = 'OPERATOR'
 
 const Message = props => {
-
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
+  console.log('props for MESSAGE, ', props);
 
   let message = (
     <div>
@@ -24,7 +23,7 @@ const Message = props => {
         <div className="Message-operatorPicture">
           <img alt="Operator" className="Message-operatorPictureImage" src="http://placehold.it/40x40/" />
         </div>
-        <ul className={classes.operatorContent}>
+        <ul className="Message-operatorContent">
           {content}
         </ul>
       </div>
