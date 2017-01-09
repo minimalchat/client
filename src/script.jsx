@@ -129,7 +129,7 @@ const script = (function script(w) {
     root.style.left = 'auto';
 
     // TODO: Replace these with new constants. 
-    if (state.ui.chatStyle === STYLE_SIDEPANEL) {
+    if (state.ui.chatStyle === 'SIDEPANEL') {
       root.style.top = 0;
       root.style.bottom = 0;
       root.style.right = 0;

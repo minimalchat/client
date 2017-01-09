@@ -6,7 +6,7 @@ import {
 } from './constants.js'
 
 const uiInitialState = {
-  chatStyle: 'FLOAT', //TODO: connect to App constants (make a global constants file // SIDEPANEL, FLOAT, MESSENGER)
+  chatStyle: 'MESSENGER', //TODO: connect to App constants (make a global constants file // SIDEPANEL, FLOAT, MESSENGER)
 };
 
 const uiReducer = function UIReducer(state = uiInitialState, action) {

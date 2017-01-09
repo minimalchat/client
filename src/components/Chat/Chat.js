@@ -113,18 +113,19 @@ class Chat extends React.Component {
     const socket = this.socket;
     const operator = this.state.operator;
     const company = this.state.company;
+    const {chatStyle} = this.props 
 
     return (
-      <div className="Chat-outerWrapper">
-        <div className="Chat-box">
-          <div className="Chat-innerWrapper">
-            <div className="Chat-header">
-              <span className="Chat-headerText">
+      <div className={`Chat-outerWrapper_${chatStyle}`}>
+        <div className={`Chat-box_${chatStyle}`}>
+          <div className={`Chat-innerWrapper_${chatStyle}`}>
+            <div className={`Chat-header_${chatStyle}`}>
+              <span className={`Chat-headerText_${chatStyle}`}>
                 <strong>{operator.firstName}</strong>
                 &nbsp;from&nbsp;{company.name}
 
               </span>
-              <button className="Chat-icon" onClick={this.close}>&#215;</button>
+              <button className={`Chat-icon_${chatStyle}`} onClick={this.close}>&#215;</button>
             </div>
             <Messages socket={socket} />
             <Input socket={socket} />
@@ -135,4 +136,7 @@ class Chat extends React.Component {
   }
 }
 
-export default Chat;
+export default connect(
+	state => ({chatStyle: state.ui.chatStyle}),
+	dispatch => ({})
+	)(Chat);
