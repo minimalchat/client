@@ -4,16 +4,16 @@ import './Messages_styles.css';
 
 
 const MessageList = (props) => {
-  const socket = props.socket;
+  const {socket, chatStyle} = props;
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
   );
 
   return (
-    <div className="Messages">
-      <div className="Messages-wrapper">
-        <ul className="Messages-list">
+    <div className={`Messages_${chatStyle}`}>
+      <div className={`Messages-wrapper_${chatStyle}`}>
+        <ul className={`Messages-list_${chatStyle}`}>
           {messages}
         </ul>
       </div>
@@ -23,7 +23,10 @@ const MessageList = (props) => {
         // <Status socket={socket} />
 };
 
-const messageListMapStateToProps = state => ({ messages: state.chat.messages })
+const messageListMapStateToProps = state => ({ 
+  messages: state.chat.messages,
+  chatStyle: state.ui.chatStyle
+})
 const messageListMapDispatchToProps = dispatch => ({ });
 
 export default connect(

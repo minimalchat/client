@@ -20,8 +20,8 @@ io.connect = jest.fn(() => socket);
 //  components reception)
 //    - UI_OPEN
 //    - UI_CLOSE
-//    - UI_STYLE_MESSANGER
-//    - UI_STYLE_MESSANGER
+//    - UI_STYLE_MESSENGER
+//    - UI_STYLE_MESSENGER
 //    - CHAT_CONNECTED
 //    - CHAT_DISCONNECTED
 //    - CHAT_MESSAGE_OPERATOR

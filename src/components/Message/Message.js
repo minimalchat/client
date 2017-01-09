@@ -44,6 +44,6 @@ Message.propTypes = {
 };
 
 export default connect(
-  state => ({chatStyle: state.ui.style}), 
+  state => ({chatStyle: state.ui.chatStyle}), 
   dispatch => ({})
 )(Message)

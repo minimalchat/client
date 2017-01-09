@@ -35,7 +35,7 @@ const script = (function script(w) {
   const CHAT_CLIENT = 'CLIENT';
   const CHAT_OPERATOR = 'OPERATOR';
 
-  const STYLE_MESSANGER = 'MESSANGER';
+  const STYLE_MESSENGER = 'MESSENGER';
   const STYLE_FLOAT = 'FLOAT';
   const STYLE_SIDEPANEL = 'SIDEPANEL';
 
@@ -128,11 +128,12 @@ const script = (function script(w) {
     root.style.right = 'auto';
     root.style.left = 'auto';
 
-    if (state.ui.style === STYLE_SIDEPANEL) {
+    // TODO: Replace these with new constants. 
+    if (state.ui.chatStyle === STYLE_SIDEPANEL) {
       root.style.top = 0;
       root.style.bottom = 0;
       root.style.right = 0;
-    } else if (state.ui.style === STYLE_FLOAT || state.ui.style === STYLE_MESSANGER) {
+    } else if (state.ui.chatStyle === 'FLOAT' || state.ui.chatStyle === "MESSENGER") {
       root.style.bottom = 0;
       root.style.right = 0;
       root.style.left = 0;

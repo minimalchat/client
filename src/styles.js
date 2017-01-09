@@ -1,5 +1,5 @@
 const styles = {
-  MESSANGER: {
+  MESSENGER: {
     // Message: {
     //   operatorPicture: {
     //     width: '48px',

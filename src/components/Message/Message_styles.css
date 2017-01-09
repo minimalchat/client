@@ -1,4 +1,4 @@
-.Message-userContent_MESSANGER {
+.Message-userContent_MESSENGER {
   margin: 0;
   list-style: none;
   width: 160px;
@@ -12,17 +12,17 @@
   color: white;
 }
 
-.Message-operatorPictureImage_MESSANGER{
+.Message-operatorPictureImage_MESSENGER{
   width: 40px;
   height: 40px;
 }
 
-.Message-operatorPictureImage_MESSANGER{
+.Message-operatorPictureImage_MESSENGER{
   width: 40px;
   height: 40px;
 }
 
-.Message-operatorPicture_MESSANGER {
+.Message-operatorPicture_MESSENGER {
   width: 48px;
   height: 48px;
   float: right;
@@ -31,7 +31,7 @@
   padding: 0 4px;
 }
 
-.Message-operatorContent_MESSANGER {
+.Message-operatorContent_MESSENGER {
   margin: 0;
   padding: 6px;
   list-style: none;
