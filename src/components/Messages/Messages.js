@@ -23,16 +23,7 @@ const MessageList = (props) => {
         // <Status socket={socket} />
 };
 
-const messageListMapStateToProps = state => {
-  console.log(state)
-  return {
-    messages: state.chat.messages
-  }
-}
-//  ({
-//   messages: state.chat.messages, // used to be state.messages..
-// });
-
+const messageListMapStateToProps = state => ({ messages: state.chat.messages })
 const messageListMapDispatchToProps = dispatch => ({ });
 
 export default connect(

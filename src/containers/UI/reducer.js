@@ -6,7 +6,7 @@ import {
 } from './constants.js'
 
 const uiInitialState = {
-  style: 'MESSANGER', //TODO: normalize these vals
+  style: 'MESSANGER', //TODO: connect to App constants (make a global constants file)
 };
 
 const uiReducer = function UIReducer(state = uiInitialState, action) {

@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import injectSheet from 'react-jss';
+// import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import './Message_styles.css';
 
@@ -7,7 +7,6 @@ const CHAT_OPERATOR = 'OPERATOR'
 
 const Message = props => {
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
-  console.log('props for MESSAGE, ', props);
 
   let message = (
     <div>

@@ -40,7 +40,7 @@ class Input extends Component {
 
         event.preventDefault();
       } else {
-        // TODO Update input height
+        // TODO: Update input height
         this.props.dispatch({ type: UI_SOFT_ENTER });
       }
     }
