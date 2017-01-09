@@ -152,3 +152,15 @@
 }
 
 
+.demo-rotate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 100;
+  background: red;
+
+}
+
+.demo-rotate button {
+  padding: 50px;
+}

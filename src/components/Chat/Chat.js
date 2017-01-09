@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import './Chat_styles.css';
 import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
+import {rotateChatStyle} from '../../containers/UI/actions.js'
 
 const socketPath = 'http://localhost:8000';
 
@@ -113,7 +114,8 @@ class Chat extends React.Component {
     const socket = this.socket;
     const operator = this.state.operator;
     const company = this.state.company;
-    const {chatStyle} = this.props 
+    const {chatStyle, dispatch} = this.props 
+    
 
     return (
       <div className={`Chat-outerWrapper_${chatStyle}`}>
@@ -125,6 +127,13 @@ class Chat extends React.Component {
                 &nbsp;from&nbsp;{company.name}
 
               </span>
+
+              <div className="demo-rotate"> {/*some demo buttons for testing redux / changing ui state*/}
+                <button onClick={() => dispatch(rotateChatStyle('FLOAT'))}> FLOAT </button>
+                <button onClick={() => dispatch(rotateChatStyle('MESSENGER'))}> MESSENGER </button>
+                <button onClick={() => dispatch(rotateChatStyle('SIDEPANEL'))}> SIDEPANEL </button>
+              </div>
+
               <button className={`Chat-icon_${chatStyle}`} onClick={this.close}>&#215;</button>
             </div>
             <Messages socket={socket} />
@@ -138,5 +147,5 @@ class Chat extends React.Component {
 
 export default connect(
 	state => ({chatStyle: state.ui.chatStyle}),
-	dispatch => ({})
+	dispatch => ({dispatch})
 	)(Chat);

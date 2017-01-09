@@ -3,6 +3,7 @@ import {
   UI_CLOSE,
   UI_HARD_ENTER,
   UI_SOFT_ENTER,
+  TOGGLE_CHAT_STYLE,
 } from './constants.js'
 
 const uiInitialState = {
@@ -20,6 +21,9 @@ const uiReducer = function UIReducer(state = uiInitialState, action) {
 
     case UI_OPEN:
       return state;
+
+    case TOGGLE_CHAT_STYLE:
+      return {...state, chatStyle: action.payload}
 
     default:
       return state;
