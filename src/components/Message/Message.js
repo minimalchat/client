@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 // import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
-import './Message_styles.css';
+import './Message.css';
 
 const CHAT_OPERATOR = 'OPERATOR';
 

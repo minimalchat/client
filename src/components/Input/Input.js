@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import './Input_styles.css';
+import './Input.css';
 import { updateMessageList } from '../../containers/Chat/actions';
 
 

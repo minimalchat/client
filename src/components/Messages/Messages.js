@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Message from '../Message/Message';
-import './Messages_styles.css';
+import './Messages.css';
 
 
 const MessageList = (props) => {

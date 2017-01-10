@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import './Chat_styles.css';
+import './Chat.css';
 import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
 import { rotateChatStyle } from '../../containers/UI/actions';
