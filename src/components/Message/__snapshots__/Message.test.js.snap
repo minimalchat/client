@@ -1,0 +1,21 @@
+exports[`Message Component renders 1`] = `
+<li
+  className="letschat-message"
+  id="message_undefined"
+  style={
+    Object {
+      "clear": "both",
+    }
+  }>
+  <div>
+    <ul
+      className="Message-userContent_undefined">
+      <li>
+        Foo Bar
+      </li>
+    </ul>
+  </div>
+  <span
+    className="letschat-message-timestamp" />
+</li>
+`;

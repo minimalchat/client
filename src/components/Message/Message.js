@@ -1,13 +1,12 @@
 /* eslint react/jsx-filename-extension:0*/
 
 import React, { PropTypes } from 'react';
-// import injectSheet from 'react-jss';
 import { connect } from 'react-redux';
 import './Message.css';
 
 const CHAT_OPERATOR = 'OPERATOR';
 
-const Message = (props) => {
+export const Message = (props) => {
   const { chatStyle, author, timestamp, id } = props;
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
 
@@ -47,6 +46,7 @@ Message.propTypes = {
   author: PropTypes.string,
   content: PropTypes.array, // eslint-disable-line
 };
+
 
 export default connect(
   state => ({ chatStyle: state.ui.chatStyle }),
