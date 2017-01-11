@@ -6,7 +6,7 @@ import Message from '../Message/Message';
 import './Messages.css';
 
 
-const MessageList = (props) => {
+export const MessageList = (props) => {
   const { socket, chatStyle } = props;
 
   const messages = props.messages.map(

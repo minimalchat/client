@@ -1,0 +1,57 @@
+exports[`Chat matches snapshot 1`] = `
+<div
+  className="Chat-outerWrapper_undefined">
+  <div
+    className="Chat-box_undefined">
+    <div
+      className="Chat-innerWrapper_undefined">
+      <div
+        className="Chat-header_undefined">
+        <span
+          className="Chat-headerText_undefined">
+          <strong>
+            John
+          </strong>
+           from 
+          ACME
+        </span>
+        <div
+          className="demo-rotate">
+           
+          <button
+            onClick={[Function]}>
+             FLOAT 
+          </button>
+          <button
+            onClick={[Function]}>
+             MESSENGER 
+          </button>
+          <button
+            onClick={[Function]}>
+             SIDEPANEL 
+          </button>
+        </div>
+        <button
+          className="Chat-icon_undefined"
+          onClick={[Function]}>
+          ×
+        </button>
+      </div>
+      <Connect(Component)
+        socket={
+          Object {
+            "emit": [Function],
+            "on": [Function],
+          }
+        } />
+      <Connect(Input)
+        socket={
+          Object {
+            "emit": [Function],
+            "on": [Function],
+          }
+        } />
+    </div>
+  </div>
+</div>
+`;

@@ -22,7 +22,7 @@ const chatInitialState = {
 const chatReducer = function ChatReducer (state = chatInitialState, action) {
   let messages = [];
 
-  console.log('CHAT', action.type);
+  // console.log('CHAT', action.type); // commenting out for now, so they don't show up in tests.
 
   switch (action.type) {
     case CHAT_MESSAGE_OPERATOR:

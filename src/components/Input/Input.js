@@ -9,7 +9,7 @@ import { updateMessageList } from '../../containers/Chat/actions';
 // TODO: move to a constants file?
 const KEY_ENTER = 13;
 
-class Input extends Component {
+export class Input extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     dispatch: PropTypes.func,

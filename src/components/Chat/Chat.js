@@ -11,7 +11,7 @@ import { rotateChatStyle } from '../../containers/UI/actions';
 const socketPath = 'http://localhost:8000';
 
 // Create chat box wrapper
-class Chat extends React.Component {
+export class Chat extends React.Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     dispatch: PropTypes.func,

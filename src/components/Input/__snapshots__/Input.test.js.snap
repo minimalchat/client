@@ -1,0 +1,9 @@
+exports[`Input matches snapshot 1`] = `
+<textarea
+  className="Input_undefined"
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  placeholder="Type a message…"
+  type="text"
+  value="" />
+`;

@@ -14,7 +14,9 @@
     "dev": "webpack --watch --progress --colors"
   },
   "jest": {
-    "setupFiles": ["./test/jestsetup.js"],
+    "setupFiles": [
+      "./test/jestsetup.js"
+    ],
     "setupTestFrameworkScriptFile": "node_modules/jest-enzyme/lib/index.js",
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
@@ -49,6 +51,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "coveralls": "^2.11.14",
     "css-loader": "^0.26.1",
+    "enzyme": "^2.7.0",
     "eslint": "^3.10.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",

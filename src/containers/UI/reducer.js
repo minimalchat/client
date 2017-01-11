@@ -11,7 +11,7 @@ const uiInitialState = {
 };
 
 const uiReducer = function UIReducer(state = uiInitialState, action) {
-  console.log('UI', action.type);
+  // console.log('UI', action.type); // commenting out temp to clean up test output
 
   switch (action.type) {
     case UI_CLOSE:

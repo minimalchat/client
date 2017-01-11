@@ -1,4 +1,3 @@
-import React from 'react';
 import { Message } from './Message';
 
 describe('Message Component', () => {
@@ -9,11 +8,10 @@ describe('Message Component', () => {
       content: ['Foo Bar'],
     };
 
-    const component = renderer.create(<Message key={message.key} author={message.author} content={message.content} />);
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    const component = shallow(<Message key={message.key} author={message.author} content={message.content} />);
+    expect(component).toMatchSnapshot();
   })
 
-  // it ...
+  // ...
 });
 
