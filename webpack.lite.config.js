@@ -11,7 +11,7 @@ const PATHS = {
 
 // Some gymnastics to get a nicer script file name
 let entries = {
-  'mnml-libraries': ['socket.io-client', 'react', 'react-dom', 'redux', 'react-redux', 'react-jss'],
+  'mnml-libraries': ['socket.io-client', 'react', 'react-dom', 'redux', 'react-redux'],
 };
 
 entries['mnml-' + config.version] = PATHS.SRC + '/script.jsx';
@@ -51,6 +51,16 @@ module.exports = function (env) {
             presets: ['es2015', 'stage-0', 'react'],
             plugins: ['transform-decorators-legacy'],
           },
+        },
+        {
+          test: /\.css$/,
+          include: [
+            PATHS.SRC
+          ],
+          exclude: [
+            PATHS.MODULES
+          ],
+          loader: 'style-loader!css-loader'
         },
       ],
     },

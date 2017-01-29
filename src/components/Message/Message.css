@@ -1,0 +1,139 @@
+.Message-userContent_MESSENGER {
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #0a6bef;
+  margin-top: 0;
+  margin-left: 4px;
+  border-radius: 10px 10px 10px 0;
+  padding: 6px;
+  color: white;
+}
+
+.Message-operatorPictureImage_MESSENGER{
+  width: 40px;
+  height: 40px;
+}
+
+.Message-operatorPictureImage_MESSENGER{
+  width: 40px;
+  height: 40px;
+}
+
+.Message-operatorPicture_MESSENGER {
+  width: 48px;
+  height: 48px;
+  float: right;
+  margin-top: 4px;
+  box-sizing: border-box;
+  padding: 0 4px;
+}
+
+.Message-operatorContent_MESSENGER {
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  width: 160px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 10px 0 10px 10px;
+  background: #e1e1e1;
+  float: right;
+  text-align: right;
+}
+
+.letschat-message {
+
+}
+
+.letschat-message-timestamp{
+
+}
+
+/* MESSAGE FLOAT STYLE */
+
+.Message-operatorPicture_FLOAT{
+  position: absolute;
+  left: -48px;
+  width: 48px;
+  height: 48px;
+  float: right;
+  margin-top: -16px;
+  box-sizing: border-box;
+  padding: 0 4px;
+  }
+.Message-operatorPictureImage_FLOAT{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  }
+.Message-operatorContent_FLOAT{
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #ffffff;
+  margin-top: 4px;
+  margin-left: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 0 10px 10px 10px;
+  padding: 16px;
+  }
+.Message-userContent_FLOAT{
+  margin: 0;
+  padding: 16px;
+  list-style: none;
+  width: 160px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 10px 10px 0 10px;
+  background: #0a6bef;
+  float: right;
+  text-align: right;
+  color: white;
+  }
+
+
+/* SIDEBAR STYLE */
+
+.Message-operatorPicture_SIDEBAR {
+  width: 48px;
+  height: 48px;
+  float: right;
+  margin-top: 4px;
+  box-sizing: border-box;
+  padding: 0 4px;
+};
+.Message-operatorPictureImage_SIDEBAR {
+  width: 40px;
+  height: 40px;
+};
+.Message-operatorContent_SIDEBAR {
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  width: 160px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 10px 0 10px 10px;
+  background: #e1e1e1;
+  float: right;
+  text-align: right;
+};
+.Message-userContent_SIDEBAR {
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #0a6bef;
+  margin-top: 0;
+  margin-left: 4px;
+  border-radius: 10px 10px 10px 0;
+  padding: 6px;
+  color: white;
+}

@@ -1,0 +1,18 @@
+exports[`MessageList matches snapshot 1`] = `
+<Component
+  chatStyle="TEST"
+  messages={Array []}
+  socket={
+    Object {
+      "emit": [Function],
+      "on": [Function],
+    }
+  }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

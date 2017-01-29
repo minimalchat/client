@@ -1,0 +1,12 @@
+exports[`Chat matches snapshot 1`] = `
+<ChatComponent
+  chatStyle="TEST"
+  dispatch={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

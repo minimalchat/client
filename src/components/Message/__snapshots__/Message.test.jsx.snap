@@ -1,0 +1,18 @@
+exports[`Message matches snapshot 1`] = `
+<Component
+  author="Test User"
+  chatStyle="TEST"
+  content={
+    Array [
+      "Foo Bar",
+    ]
+  }
+  dispatch={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;
