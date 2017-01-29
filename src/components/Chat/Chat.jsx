@@ -1,17 +1,18 @@
-/* eslint react/jsx-filename-extension:0*/
-
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import io from 'socket.io-client';
+
+import Messages from '../Messages/Messages.jsx';
+import Input from '../Input/Input.jsx';
 import './Chat.css';
-import Messages from '../Messages/Messages';
-import Input from '../Input/Input';
+
 import { rotateChatStyle } from '../../containers/UI/actions';
 
 const socketPath = 'http://localhost:8000';
 
 // Create chat box wrapper
-export class Chat extends React.Component {
+export class ChatComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     dispatch: PropTypes.func,
@@ -20,6 +21,8 @@ export class Chat extends React.Component {
 
   constructor (props) {
     super(props);
+
+    console.log('HELLO?');
 
     this.socket = io.connect(socketPath, {
       reconnectionAttempts: 10,
@@ -130,15 +133,7 @@ export class Chat extends React.Component {
               <span className={`Chat-headerText_${chatStyle}`}>
                 <strong>{operator.firstName}</strong>
                 &nbsp;from&nbsp;{company.name}
-
               </span>
-
-              <div className="demo-rotate"> {/* some demo buttons for testing redux / changing ui state*/}
-                <button onClick={() => dispatch(rotateChatStyle('FLOAT'))}> FLOAT </button>
-                <button onClick={() => dispatch(rotateChatStyle('MESSENGER'))}> MESSENGER </button>
-                <button onClick={() => dispatch(rotateChatStyle('SIDEPANEL'))}> SIDEPANEL </button>
-              </div>
-
               <button className={`Chat-icon_${chatStyle}`} onClick={this.close}>&#215;</button>
             </div>
             <Messages socket={socket} />
@@ -150,7 +145,9 @@ export class Chat extends React.Component {
   }
 }
 
-export default connect(
+const Chat = connect(
   state => ({ chatStyle: state.ui.chatStyle }),
   dispatch => ({ dispatch }),
-)(Chat);
+)(ChatComponent);
+
+export default Chat;

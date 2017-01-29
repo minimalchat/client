@@ -1,12 +1,11 @@
-/* eslint react/jsx-filename-extension:0*/
-
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import './Message.css';
 
 const CHAT_OPERATOR = 'OPERATOR';
 
-export const Message = (props) => {
+export const MessageComponent = (props) => {
   const { chatStyle, author, timestamp, id } = props;
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
 
@@ -39,16 +38,19 @@ export const Message = (props) => {
   );
 };
 
-Message.propTypes = {
+MessageComponent.propTypes = {
   chatStyle: PropTypes.string,
   timestamp: PropTypes.number,
   id: PropTypes.string,
   author: PropTypes.string,
-  content: PropTypes.array, // eslint-disable-line
+  content: PropTypes.arrayOf(
+    PropTypes.string,
+  ),
 };
 
-
-export default connect(
+const Message = connect(
   state => ({ chatStyle: state.ui.chatStyle }),
   dispatch => ({ dispatch }),
-)(Message);
+)(MessageComponent);
+
+export default Message;

@@ -4,11 +4,16 @@
   "env": {
     "browser": true,
     "node": true,
+    "jest": true,
   },
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
     "space-before-function-paren": ["off"],
+    "prefer-const": ["warn"],
+    "import/no-extraneous-dependencies": [
+      "error", { "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.spec.js", "**/*.spec.jsx"]}
+    ],
     "no-unused-vars": ["warn"],
     "no-console": ["warn"],
     "no-prototype-builtins": ["off"],

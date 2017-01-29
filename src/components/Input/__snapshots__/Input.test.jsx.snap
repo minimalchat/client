@@ -1,0 +1,17 @@
+exports[`Input matches snapshot 1`] = `
+<InputComponent
+  chatStyle="TEST"
+  dispatch={[Function]}
+  socket={
+    Object {
+      "emit": [Function],
+    }
+  }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

@@ -1,13 +1,12 @@
-/* eslint react/jsx-filename-extension:0*/
-
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Message from '../Message/Message';
+
+import Message from '../Message/Message.jsx';
 import './Messages.css';
 
 
-export const MessageList = (props) => {
-  const { socket, chatStyle } = props;
+export const MessageListComponent = (props) => {
+  const { chatStyle } = props;
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
@@ -26,19 +25,26 @@ export const MessageList = (props) => {
         // <Status socket={socket} />
 };
 
-MessageList.propTypes = {
-  socket: PropTypes.node,
+MessageListComponent.propTypes = {
+  // socket: PropTypes.node,
   chatStyle: PropTypes.string,
-  messages: PropTypes.array // eslint-disable-line
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string,
+      content: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
 };
 
 const messageListMapStateToProps = state => ({
   messages: state.chat.messages,
   chatStyle: state.ui.chatStyle,
 });
-const messageListMapDispatchToProps = dispatch => ({ });
+const messageListMapDispatchToProps = () => ({ });
 
-export default connect(
+const Messages = connect(
   messageListMapStateToProps,
   messageListMapDispatchToProps,
-)(MessageList);
+)(MessageListComponent);
+
+export default Messages;
