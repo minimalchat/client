@@ -22,8 +22,6 @@ export class ChatComponent extends Component {
   constructor (props) {
     super(props);
 
-    console.log('HELLO?');
-
     this.socket = io.connect(socketPath, {
       reconnectionAttempts: 10,
     });
