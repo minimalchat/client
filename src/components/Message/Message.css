@@ -1,26 +1,4 @@
-.Message-userContent_MESSENGER {
-  margin: 0;
-  list-style: none;
-  width: 160px;
-  float: left;
-  text-align: left;
-  background: #0a6bef;
-  margin-top: 0;
-  margin-left: 4px;
-  border-radius: 10px 10px 10px 0;
-  padding: 6px;
-  color: white;
-}
-
-.Message-operatorPictureImage_MESSENGER{
-  width: 40px;
-  height: 40px;
-}
-
-.Message-operatorPictureImage_MESSENGER{
-  width: 40px;
-  height: 40px;
-}
+/* MESSANGER */
 
 .Message-operatorPicture_MESSENGER {
   width: 48px;
@@ -29,6 +7,11 @@
   margin-top: 4px;
   box-sizing: border-box;
   padding: 0 4px;
+}
+
+.Message-operatorPictureImage_MESSENGER{
+  width: 40px;
+  height: 40px;
 }
 
 .Message-operatorContent_MESSENGER {
@@ -40,19 +23,29 @@
   margin-bottom: 4px;
   border-radius: 10px 0 10px 10px;
   background: #e1e1e1;
+  color: #000000;
   float: right;
   text-align: right;
 }
 
-.letschat-message {
-
+.Message-userContent_MESSENGER {
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #0a6bef;
+  margin-top: 0;
+  margin-left: 4px;
+  border-radius: 10px 10px 10px 0;
+  padding: 6px;
+  color: #ffffff;
 }
 
-.letschat-message-timestamp{
+/* .letschat-message { } */
+/* .letschat-message-timestamp{ }*/
 
-}
-
-/* MESSAGE FLOAT STYLE */
+/* FLOAT */
 
 .Message-operatorPicture_FLOAT{
   position: absolute;
@@ -63,12 +56,14 @@
   margin-top: -16px;
   box-sizing: border-box;
   padding: 0 4px;
-  }
+}
+
 .Message-operatorPictureImage_FLOAT{
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  }
+}
+
 .Message-operatorContent_FLOAT{
   margin: 0;
   list-style: none;
@@ -76,12 +71,14 @@
   float: left;
   text-align: left;
   background: #ffffff;
+  color: #000000;
   margin-top: 4px;
   margin-left: 4px;
   box-shadow: #dddddd 1px 1px 8px 0;
   border-radius: 0 10px 10px 10px;
   padding: 16px;
-  }
+}
+
 .Message-userContent_FLOAT{
   margin: 0;
   padding: 16px;
@@ -94,25 +91,27 @@
   background: #0a6bef;
   float: right;
   text-align: right;
-  color: white;
+  color: #ffffff;
   }
 
 
-/* SIDEBAR STYLE */
+/* SIDEBAR */
 
-.Message-operatorPicture_SIDEBAR {
+.Message-operatorPicture_SIDEPANEL {
   width: 48px;
   height: 48px;
   float: right;
   margin-top: 4px;
   box-sizing: border-box;
   padding: 0 4px;
-};
-.Message-operatorPictureImage_SIDEBAR {
+}
+
+.Message-operatorPictureImage_SIDEPANEL {
   width: 40px;
   height: 40px;
-};
-.Message-operatorContent_SIDEBAR {
+}
+
+.Message-operatorContent_SIDEPANEL {
   margin: 0;
   padding: 6px;
   list-style: none;
@@ -121,10 +120,12 @@
   margin-bottom: 4px;
   border-radius: 10px 0 10px 10px;
   background: #e1e1e1;
+  color: #000000;
   float: right;
   text-align: right;
-};
-.Message-userContent_SIDEBAR {
+}
+
+.Message-userContent_SIDEPANEL {
   margin: 0;
   list-style: none;
   width: 160px;
@@ -135,5 +136,5 @@
   margin-left: 4px;
   border-radius: 10px 10px 10px 0;
   padding: 6px;
-  color: white;
+  color: #ffffff;
 }

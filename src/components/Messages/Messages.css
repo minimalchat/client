@@ -1,4 +1,5 @@
-/* MESSENGER STYLE */
+/* MESSENGER */
+
 .Messages_MESSENGER {
   position: absolute;
   top: 32px;
@@ -7,7 +8,7 @@
   right: 0;
   padding-top: 6px;
   overflow-y: scroll;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #cccccc;
   box-sizing: border-box;
 }
 
@@ -25,15 +26,16 @@
   width: 100%;
 }
 
-/* FLOAT STYLE */
+/* FLOAT */
+
 .Messages_FLOAT {
   position: absolute;
   bottom: 48px;
   left: 0;
   right: 0;
-  paddingTop: 6px;
-  paddingBottom: 6px;
-  boxSizing: border-box;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  box-sizing: border-box;
 }
 
 .Messages-wrapper_FLOAT {
@@ -44,37 +46,35 @@
 .Messages-list_FLOAT {
   margin: 0;
   padding: 0;
-  listStyle: none;
-  fontSize: 14px;
-  fontFamily: sans-serif;
+  list-style: none;
+  font-size: 14px;
+  font-family: sans-serif;
   width: 100%;
 }
 
+/* SIDEPANEL */
 
-
-  /* SIDEBAR STYLE*/
-
-.Messages_SIDEBAR {
+.Messages_SIDEPANEL {
   position: absolute;
   top: 0;
   bottom: 48px;
   left: 0;
   right: 0;
-  paddingTop: 6px;
-  borderRight: 1px solid #ccc;
-  boxSizing: border-box;
+  padding-top: 6px;
+  /*border-right: 1px solid #cccccc;*/
+  box-sizing: border-box;
 }
 
-.Messages-wrapper_SIDEBAR {
+.Messages-wrapper_SIDEPANEL {
   position: relative;
   height: 100%;
 }
 
-.Messages-list_SIDEBAR {
+.Messages-list_SIDEPANEL {
   margin: 0;
   padding: 0;
-  listStyle: none;
-  fontSize: 14px;
-  fontFamily: sans-serif;
+  list-style: none;
+  font-size: 14px;
+  font-family: sans-serif;
   width: 100%;
 }

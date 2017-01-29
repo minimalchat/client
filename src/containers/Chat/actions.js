@@ -1,13 +1,18 @@
 import {
   CHAT_MESSAGE_CLIENT,
+  CHAT_MESSAGE_OPERATOR,
 } from './constants';
 
-
-// receive e.target.value from Input text box.
-export function updateMessageList(payload) { // eslint-disable-line
+export function sendMessage(payload) {
   return {
-    // TODO: I didn't know what to name this... name is taken from "onKeyPress" fn in `<Input>`
     type: CHAT_MESSAGE_CLIENT,
+    payload,
+  };
+}
+
+export function recieveMessage(payload) {
+  return {
+    type: CHAT_MESSAGE_OPERATOR,
     payload,
   };
 }

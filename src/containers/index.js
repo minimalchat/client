@@ -3,7 +3,6 @@ import { combineReducers, createStore } from 'redux';
 import chatReducer from './Chat/reducer';
 import uiReducer from './UI/reducer';
 
-
 const store = createStore(
   combineReducers({
     ui: uiReducer,

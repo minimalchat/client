@@ -1,3 +1,5 @@
+/* MESSANGER */
+
 .Input_MESSENGER {
   position: absolute;
   bottom: 0;
@@ -7,15 +9,17 @@
   height: 48px;
   box-sizing: border-box;
   border: 0;
-  border-right: 1px solid #ccc;
-  border-top: 1px solid #ddd;
-  background-color: #fff;
+  border-right: 1px solid #cccccc;
+  border-top: 1px solid #dddddd;
+  background-color: #ffffff;
   padding: 8px;
-  color: #222;
+  color: #222222;
   font-size: 11px;
   resize: none;
   outline: 0;
 }
+
+/* FLOAT */
 
 .Input_FLOAT {
   position: absolute;
@@ -27,16 +31,18 @@
   box-sizing: border-box;
   box-shadow: #dddddd 1px 1px 8px 0;
   border: 0;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 16px;
-  color: #222;
+  color: #222222;
   font-size: 13px;
   resize: none;
   outline: 0;
 }
 
-.Input_SIDEBAR {
+/* SIDEBAR */
+
+.Input_SIDEPANEL {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -45,12 +51,12 @@
   height: 48px;
   box-sizing: border-box;
   border: 0;
-  border-right: 1px solid #ccc;
-  border-top: 1px solid #ddd;
-  background-color: #fff;
+  border-top: 1px solid #dddddd;
+  /*border-right: 1px solid #cccccc;*/
+  background-color: #ffffff;
   padding: 8px;
-  color: #222;
+  color: #222222;
   font-size: 11px;
   resize: none;
-  outline: 0; 
+  outline: 0;
 }

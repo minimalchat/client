@@ -6,7 +6,7 @@ import './Message.css';
 const CHAT_OPERATOR = 'OPERATOR';
 
 export const MessageComponent = (props) => {
-  const { chatStyle, author, timestamp, id } = props;
+  const { chatStyle, author, timestamp, key } = props;
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
 
   let message = (
@@ -31,9 +31,9 @@ export const MessageComponent = (props) => {
   }
 
   return (
-    <li id={`message_${id}`} className="letschat-message" style={{ clear: 'both' }}>
+    <li id={`message_${key}`} className={`Message-message_${chatStyle}`} style={{ clear: 'both' }}>
       {message}
-      <span className="letschat-message-timestamp">{timestamp}</span>
+      <span className={`Message-message-timestamp_${chatStyle}`}>{timestamp}</span>
     </li>
   );
 };
@@ -41,16 +41,25 @@ export const MessageComponent = (props) => {
 MessageComponent.propTypes = {
   chatStyle: PropTypes.string,
   timestamp: PropTypes.number,
-  id: PropTypes.string,
+  key: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.arrayOf(
     PropTypes.string,
   ),
 };
 
+const mapStateToProps = state => ({
+  chatStyle: state.ui.chatStyle,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+
 const Message = connect(
-  state => ({ chatStyle: state.ui.chatStyle }),
-  dispatch => ({ dispatch }),
+  mapStateToProps,
+  mapDispatchToProps,
 )(MessageComponent);
 
 export default Message;

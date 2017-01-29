@@ -7,7 +7,8 @@ import Messages from '../Messages/Messages.jsx';
 import Input from '../Input/Input.jsx';
 import './Chat.css';
 
-import { rotateChatStyle } from '../../containers/UI/actions';
+// import { rotateChatStyle } from '../../containers/UI/actions';
+import { recieveMessage } from '../../containers/Chat/actions';
 
 const socketPath = 'http://localhost:8000';
 
@@ -36,7 +37,7 @@ export class ChatComponent extends Component {
     this.socket.on('reconnect_failed', this.onSocketReconnectionFailed);
     this.socket.on('reconnect_timeout', this.onSocketTimeout);
 
-    this.socket.on('operator:message', this.handleOperatorMessage);
+    this.socket.on('operator:message', this.handleOperatorMessage());
 
     // Initial state
     this.state = {
@@ -97,10 +98,14 @@ export class ChatComponent extends Component {
     console.error('DEBUG', 'Socket connection error');
   }
 
-  handleOperatorMessage (data) {
-    console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
+  handleOperatorMessage () {
+    const { dispatch } = this.props;
 
-    // store.dispatch({ type: CHAT_MESSAGE_OPERATOR, message: data });
+    return function (data) {
+      console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
+
+      dispatch(recieveMessage(data));
+    };
   }
 
 
@@ -143,9 +148,17 @@ export class ChatComponent extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  chatStyle: state.ui.chatStyle,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
 const Chat = connect(
-  state => ({ chatStyle: state.ui.chatStyle }),
-  dispatch => ({ dispatch }),
+  mapStateToProps,
+  mapDispatchToProps,
 )(ChatComponent);
 
 export default Chat;

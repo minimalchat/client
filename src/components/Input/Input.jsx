@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './Input.css';
 
-import { updateMessageList } from '../../containers/Chat/actions';
+import { sendMessage } from '../../containers/Chat/actions';
 
 
 // TODO: move to a constants file?
@@ -38,7 +38,7 @@ export class InputComponent extends Component {
         console.log('SENDING MESSAGE ...');
         // Send data
         this.socket.emit('client:message', event.target.value);
-        this.props.dispatch(updateMessageList(event.target.value));
+        this.props.dispatch(sendMessage(event.target.value));
         this.setState({ messageBox: '' });
 
         event.preventDefault();
@@ -69,7 +69,10 @@ export class InputComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({ chatStyle: state.ui.chatStyle });
+const mapStateToProps = state => ({
+  chatStyle: state.ui.chatStyle,
+});
+
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });

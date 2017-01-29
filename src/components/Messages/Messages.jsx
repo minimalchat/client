@@ -36,15 +36,16 @@ MessageListComponent.propTypes = {
   ),
 };
 
-const messageListMapStateToProps = state => ({
+const mapStateToProps = state => ({
   messages: state.chat.messages,
   chatStyle: state.ui.chatStyle,
 });
-const messageListMapDispatchToProps = () => ({ });
+
+const mapDispatchToProps = () => ({ });
 
 const Messages = connect(
-  messageListMapStateToProps,
-  messageListMapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps,
 )(MessageListComponent);
 
 export default Messages;
