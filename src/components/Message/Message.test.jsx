@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { describe, it, expect } from 'jest';
 import { shallow } from 'enzyme';
 
 import Message from './Message.jsx';

@@ -1,8 +1,7 @@
 import React from 'react';
 
-// import { describe, it, expect, jest } from 'jest';
 import { shallow } from 'enzyme';
-// import { snapshot } from 'react-test-renderer';
+import { snapshot } from 'react-test-renderer';
 
 import Messages from './Messages.jsx';
 
