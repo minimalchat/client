@@ -20,7 +20,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./test/jestsetup.js"
+      "./test/jest.setup.js"
     ],
     "setupTestFrameworkScriptFile": "node_modules/jest-enzyme/lib/index.js",
     "collectCoverageFrom": [
