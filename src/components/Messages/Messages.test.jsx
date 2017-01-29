@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 // import { snapshot } from 'react-test-renderer';
 
-import Messages from './Messages';
+import Messages from './Messages.jsx';
 
 const socket = {
   on: jest.fn(),
