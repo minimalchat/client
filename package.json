@@ -64,6 +64,7 @@
     "coveralls": "^2.11.14",
     "css-loader": "^0.26.1",
     "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
     "eslint": "^3.14.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
