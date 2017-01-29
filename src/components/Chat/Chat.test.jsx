@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 
 import { shallow, render } from 'enzyme';
 
-import Chat from './Chat';
+import Chat from './Chat.jsx';
 
 const socket = {
   on: jest.fn(),

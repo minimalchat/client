@@ -2,7 +2,7 @@ import React from 'react';
 
 import { shallow, mount } from 'enzyme';
 
-import Input from './Input';
+import Input from './Input.jsx';
 
 const socket = {
   // on: jest.fn(),
