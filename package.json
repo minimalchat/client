@@ -43,6 +43,10 @@
       "text"
     ],
     "coverageDirectory": "coverage",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
     "testRegex": "((test|spec))\\.(js|jsx)$"
   },
   "dependencies": {
@@ -72,7 +76,7 @@
     "eslint-plugin-react": "^6.6.0",
     "jest": "^18.1.0",
     "jest-cli": "^17.0.3",
-    "jest-enzyme": "^2.0.0",
+    "jest-enzyme": "^2.1.0",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
     "style-loader": "^0.13.1",
