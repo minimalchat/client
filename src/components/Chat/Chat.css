@@ -150,18 +150,3 @@
   color: rgba(255,255,255,0.5);
   background: rgba(0, 0, 0, 0);
 }
-
-
-.demo-rotate {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 100;
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.demo-rotate button {
-  padding: 20px;
-  margin: 20px;
-  background: #efefef;
-}

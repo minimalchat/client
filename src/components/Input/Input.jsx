@@ -1,15 +1,15 @@
-/* eslint react/jsx-filename-extension:0*/
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import './Input.css';
+
 import { updateMessageList } from '../../containers/Chat/actions';
 
 
 // TODO: move to a constants file?
 const KEY_ENTER = 13;
 
-export class Input extends Component {
+export class InputComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     dispatch: PropTypes.func,
@@ -30,7 +30,7 @@ export class Input extends Component {
 
 
   onKeyPress = (event) => {
-    const { key, keyCode, shiftKey, ctrlKey, altKey, input } = event;
+    const { key, keyCode, shiftKey, ctrlKey, altKey } = event;
     console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
 
     if (keyCode === KEY_ENTER) {
@@ -74,4 +74,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Input);
+const Input = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InputComponent);
+
+export default Input;

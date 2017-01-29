@@ -1,6 +1,6 @@
 {
   "name": "mnml-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Client library for Minimal Chat",
   "author": "Matthew Mihok <matthew@minimal.chat>",
   "repository": "minimalchat/mnml-client.git",
@@ -8,10 +8,15 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "babel src  --source-maps --plugins transform-decorators-legacy --presets es2015,stage-0,react --out-file dist/mnml-0.0.1.js",
+    "build": "npm run build:lite && npm run build:full",
+    "build:lite": "webpack --config webpack.lite.config.js --progress --colors",
+    "build:full": "webpack --config webpack.full.config.js --progress --colors",
+    "build:watch": "npm run build:full -- --watch",
+    "build:lite:watch": "npm run build:lite -- --watch",
+    "build:full:watch": "npm run build:full -- --watch",
     "lint": "eslint src --ext .js,.jsx",
     "coverage": "jest --coverage && cat coverage/lcov.info | coveralls",
-    "dev": "webpack --watch --progress --colors"
+    "dev": "echo 'WARNING: This command is deprecated, use `npm run build:watch` instead' && npm run build:watch"
   },
   "jest": {
     "setupFiles": [
@@ -20,6 +25,7 @@
     "setupTestFrameworkScriptFile": "node_modules/jest-enzyme/lib/index.js",
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
+      "!**/webpack*.js",
       "!**/node_modules/**",
       "!**/dist/**",
       "!**/coverage/**",
@@ -39,10 +45,16 @@
     "coverageDirectory": "coverage",
     "testRegex": "((test|spec))\\.(js|jsx)$"
   },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "socket.io-client": "^1.5.1"
+  },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
+    "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.0",
-    "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-istanbul": "^2.0.3",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -52,7 +64,7 @@
     "coveralls": "^2.11.14",
     "css-loader": "^0.26.1",
     "enzyme": "^2.7.0",
-    "eslint": "^3.10.0",
+    "eslint": "^3.14.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
@@ -60,21 +72,9 @@
     "jest": "^18.1.0",
     "jest-cli": "^17.0.3",
     "jest-enzyme": "^2.0.0",
-    "react": "^15.3.2",
-    "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.3.2",
-    "react-jss": "^4.1.3",
-    "react-redux": "^4.4.5",
+    "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",
-    "redux": "^3.6.0",
-    "socket.io-client": "^1.5.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
-  },
-  "dependencies": {
-    "react-jss": "^4.2.0",
-    "react-redux": "^4.4.5",
-    "react": "^15.3.2",
-    "socket.io-client": "^1.5.1"
+    "webpack": "^2.2.0"
   }
 }
