@@ -1,6 +1,6 @@
 {
   "name": "mnml-client",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Client library for Minimal Chat",
   "author": "Matthew Mihok <matthew@minimal.chat>",
   "repository": "minimalchat/mnml-client.git",
