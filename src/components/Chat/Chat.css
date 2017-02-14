@@ -1,6 +1,6 @@
 /* MESSANGER */
 
-.Chat-innerWrapper_MESSENGER {
+.chat-innerWrapper-messenger {
   display: block;
   width: 280px;
   height: 360px;
@@ -12,20 +12,20 @@
   border-bottom: 0;
 }
 
-.Chat-outerWrapper_MESSENGER {
+.chat-outerWrapper-messenger {
   position: relative;
   width: 80%;
   margin: 0 auto;
 }
 
-.Chat-box_MESSENGER {
+.chat-box-messenger {
   position: absolute;
   right: 0;
   bottom: 0;
   background-color: #ffffff;
 }
 
-.Chat-header_MESSENGER {
+.chat-header-messenger {
   display: block;
   width: 100%;
   height: 32px;
@@ -39,9 +39,9 @@
   background: #72a0e5;
 }
 
-.Chat-headerText_MESSENGER {}
+.chat-headerText-messenger {}
 
-.Chat-icon_MESSENGER {
+.chat-icon-messenger {
   border: 0;
   float: right;
   font-size: 24px;
@@ -56,26 +56,26 @@
 
 /* FLOAT */
 
-.Chat-innerWrapper_FLOAT {
+.chat-innerWrapper-float {
   display: block;
   width: 280px;
   height: 360px;
 }
 
-.Chat-outerWrapper_FLOAT {
+.chat-outerWrapper-float {
   position: relative;
   width: 90%;
   margin: 0 auto;
 }
 
-.Chat-box_FLOAT {
+.chat-box-float {
   position: absolute;
   right: 0;
   bottom: 120px;
   background-color: transparent;
 }
 
-.Chat-header_FLOAT {
+.chat-header-float {
   position: absolute;
   bottom: -48px;
   right: -48px;
@@ -92,11 +92,11 @@
   background: #72a0e5;
 }
 
-.Chat-headerText_FLOAT {
+.chat-headerText-float {
   display: none;
 }
 
-.Chat-icon_FLOAT {
+.chat-icon-float {
   float: right;
   font-size: 24px;
   font-weight: 800;
@@ -109,7 +109,7 @@
 
 /* SIDEPANEL */
 
-.Chat-innerWrapper_SIDEPANEL {
+.chat-innerWrapper-sidepanel {
   display: block;
   width: 280px;
   height: 100%;
@@ -121,14 +121,14 @@
   border-bottom: 0;
 }
 
-.Chat-outerWrapper_SIDEPANEL {
+.chat-outerWrapper-sidepanel {
   position: relative;
   height: 100%;
   width: 80%;
   margin: 0 auto;
 }
 
-.Chat-box_SIDEPANEL {
+.chat-box-sidepanel {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -136,13 +136,13 @@
   background-color: #ffffff;
 }
 
-.Chat-header_SIDEPANEL {
+.chat-header-sidepanel {
   display: none;
 }
 
-.Chat-headerText_SIDEPANEL {}
+.chat-headerText-sidepanel {}
 
-.Chat-icon_SIDEPANEL {
+.chat-icon-sidepanel {
   border: 0;
   float: right;
   font-size: 24px;

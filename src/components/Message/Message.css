@@ -1,6 +1,6 @@
 /* MESSANGER */
 
-.Message-operatorPicture_MESSENGER {
+.message-operatorPicture-messenger {
   width: 48px;
   height: 48px;
   float: right;
@@ -9,12 +9,12 @@
   padding: 0 4px;
 }
 
-.Message-operatorPictureImage_MESSENGER{
+.message-operatorPictureImage-messenger {
   width: 40px;
   height: 40px;
 }
 
-.Message-operatorContent_MESSENGER {
+.message-operatorContent-messenger {
   margin: 0;
   padding: 6px;
   list-style: none;
@@ -28,7 +28,7 @@
   text-align: right;
 }
 
-.Message-userContent_MESSENGER {
+.message-userContent-messenger {
   margin: 0;
   list-style: none;
   width: 160px;
@@ -47,7 +47,7 @@
 
 /* FLOAT */
 
-.Message-operatorPicture_FLOAT{
+.message-operatorPicture-float {
   position: absolute;
   left: -48px;
   width: 48px;
@@ -58,13 +58,13 @@
   padding: 0 4px;
 }
 
-.Message-operatorPictureImage_FLOAT{
+.message-operatorPictureImage-float {
   width: 40px;
   height: 40px;
   border-radius: 20px;
 }
 
-.Message-operatorContent_FLOAT{
+.message-operatorContent-float {
   margin: 0;
   list-style: none;
   width: 160px;
@@ -79,7 +79,7 @@
   padding: 16px;
 }
 
-.Message-userContent_FLOAT{
+.message-userContent-float {
   margin: 0;
   padding: 16px;
   list-style: none;
@@ -95,9 +95,9 @@
   }
 
 
-/* SIDEBAR */
+/* SIDEPANEL */
 
-.Message-operatorPicture_SIDEPANEL {
+.message-operatorPicture-sidepanel {
   width: 48px;
   height: 48px;
   float: right;
@@ -106,12 +106,12 @@
   padding: 0 4px;
 }
 
-.Message-operatorPictureImage_SIDEPANEL {
+.message-operatorPictureImage-sidepanel {
   width: 40px;
   height: 40px;
 }
 
-.Message-operatorContent_SIDEPANEL {
+.message-operatorContent-sidepanel {
   margin: 0;
   padding: 6px;
   list-style: none;
@@ -125,7 +125,7 @@
   text-align: right;
 }
 
-.Message-userContent_SIDEPANEL {
+.message-userContent-sidepanel {
   margin: 0;
   list-style: none;
   width: 160px;

@@ -7,11 +7,12 @@ const CHAT_OPERATOR = 'OPERATOR';
 
 export const MessageComponent = (props) => {
   const { chatStyle, author, timestamp, key } = props;
+  const chatStyleName = chatStyle.toLowerCase();
   const content = props.content.map((message, index) => <li key={index}>{message}</li>);
 
   let message = (
     <div>
-      <ul className={`Message-userContent_${chatStyle}`}>
+      <ul className={`message-userContent-${chatStyleName}`}>
         {content}
       </ul>
     </div>
@@ -20,10 +21,10 @@ export const MessageComponent = (props) => {
   if (author === CHAT_OPERATOR) {
     message = (
       <div>
-        <div className={`Message-operatorPicture_${chatStyle}`}>
-          <img alt="Operator" className={`Message-operatorPictureImage_${chatStyle}`} src="http://placehold.it/40x40/" />
+        <div className={`message-operatorPicture-${chatStyleName}`}>
+          <img alt="Operator" className={`message-operatorPictureImage-${chatStyleName}`} src="http://placehold.it/40x40/" />
         </div>
-        <ul className={`Message-operatorContent_${chatStyle}`}>
+        <ul className={`message-operatorContent-${chatStyleName}`}>
           {content}
         </ul>
       </div>
@@ -31,9 +32,9 @@ export const MessageComponent = (props) => {
   }
 
   return (
-    <li id={`message_${key}`} className={`Message-message_${chatStyle}`} style={{ clear: 'both' }}>
+    <li id={`message_${key}`} className={`message-message-${chatStyleName}`} style={{ clear: 'both' }}>
       {message}
-      <span className={`Message-message-timestamp_${chatStyle}`}>{timestamp}</span>
+      <span className={`message-message-timestamp-${chatStyleName}`}>{timestamp}</span>
     </li>
   );
 };

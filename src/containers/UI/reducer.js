@@ -1,5 +1,6 @@
 import {
   UI_OPEN,
+  UI_TOGGLE,
   UI_CLOSE,
   UI_HARD_ENTER,
   UI_SOFT_ENTER,
@@ -7,6 +8,7 @@ import {
 } from './constants';
 
 const uiInitialState = {
+  open: true,
   chatStyle: 'MESSENGER', //TODO: connect to App constants (make a global constants file // SIDEPANEL, FLOAT, MESSENGER)
 };
 
@@ -19,8 +21,15 @@ const uiReducer = function UIReducer(state = uiInitialState, action) {
         open: false,
       });
 
+    case UI_TOGGLE:
+      return Object.assign({}, state, {
+        open: !state.open,
+      });
+
     case UI_OPEN:
-      return state;
+      return Object.assign({}, state, {
+        open: true,
+      });
 
     case TOGGLE_CHAT_STYLE:
       return { ...state, chatStyle: action.payload };

@@ -7,7 +7,7 @@ import Messages from '../Messages/Messages.jsx';
 import Input from '../Input/Input.jsx';
 import './Chat.css';
 
-// import { rotateChatStyle } from '../../containers/UI/actions';
+import { openChat, toggleChat, closeChat } from '../../containers/UI/actions';
 import { recieveMessage } from '../../containers/Chat/actions';
 
 const socketPath = 'http://localhost:8000';
@@ -17,7 +17,7 @@ export class ChatComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     dispatch: PropTypes.func,
-
+    open: PropTypes.bool,
   }
 
   constructor (props) {
@@ -101,7 +101,7 @@ export class ChatComponent extends Component {
   handleOperatorMessage () {
     const { dispatch } = this.props;
 
-    return function (data) {
+    return function handleOperatorMessageCurry (data) {
       console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
 
       dispatch(recieveMessage(data));
@@ -112,32 +112,56 @@ export class ChatComponent extends Component {
   // Actions
 
   open () {
+    const { dispatch } = this.props;
+
     console.log('DEBUG', 'Open chat');
+
+    dispatch(openChat());
+  }
+
+  toggle () {
+    const { dispatch } = this.props;
+
+    console.log('DEBUG', 'Toggling chat');
+
+    dispatch(toggleChat());
   }
 
   close () {
+    const { dispatch } = this.props;
+
     console.log('DEBUG', 'Close chat');
+
+    dispatch(closeChat());
   }
 
+  // This is where the magic happens
 
   render () {
     // const { sheet: { classes } } = this.props;
     const socket = this.socket;
     const operator = this.state.operator;
     const company = this.state.company;
-    const { chatStyle, dispatch } = this.props;
+    const { open, chatStyle } = this.props;
 
+    const chatStyleName = chatStyle.toLowerCase();
+    const chatClasses = [
+      `chat-outerWrapper-${chatStyleName}`,
+    ];
+
+    if (!open) {
+      chatClasses.push('closed');
+    }
 
     return (
-      <div className={`Chat-outerWrapper_${chatStyle}`}>
-        <div className={`Chat-box_${chatStyle}`}>
-          <div className={`Chat-innerWrapper_${chatStyle}`}>
-            <div className={`Chat-header_${chatStyle}`}>
-              <span className={`Chat-headerText_${chatStyle}`}>
-                <strong>{operator.firstName}</strong>
-                &nbsp;from&nbsp;{company.name}
+      <div className={chatClasses.join(' ')}>
+        <div className={`chat-box-${chatStyleName}`}>
+          <div className={`chat-innerWrapper-${chatStyleName}`}>
+            <div className={`chat-header-${chatStyleName}`}>
+              <span className={`chat-headerText-${chatStyleName}`}>
+                <strong>{operator.firstName}</strong>&nbsp;from&nbsp;{company.name}
               </span>
-              <button className={`Chat-icon_${chatStyle}`} onClick={this.close}>&#215;</button>
+              <button className={`chat-icon-${chatStyleName}`} onClick={this.toggle}>&#215;</button>
             </div>
             <Messages socket={socket} />
             <Input socket={socket} />
@@ -150,6 +174,7 @@ export class ChatComponent extends Component {
 
 const mapStateToProps = state => ({
   chatStyle: state.ui.chatStyle,
+  open: state.ui.open,
 });
 
 const mapDispatchToProps = dispatch => ({

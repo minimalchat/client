@@ -1,6 +1,6 @@
 /* MESSANGER */
 
-.Input_MESSENGER {
+.input-messenger {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -21,7 +21,7 @@
 
 /* FLOAT */
 
-.Input_FLOAT {
+.input-float {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -40,9 +40,9 @@
   outline: 0;
 }
 
-/* SIDEBAR */
+/* SIDEPANEL */
 
-.Input_SIDEPANEL {
+.input-sidepanel {
   position: absolute;
   bottom: 0;
   left: 0;

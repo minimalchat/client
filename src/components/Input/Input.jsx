@@ -54,12 +54,12 @@ export class InputComponent extends Component {
   handleChange = (e) => { this.setState({ messageBox: e.target.value }); }
 
   render() {
-    const chatStyle = this.props.chatStyle;
+    const { chatStyle } = this.props;
 
     return (
       <textarea
         type="text"
-        className={`Input_${chatStyle}`}
+        className={`input-${chatStyle.toLowerCase()}`}
         placeholder="Type a message&hellip;"
         onKeyDown={this.onKeyPress}
         onChange={this.handleChange}

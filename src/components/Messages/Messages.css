@@ -1,6 +1,6 @@
 /* MESSENGER */
 
-.Messages_MESSENGER {
+.messages-messenger {
   position: absolute;
   top: 32px;
   bottom: 48px;
@@ -12,12 +12,12 @@
   box-sizing: border-box;
 }
 
-.Messages-wrapper_MESSENGER {
+.messages-wrapper-messenger {
   position: relative;
   height: 100%;
 }
 
-.Messages-list_MESSENGER {
+.messages-list-messenger {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -28,7 +28,7 @@
 
 /* FLOAT */
 
-.Messages_FLOAT {
+.messages-float {
   position: absolute;
   bottom: 48px;
   left: 0;
@@ -38,12 +38,12 @@
   box-sizing: border-box;
 }
 
-.Messages-wrapper_FLOAT {
+.messages-wrapper-float {
   position: relative;
   height: 100%;
 }
 
-.Messages-list_FLOAT {
+.messages-list-float {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -54,7 +54,7 @@
 
 /* SIDEPANEL */
 
-.Messages_SIDEPANEL {
+.messages-sidepanel {
   position: absolute;
   top: 0;
   bottom: 48px;
@@ -65,12 +65,12 @@
   box-sizing: border-box;
 }
 
-.Messages-wrapper_SIDEPANEL {
+.messages-wrapper-sidepanel {
   position: relative;
   height: 100%;
 }
 
-.Messages-list_SIDEPANEL {
+.messages-list-sidepanel {
   margin: 0;
   padding: 0;
   list-style: none;

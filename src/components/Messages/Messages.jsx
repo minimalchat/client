@@ -7,15 +7,16 @@ import './Messages.css';
 
 export const MessageListComponent = (props) => {
   const { chatStyle } = props;
+  const chatStyleName = chatStyle.toLowerCase();
 
   const messages = props.messages.map(
     (message, index) => <Message key={index} author={message.author} content={message.content} />,
   );
 
   return (
-    <div className={`Messages_${chatStyle}`}>
-      <div className={`Messages-wrapper_${chatStyle}`}>
-        <ul className={`Messages-list_${chatStyle}`}>
+    <div className={`messages-${chatStyleName}`}>
+      <div className={`messages-wrapper-${chatStyleName}`}>
+        <ul className={`messages-list-${chatStyleName}`}>
           {messages}
         </ul>
       </div>
