@@ -1,8 +1,11 @@
 /* eslint max-len:1*/
 
 import {
+  CHAT_UNKNOWN,
   CHAT_CONNECTED,
   CHAT_DISCONNECTED,
+  // CHAT_RECONNECTED,
+  // CHAT_RECONNECTING,
   CHAT_MESSAGE_CLIENT,
   CHAT_MESSAGE_OPERATOR,
   CHAT_CLIENT,
@@ -12,6 +15,7 @@ import {
 
 // Chat based actions (send, recieve) will go through the chatReducer
 const chatInitialState = {
+  status: CHAT_UNKNOWN,
   messages: [
       { author: 'CLIENT', content: ['Im a client'] },
       { author: 'OPERATOR', content: ['Im an operator'] },
@@ -25,6 +29,15 @@ const chatReducer = function ChatReducer (state = chatInitialState, action) {
   console.log('CHAT', action.type);
 
   switch (action.type) {
+
+    // case CHAT_RECONNECTING:
+    // case CHAT_RECONNECTED:
+    case CHAT_DISCONNECTED:
+    case CHAT_CONNECTED:
+      return Object.assign({}, state, {
+        status: action.type,
+      });
+
     case CHAT_MESSAGE_OPERATOR:
       // messages = state.messages;
 

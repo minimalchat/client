@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+.closed .messages-messenger {
+  display: none;
+}
+
 .messages-wrapper-messenger {
   position: relative;
   height: 100%;
@@ -36,6 +40,10 @@
   padding-top: 6px;
   padding-bottom: 6px;
   box-sizing: border-box;
+}
+
+.closed .messages-float {
+  display: none;
 }
 
 .messages-wrapper-float {
@@ -63,6 +71,10 @@
   padding-top: 6px;
   /*border-right: 1px solid #cccccc;*/
   box-sizing: border-box;
+}
+
+.closed .messages-sidepanel {
+  display: none;
 }
 
 .messages-wrapper-sidepanel {

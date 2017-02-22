@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './Input.css';
 
 import { sendMessage } from '../../containers/Chat/actions';
+import { CHAT_DISCONNECTED } from '../../containers/Chat/constants';
 
 
 // TODO: move to a constants file?
@@ -12,6 +13,7 @@ const KEY_ENTER = 13;
 export class InputComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
+    chatStatus: PropTypes.string,
     dispatch: PropTypes.func,
     socket: (props, propName) => {
       if (!(propName in props)) {
@@ -42,9 +44,6 @@ export class InputComponent extends Component {
         this.setState({ messageBox: '' });
 
         event.preventDefault();
-      } else {
-        // TODO: implement soft enter.
-        // this.props.dispatch({ type: UI_SOFT_ENTER });
       }
     }
 
@@ -54,7 +53,8 @@ export class InputComponent extends Component {
   handleChange = (e) => { this.setState({ messageBox: e.target.value }); }
 
   render() {
-    const { chatStyle } = this.props;
+    const { chatStyle, chatStatus } = this.props;
+    const isDisabled = chatStatus === CHAT_DISCONNECTED;
 
     return (
       <textarea
@@ -64,13 +64,15 @@ export class InputComponent extends Component {
         onKeyDown={this.onKeyPress}
         onChange={this.handleChange}
         value={this.state.messageBox}
+        disabled={isDisabled}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  chatStyle: state.ui.chatStyle,
+  chatStyle: state.ui.style,
+  chatStatus: state.chat.status,
 });
 
 const mapDispatchToProps = dispatch => ({

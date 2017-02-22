@@ -12,6 +12,10 @@
   border-bottom: 0;
 }
 
+.closed .chat-innerWrapper-messenger {
+  height: 0;
+}
+
 .chat-outerWrapper-messenger {
   position: relative;
   width: 80%;
@@ -36,7 +40,15 @@
   font-size: 13px;
   font-family: 'Arial', sans-serif;
   color: #ffffff;
-  background: #72a0e5;
+  background-color: #72a0e5;
+}
+
+.disconnected .chat-header-messenger {
+  background-color: #cccccc;
+}
+
+.closed .chat-header-messenger {
+  cursor: pointer;
 }
 
 .chat-headerText-messenger {}
@@ -51,6 +63,14 @@
   cursor: pointer;
   color: rgba(255,255,255,0.5);
   background: transparent;
+}
+
+.disconnected .chat-icon-messenger {
+  color: #ffffff;
+}
+
+.chat-icon-messenger:focus {
+  outline: none;
 }
 
 
@@ -89,7 +109,11 @@
   font-size: 13px;
   font-family: 'Arial', sans-serif;
   color: #ffffff;
-  background: #72a0e5;
+  background-color: #72a0e5;
+}
+
+.disconnected .chat-header-float {
+  background-color: #e1e1e1;
 }
 
 .chat-headerText-float {
@@ -105,6 +129,14 @@
   cursor: pointer;
   color: rgba(255,255,255,0.5);
   background: transparent;
+}
+
+.disconnected .chat-icon-float {
+  color: #ffffff;
+}
+
+.chat-icon-float:focus {
+  outline: none;
 }
 
 /* SIDEPANEL */

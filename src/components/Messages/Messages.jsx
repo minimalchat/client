@@ -39,7 +39,7 @@ MessageListComponent.propTypes = {
 
 const mapStateToProps = state => ({
   messages: state.chat.messages,
-  chatStyle: state.ui.chatStyle,
+  chatStyle: state.ui.style,
 });
 
 const mapDispatchToProps = () => ({ });

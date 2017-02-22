@@ -1,5 +1,6 @@
 exports[`Chat matches snapshot 1`] = `
 <ChatComponent
+  chatStatus="TEST"
   chatStyle="TEST"
   dispatch={[Function]}
   store={

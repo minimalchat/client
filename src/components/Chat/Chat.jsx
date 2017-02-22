@@ -8,7 +8,11 @@ import Input from '../Input/Input.jsx';
 import './Chat.css';
 
 import { openChat, toggleChat, closeChat } from '../../containers/UI/actions';
-import { recieveMessage } from '../../containers/Chat/actions';
+import {
+  connected,
+  disconnected,
+  recieveMessage,
+} from '../../containers/Chat/actions';
 
 const socketPath = 'http://localhost:8000';
 
@@ -16,6 +20,7 @@ const socketPath = 'http://localhost:8000';
 export class ChatComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
+    chatStatus: PropTypes.string,
     dispatch: PropTypes.func,
     open: PropTypes.bool,
   }
@@ -27,11 +32,13 @@ export class ChatComponent extends Component {
       reconnectionAttempts: 10,
     });
 
-    this.socket.on('connect', this.onSocketConnected);
+    // TODO: Somehow remove the need for currying these event handlers
+    //  without making a bunch of ugly binds
+    this.socket.on('connect', this.onSocketConnected());
     this.socket.on('connect_error', this.onSocketConnectionError);
     this.socket.on('connect_timeout', this.onSocketTimeout);
-    this.socket.on('disconnect', this.onSocketDisconnected);
-    this.socket.on('reconnect', this.onSocketReconnected);
+    this.socket.on('disconnect', this.onSocketDisconnected());
+    this.socket.on('reconnect', this.onSocketReconnected());
     this.socket.on('reconnecting', this.onSocketReconnecting);
     // this.socket.on('reconnect_error', socketConnectionError);
     this.socket.on('reconnect_failed', this.onSocketReconnectionFailed);
@@ -55,27 +62,42 @@ export class ChatComponent extends Component {
 
   // Successful connection
   onSocketConnected() {
-    // const state = store.getState();
-    console.log('DEBUG', 'Socket connected');
+    const { dispatch } = this.props;
 
-    // if (!this.props.state.chat.connected) {
-    //   store.dispatch({ type: CHAT_CONNECTED });
-    // }
+    return function onSocketConnectedCurry () {
+      // const state = store.getState();
+
+      console.log('DEBUG', 'Socket connected');
+
+      // if (state.chat.status === CHAT_DISCONNECTED) {
+      dispatch(connected());
+      // }
+    };
   }
 
   // Disconnected
   onSocketDisconnected() {
-    // const state = store.getState();
-    console.warn('DEBUG', 'Socket disconnected');
+    const { dispatch } = this.props;
 
-    // if (state.chat.connected) {
-    //   store.dispatch({ type: CHAT_DISCONNECTED });
-    // }
+    return function onSocketDisconnectedCurry () {
+      // const state = store.getState();
+      console.warn('DEBUG', 'Socket disconnected');
+
+      // if (state.chat.status === CHAT_CONNECTED) {
+      dispatch(disconnected());
+      // }
+    };
   }
 
   // Successful re-connected
   onSocketReconnected () {
-    console.log('DEBUG', 'Socket reconnected');
+    const { dispatch } = this.props;
+
+    return function onSocketReconnectedCurry () {
+      console.log('DEBUG', 'Socket reconnected');
+
+      dispatch(connected());
+    };
   }
 
   // Attempting to re-connect
@@ -101,6 +123,7 @@ export class ChatComponent extends Component {
   handleOperatorMessage () {
     const { dispatch } = this.props;
 
+    // TODO: Better function name standard for curried functions
     return function handleOperatorMessageCurry (data) {
       console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
 
@@ -142,26 +165,43 @@ export class ChatComponent extends Component {
     const socket = this.socket;
     const operator = this.state.operator;
     const company = this.state.company;
-    const { open, chatStyle } = this.props;
+    const { open, chatStyle, chatStatus } = this.props;
 
     const chatStyleName = chatStyle.toLowerCase();
     const chatClasses = [
       `chat-outerWrapper-${chatStyleName}`,
+      chatStatus.toLowerCase(),
     ];
+
+    let handleHeaderClick;
 
     if (!open) {
       chatClasses.push('closed');
+
+      handleHeaderClick = () => {
+        this.open();
+      };
     }
 
     return (
       <div className={chatClasses.join(' ')}>
         <div className={`chat-box-${chatStyleName}`}>
           <div className={`chat-innerWrapper-${chatStyleName}`}>
-            <div className={`chat-header-${chatStyleName}`}>
+            <div
+              className={`chat-header-${chatStyleName}`}
+              onClick={handleHeaderClick}
+            >
               <span className={`chat-headerText-${chatStyleName}`}>
                 <strong>{operator.firstName}</strong>&nbsp;from&nbsp;{company.name}
               </span>
-              <button className={`chat-icon-${chatStyleName}`} onClick={this.toggle}>&#215;</button>
+              <button
+                className={`chat-icon-${chatStyleName}`}
+                onClick={() => {
+                  this.close();
+                }}
+              >
+                &#215;
+              </button>
             </div>
             <Messages socket={socket} />
             <Input socket={socket} />
@@ -173,7 +213,8 @@ export class ChatComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  chatStyle: state.ui.chatStyle,
+  chatStyle: state.ui.style,
+  chatStatus: state.chat.status,
   open: state.ui.open,
 });
 

@@ -6,6 +6,7 @@ import io from 'socket.io-client';
 
 import Chat from './components/Chat/Chat.jsx';
 import store from './containers';
+import { disconnected } from './containers/Chat/actions';
 
 // State
 
@@ -30,25 +31,29 @@ if (!io) {
 
 // stylesrender function
 const render = function render () {
-  const root = document.getElementById('lets-chat');
-  const state = store.getState();
+  const root = document.getElementById('mnml-chat');
+  const { chatStyle } = store.getState();
 
   root.style.top = 'auto';
   root.style.bottom = 'auto';
   root.style.right = 'auto';
   root.style.left = 'auto';
 
-  // TODO: Replace these with new constants.
-  if (state.ui.chatStyle === 'SIDEPANEL') {
-    root.style.top = 0;
-    root.style.bottom = 0;
-    root.style.right = 0;
-  } else if (state.ui.chatStyle === 'FLOAT' || state.ui.chatStyle === 'MESSENGER') {
-    root.style.bottom = 0;
-    root.style.right = 0;
-    root.style.left = 0;
-  }
+  // TODO: Replace these with global App constants.
+  switch (chatStyle) {
+    case 'SIDEPANEL':
+      root.style.top = 0;
+      root.style.bottom = 0;
+      root.style.right = 0;
 
+      break;
+    case 'FLOAT':
+    case 'MESSANGER':
+    default:
+      root.style.bottom = 0;
+      root.style.right = 0;
+      root.style.left = 0;
+  }
 
   ReactDOM.render(
     <Provider store={store}>
@@ -73,7 +78,7 @@ store.subscribe(() => {
 
 // Create our entry point
 const div = document.createElement('div');
-div.id = 'lets-chat';
+div.id = 'mnml-chat';
 div.style.position = 'fixed';
 // div.style.bottom = 0;
 // div.style.right = 0;
@@ -83,4 +88,4 @@ document.body.appendChild(div);
 // document.body.insertBefore(styles, div);
 
 // Start by going into disconnected mode (and then connecting)
-store.dispatch({ type: 'CHAT_DISCONNECTED' });
+store.dispatch(disconnected());

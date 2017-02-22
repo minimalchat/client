@@ -50,7 +50,7 @@ MessageComponent.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  chatStyle: state.ui.chatStyle,
+  chatStyle: state.ui.style,
 });
 
 const mapDispatchToProps = dispatch => ({

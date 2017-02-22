@@ -2,8 +2,8 @@ import {
   UI_OPEN,
   UI_TOGGLE,
   UI_CLOSE,
-  UI_HARD_ENTER,
-  UI_SOFT_ENTER,
+  // UI_HARD_ENTER,
+  // UI_SOFT_ENTER,
   UI_TOGGLE_STYLE,
 } from './constants';
 

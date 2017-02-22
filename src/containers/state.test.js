@@ -6,7 +6,7 @@ describe('state', () => {
   it('has a ui.style property', () => {
     const state = store.getState();
 
-    expect(state.ui.hasOwnProperty('chatStyle')).toBe(true);
-    expect(state.ui.chatStyle).not.toBe(undefined);
+    expect(state.ui.hasOwnProperty('style')).toBe(true);
+    expect(state.ui.style).not.toBe(undefined);
   });
 });

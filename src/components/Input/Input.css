@@ -19,6 +19,14 @@
   outline: 0;
 }
 
+.input-messenger:disabled {
+  background-color: #efefef;
+}
+
+.closed .input-messenger {
+  display: none;
+}
+
 /* FLOAT */
 
 .input-float {
@@ -40,6 +48,14 @@
   outline: 0;
 }
 
+.input-float:disabled {
+  background-color: #e1e1e1;
+}
+
+.closed .input-float {
+  display: none;
+}
+
 /* SIDEPANEL */
 
 .input-sidepanel {
@@ -59,4 +75,12 @@
   font-size: 11px;
   resize: none;
   outline: 0;
+}
+
+.input-sidepanel:disabled {
+  background-color: #e1e1e1;
+}
+
+.closed .input-sidepanel {
+  display: none;
 }

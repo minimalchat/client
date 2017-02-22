@@ -8,7 +8,7 @@ const store = {
   subscribe: jest.fn(),
   dispatch: jest.fn(),
   getState: jest.fn(() => ({
-    ui: { chatStyle: 'TEST' },
+    ui: { style: 'TEST' },
   })),
 };
 
