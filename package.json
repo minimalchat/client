@@ -29,7 +29,10 @@
       "!**/node_modules/**",
       "!**/dist/**",
       "!**/coverage/**",
-      "!**/test/**"
+      "!**/test/**",
+      "!**/example/**",
+      "!**/src/styles.js",
+      "!**/src/styleOverrides.js"
     ],
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"
