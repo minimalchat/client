@@ -39,7 +39,7 @@ Developing for the client is fairly easy, but does require a seperate example we
 3.  `make`
 4.  Copy the contents of the `dist/` folder into your test website
 5.  Add the embed code (found below) into your test website
-6.  Run test website
+6.  Run test website (you'll want to mount this on a server if it's a static site to avoid CORS issues.)
 7.  Profit!
 
 ### Usage
