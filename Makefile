@@ -18,3 +18,6 @@ compile:
 
 test:
 	$(NPM_CMD) test
+
+start:
+	cd example; $(NPM_CMD) start
