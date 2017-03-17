@@ -14,7 +14,7 @@ const uiInitialState = {
   style: 'MESSENGER',
 };
 
-const uiReducer = function UIReducer(state = uiInitialState, action) {
+const uiReducer = function UIReducer (state = uiInitialState, action) {
   // console.log('UI', action.type); // commenting out temp to clean up test output
 
   switch (action.type) {

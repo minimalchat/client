@@ -52,7 +52,7 @@ export class InputComponent extends Component {
 
   handleChange = (e) => { this.setState({ messageBox: e.target.value }); }
 
-  render() {
+  render () {
     const { chatStyle, chatStatus } = this.props;
     const isDisabled = chatStatus === CHAT_DISCONNECTED;
 

@@ -9,7 +9,7 @@
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
-    "space-before-function-paren": ["always"],
+    "space-before-function-paren": ["error", "always"],
     "prefer-const": ["warn"],
     "import/no-extraneous-dependencies": [
       "error", { "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.spec.js", "**/*.spec.jsx"]}

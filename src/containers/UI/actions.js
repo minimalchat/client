@@ -7,7 +7,7 @@ import {
   UI_TOGGLE_STYLE,
 } from './constants';
 
-export function toggleChatStyle(payload) {
+export function toggleChatStyle (payload) {
   return {
     type: UI_TOGGLE_STYLE,
     payload,
@@ -15,21 +15,21 @@ export function toggleChatStyle(payload) {
 }
 
 
-export function openChat(payload) {
+export function openChat (payload) {
   return {
     type: UI_OPEN,
     payload,
   };
 }
 
-export function toggleChat(payload) {
+export function toggleChat (payload) {
   return {
     type: UI_TOGGLE,
     payload,
   };
 }
 
-export function closeChat(payload) {
+export function closeChat (payload) {
   return {
     type: UI_CLOSE,
     payload,

@@ -8,27 +8,27 @@ import {
   CHAT_MESSAGE_OPERATOR,
 } from './constants';
 
-export function sendMessage(payload) {
+export function sendMessage (payload) {
   return {
     type: CHAT_MESSAGE_CLIENT,
     payload,
   };
 }
 
-export function recieveMessage(payload) {
+export function recieveMessage (payload) {
   return {
     type: CHAT_MESSAGE_OPERATOR,
     payload,
   };
 }
 
-export function connected() {
+export function connected () {
   return {
     type: CHAT_CONNECTED,
   };
 }
 
-export function disconnected() {
+export function disconnected () {
   return {
     type: CHAT_DISCONNECTED,
   };

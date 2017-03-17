@@ -61,7 +61,7 @@ export class ChatComponent extends Component {
   // Event Handlers
 
   // Successful connection
-  onSocketConnected() {
+  onSocketConnected () {
     const { dispatch } = this.props;
 
     return function onSocketConnectedCurry () {
@@ -76,7 +76,7 @@ export class ChatComponent extends Component {
   }
 
   // Disconnected
-  onSocketDisconnected() {
+  onSocketDisconnected () {
     const { dispatch } = this.props;
 
     return function onSocketDisconnectedCurry () {
