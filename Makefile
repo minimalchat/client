@@ -6,6 +6,8 @@ NPM_CMD = npm
 
 build: coverage lint compile
 
+run: lint compile start
+
 coverage:
 	$(NPM_CMD) run coverage
 
