@@ -43,3 +43,6 @@ jspm_packages
 
 # webpack output
 dist
+
+*.swo
+*.swp
