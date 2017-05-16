@@ -28,9 +28,22 @@ export class ChatComponent extends Component {
   constructor (props) {
     super(props);
 
+    console.log('CONNECTING SOCKET');
+
     this.socket = io.connect(socketPath, {
       reconnectionAttempts: 10,
+      query: 'type=client',
     });
+
+
+    // let onevent = this.socket.onevent;
+    // this.socket.onevent = function (packet) {
+    //   let args = packet.data || [];
+    //   onevent.call(this, packet);    // original call
+    //   packet.data = ['*'].concat(args);
+    //   onevent.call(this, packet);      // additional call to catch-all
+    // };
+    // this.socket.on('*', (...args) => console.log('SOCKET', args));
 
     // TODO: Somehow remove the need for currying these event handlers
     //  without making a bunch of ugly binds

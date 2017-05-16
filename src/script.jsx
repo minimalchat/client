@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
 import Chat from './components/Chat/Chat.jsx';
 import store from './containers';
@@ -23,9 +23,9 @@ if (!ReactDOM) {
   console.error('Required dependancy missing, ReactDOM. https://facebook.github.io/react/downloads.html');
 }
 
-if (!io) {
-  console.error('Required dependancy missing, Socket.io. http://socket.io/download/');
-}
+// if (!io) {
+//   console.error('Required dependancy missing, Socket.io. http://socket.io/download/');
+// }
 
 // Our generic
 
