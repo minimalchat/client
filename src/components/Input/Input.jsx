@@ -14,6 +14,8 @@ export class InputComponent extends Component {
   static propTypes = {
     chatStyle: PropTypes.string,
     chatStatus: PropTypes.string,
+    chatId: PropTypes.string,
+    clientId: PropTypes.string,
     dispatch: PropTypes.func,
     socket: (props, propName) => {
       if (!(propName in props)) {
@@ -33,13 +35,19 @@ export class InputComponent extends Component {
 
   onKeyPress = (event) => {
     const { key, keyCode, shiftKey, ctrlKey, altKey } = event;
+    const { chatId, clientId } = this.props;
     console.log(`INPUT KEYPRESS ${key} (${keyCode}), SHIFT ${shiftKey}, CTRL ${ctrlKey}, ALT ${altKey}`);
 
     if (keyCode === KEY_ENTER) {
       if (!shiftKey) {
         console.log('SENDING MESSAGE ...');
         // Send data
-        this.socket.emit('client:message', event.target.value);
+        this.socket.emit('client:message', JSON.stringify({
+          author: `client.${clientId}`,
+          content: event.target.value,
+          chat: chatId,
+          timestamp: (new Date()).toISOString(),
+        }));
         this.props.dispatch(sendMessage(event.target.value));
         this.setState({ messageBox: '' });
 
@@ -73,6 +81,8 @@ export class InputComponent extends Component {
 const mapStateToProps = state => ({
   chatStyle: state.ui.style,
   chatStatus: state.chat.status,
+  chatId: state.chat.session.id,
+  clientId: state.chat.session.client.id,
 });
 
 const mapDispatchToProps = dispatch => ({

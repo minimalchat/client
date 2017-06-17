@@ -4,6 +4,7 @@ import {
   CHAT_DISCONNECTED,
   // CHAT_RECONNECTED,
   // CHAT_RECONNECTING,
+  CHAT_NEW,
   CHAT_MESSAGE_CLIENT,
   CHAT_MESSAGE_OPERATOR,
 } from './constants';
@@ -18,6 +19,13 @@ export function sendMessage (payload) {
 export function recieveMessage (payload) {
   return {
     type: CHAT_MESSAGE_OPERATOR,
+    payload,
+  };
+}
+
+export function newChat (payload) {
+  return {
+    type: CHAT_NEW,
     payload,
   };
 }

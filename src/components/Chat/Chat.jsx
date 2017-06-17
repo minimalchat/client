@@ -11,6 +11,7 @@ import { openChat, toggleChat, closeChat } from '../../containers/UI/actions';
 import {
   connected,
   disconnected,
+  newChat,
   recieveMessage,
 } from '../../containers/Chat/actions';
 
@@ -32,7 +33,9 @@ export class ChatComponent extends Component {
 
     this.socket = io.connect(socketPath, {
       reconnectionAttempts: 10,
-      query: 'type=client',
+      query: {
+        type: 'client',
+      },
     });
 
 
@@ -56,8 +59,13 @@ export class ChatComponent extends Component {
     // this.socket.on('reconnect_error', socketConnectionError);
     this.socket.on('reconnect_failed', this.onSocketReconnectionFailed);
     this.socket.on('reconnect_timeout', this.onSocketTimeout);
+    this.socket.on('ping', this.onPing);
+    this.socket.on('pong', this.onPong);
 
+    // Mnml specific socket messages
     this.socket.on('operator:message', this.handleOperatorMessage());
+    this.socket.on('chat:new', this.handleChatNew());
+    this.socket.on('chat:existing', this.handleChatExisting());
 
     // Initial state
     this.state = {
@@ -72,6 +80,14 @@ export class ChatComponent extends Component {
 
 
   // Event Handlers
+
+  onPing () {
+    console.log('VERBOSE', 'Ping', (new Date()).getTime());
+  }
+
+  onPong (latency) {
+    console.log('VERBOSE', 'Pong', (new Date()).getTime(), `${latency}ms`);
+  }
 
   // Successful connection
   onSocketConnected () {
@@ -133,14 +149,36 @@ export class ChatComponent extends Component {
     console.error('DEBUG', 'Socket connection error');
   }
 
+  // We are starting fresh!
+  handleChatNew () {
+    const { dispatch } = this.props;
+
+    return function onChatNew (data) {
+      console.log('DEBUG', 'STARTING NEW CHAT ...', JSON.parse(data));
+
+      dispatch(newChat(JSON.parse(data)));
+    };
+  }
+
+  // We are picking up a previous session :o
+  handleChatExisting () {
+    // TODO: Write this function
+  }
+
   handleOperatorMessage () {
     const { dispatch } = this.props;
 
     // TODO: Better function name standard for curried functions
     return function handleOperatorMessageCurry (data) {
-      console.log('DEBUG', 'RECIEVING MESSAGE ...', data);
+      console.log('DEBUG', 'RECIEVING MESSAGE ...', JSON.parse(data));
 
-      dispatch(recieveMessage(data));
+      const message = JSON.parse(data);
+
+      if (message.hasOwnProperty('content')) {
+        dispatch(recieveMessage(message.content));
+      } else {
+        console.warn('WARN', 'NO MESSAGE DATA');
+      }
     };
   }
 
