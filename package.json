@@ -53,6 +53,7 @@
     "testRegex": "((test|spec))\\.(js|jsx)$"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

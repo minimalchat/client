@@ -1,7 +1,9 @@
 exports[`Input matches snapshot 1`] = `
 <InputComponent
+  chatId="TEST123"
   chatStatus="TEST"
   chatStyle="TEST"
+  clientId="TEST123"
   dispatch={[Function]}
   socket={
     Object {

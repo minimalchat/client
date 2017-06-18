@@ -14,7 +14,13 @@ const store = {
   dispatch: jest.fn(),
   getState: jest.fn(() => ({
     ui: { style: 'TEST' },
-    chat: { status: 'TEST' },
+    chat: {
+      status: 'TEST',
+      session: {
+        id: 'TEST123',
+        client: { id: 'TEST123' },
+      },
+    },
   })),
 };
 
