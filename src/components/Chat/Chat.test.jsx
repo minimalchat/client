@@ -18,6 +18,10 @@ const store = {
     chat: {
       messages: [],
       status: 'TEST',
+      session: {
+        id: 'TEST123',
+        client: { id: 'TEST123' },
+      },
     },
   })),
 };

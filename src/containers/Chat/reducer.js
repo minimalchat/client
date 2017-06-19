@@ -8,6 +8,7 @@ import {
   // CHAT_RECONNECTING,
   CHAT_MESSAGE_CLIENT,
   CHAT_MESSAGE_OPERATOR,
+  CHAT_NEW,
   CHAT_CLIENT,
   CHAT_OPERATOR,
 } from './constants';
@@ -20,8 +21,11 @@ const chatInitialState = {
       { author: 'CLIENT', content: ['Im a client'] },
       { author: 'OPERATOR', content: ['Im an operator'] },
   ],
-    // messages: [],
-
+  session: {
+    client: {
+      id: null,
+    },
+  },
 };
 const chatReducer = function ChatReducer (state = chatInitialState, action) {
   let messages = [];
@@ -36,6 +40,11 @@ const chatReducer = function ChatReducer (state = chatInitialState, action) {
     case CHAT_CONNECTED:
       return Object.assign({}, state, {
         status: action.type,
+      });
+
+    case CHAT_NEW:
+      return Object.assign({}, state, {
+        session: action.payload,
       });
 
     case CHAT_MESSAGE_OPERATOR:
