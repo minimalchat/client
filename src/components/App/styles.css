@@ -1,0 +1,40 @@
+/* Application Component */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+.mnml {
+  font-size: 12px;
+  font-family: 'Open Sans', Arial;
+}
+
+.mnml__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+
+/* Messenger Theme */
+
+.mnml--messenger {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 100px;
+  width: 280px;
+  height: 360px;
+}
+
+.mnml--messenger.closed {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 100px;
+  width: 280px;
+  height: 32px;
+}
+
+/* Float Theme */
+

@@ -1,0 +1,61 @@
+/* Header Component */
+
+
+/* Messenger Theme */
+
+.Header--messenger {
+  background: #72a0e5;
+  box-sizing: border-box;
+  color: #efefef;
+  padding: 12px 4px 12px 12px;
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  border-radius: 3px 3px 0 0;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.Header__title--messenger {
+  align-self: center;
+}
+
+.Header__closeBtn--messenger {
+  font-weight: 800;
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 24px;
+  align-self: center;
+  outline: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  line-height: 1;
+  padding-top: 0;
+}
+
+.Header__closeBtn--messanger:active {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0);
+}
+
+
+/* Float Theme */
+
+.Header__closeBtn--float {
+  position: absolute;
+  bottom: -48px;
+  /* right: -48px; */
+  display: block;
+  width: 42px;
+  height: 42px;
+  padding: 11px 5px 11px 6px;
+  box-sizing: border-box;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 21px;
+  font-size: 13px;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  background-color: #72a0e5;
+  border: 0;
+}

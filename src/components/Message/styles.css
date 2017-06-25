@@ -1,0 +1,100 @@
+/* Message Component */
+
+
+/* Messenger Theme */
+
+.Message__client--messenger {
+  align-self: flex-end;
+  background: rgb(10, 107, 239);
+  border-radius: 8px 8px 8px 0;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 0;
+  max-width: 95%;
+  min-width: 160px;
+  padding: 5px 5px 5px 10px;
+  list-style-type: none;
+  hyphens: auto;
+}
+
+
+/* Container box for Avatar-op + Operator__Messenger */
+.Message__operatorWrapper--messenger {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0;
+}
+
+.Message__operator--messenger {
+  align-self: flex-start;
+  background: #e1e1e1;
+  border-radius: 8px 0px 8px 8px;
+  color: #333;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  list-style: none;
+  max-width: 70%;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.Message__avatar--messenger {
+  width: 40px;
+  height: 40px;
+  padding-left: 4px;
+}
+
+
+/* Float Theme */
+
+/* Top level container around an <li> message */
+.Message__box--float{
+    margin: 7px 0;
+    padding-right: 10px; /* move msgs away from scrollbar */
+}
+
+.Message__avatar--float {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.Message__operatorWrapper--float {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Message__operator--float {
+  margin: 0;
+  list-style: none;
+  width: 160px;
+  float: left;
+  text-align: left;
+  background: #ffffff;
+  color: #000000;
+  margin-top: 4px;
+  margin-left: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 10px 0px 10px 0px;
+  padding: 16px;
+}
+
+.Message__client--float {
+  margin: 0;
+  padding: 16px;
+  list-style: none;
+  width: 160px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: #dddddd 1px 1px 8px 0;
+  border-radius: 10px 10px 10px 0px;
+  background: #0a6bef;
+  float: left;
+  text-align: left;
+  color: #ffffff;
+  }
