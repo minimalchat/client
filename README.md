@@ -1,7 +1,7 @@
 # Minimal Chat client script
 
-[![Build Status](https://travis-ci.org/minimalchat/mnml-client.svg?branch=master)](https://travis-ci.org/minimalchat/mnml-client)
-[![Coverage Status](https://coveralls.io/repos/github/minimalchat/mnml-client/badge.svg?branch=master)](https://coveralls.io/github/minimalchat/mnml-client?branch=master)
+[![Build Status](https://travis-ci.org/minimalchat/client.svg?branch=master)](https://travis-ci.org/minimalchat/client)
+[![Coverage Status](https://coveralls.io/repos/github/minimalchat/client/badge.svg?branch=master)](https://coveralls.io/github/minimalchat/client?branch=master)
 
 ---
 
