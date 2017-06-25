@@ -1,9 +1,11 @@
 {
- "presets": ["es2015","stage-0","react"],
- "plugins": ["transform-decorators-legacy"],
- "env": {
-    "test": {
-      "plugins": [ "istanbul" ]
-    }
-  },
+  "sourceMaps": true,
+  "presets": [
+    ["es2015", { "loose":true }],
+    "stage-0"
+  ],
+  "plugins": [
+    ["transform-decorators-legacy"],
+    ["transform-react-jsx", { "pragma": "h" }]
+  ]
 }

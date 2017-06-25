@@ -1,25 +1,27 @@
 # Commands
-NODE_CMD = node
-NPM_CMD = npm
+NPM_CMD ?= npm
 
-.PHONY: build coverage test
+.PHONY: coverage test
 
-build: coverage lint compile
+default: test lint compile
 
-run: test lint compile start
-
-coverage:
-	$(NPM_CMD) run coverage
+run: test format lint compile start
 
 lint:
 	$(NPM_CMD) run lint
 
+format:
+	$(NPM_CMD) run format
+
 compile:
 	[[ -d 'dist' ]] || mkdir dist
-	$(NPM_CMD) run build
+	$(NPM_CMD) run build:production
+
+coverage:
+	$(NPM_CMD) run coverage
 
 test:
 	$(NPM_CMD) test
 
 start:
-	cd example; $(NPM_CMD) start
+	$(NPM_CMD) start

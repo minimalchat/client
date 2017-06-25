@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message component should render  1`] = `"<li class=\\"Message__box--undefined\\"><ul class=\\"Message__client--undefined\\"></ul></li>"`;
