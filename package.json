@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Client library for Minimal Chat",
   "author": "Matthew Mihok <matthew@minimal.chat>",
-  "repository": "minimalchat/mnml-client.git",
+  "repository": "minimalchat/client.git",
   "license": "BSD-3-Clause",
   "scripts": {
     "test": "jest",
@@ -38,7 +38,7 @@
       "<rootDir>/node_modules/enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/cfg/mocks/fileMock.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/mocks/fileMock.js",
       "^.+\\.(css|scss)$": "<rootDir>/test/mocks/styleMock.js"
     },
     "coverageReporters": [
