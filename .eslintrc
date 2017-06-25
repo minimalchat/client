@@ -1,28 +1,33 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "node": true,
-    "jest": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
   },
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": ["warn"],
     "space-before-function-paren": ["error", "always"],
     "prefer-const": ["warn"],
-    "import/no-extraneous-dependencies": [
-      "error", { "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.spec.js", "**/*.spec.jsx"]}
-    ],
-    "import/extensions": ["error", { "jsx": "always" }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-unused-vars": ["warn"],
     "no-console": ["warn"],
     "no-prototype-builtins": ["off"],
     "no-multiple-empty-lines": ["off"],
     "no-use-before-define": ["warn"],
+    "react/react-in-jsx-scope": 0,
     "react/no-multi-comp": ["warn"],
-    "react/jsx-no-bind": ["warn"],
-
-    "jsx-a11y/no-static-element-interactions": ["warn"],
-  },
+    "react/prefer-stateless-function": ["warn"],
+    "jsx-a11y/no-static-element-interactions": ["warn"]
+  }
 }
