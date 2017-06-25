@@ -1,12 +1,11 @@
 import { h, Component } from 'preact';
-import './styles.css';
-import Chat from '../Chat/';
-// import ClosedState from '../ClosedState/';
-import ClosedState from '../ClosedState/';
-import { ThemeProvider } from '../ThemeProvider/index';
+import io from 'socket.io-client';
 
-// TODO: socket io doesn't properly import from webpack?
-/* import io from "socket.io-client";*/ const io = window.io || {};
+import Chat from '../Chat';
+import ClosedState from '../ClosedState';
+import { ThemeProvider } from '../ThemeProvider';
+
+import './styles.css';
 
 const MESSENGER = 'messenger';
 const FLOAT = 'float';

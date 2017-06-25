@@ -4,8 +4,7 @@ import Header from '.';
 
 describe('Header component', () => {
   it('should render ', () => {
-    const props = {
-    };
+    const props = {};
 
     const tree = render(<Header />);
     expect(tree).toMatchSnapshot();

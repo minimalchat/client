@@ -1,20 +1,19 @@
+import { h, Component } from 'preact';
+import PropTypes from 'prop-types';
+
+import Header from '../Header';
+import Message from '../Message';
+import Input from '../Input';
+import { applyTheme } from '../ThemeProvider';
+
+import './styles.css';
+
 /**
  * Main chat component handles displaying chat messages and passes
  * functions to the input to send messages
  * Has scroll to bottom functionality for keeping window scoll at bottom of the chat.
  * Needs to be a class based component in order to have that functionality ^
  */
-
-import { h, Component } from 'preact';
-import PropTypes from 'prop-types';
-
-import Header from '../Header/';
-import Message from '../Message/';
-import Input from '../Input/';
-import { applyTheme } from '../ThemeProvider';
-
-import './styles.css';
-
 class Chat extends Component {
   propTypes = {
     toggleChat: PropTypes.func,
