@@ -22,45 +22,16 @@ let plugins = [
 
 if (!development) {
   // Minify source on production only
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    output: {
-      comments: false,
-    },
-    // TODO: What are all these options?
-    compress: {
-      unsafe_comps: true,
-      properties: true,
-      keep_fargs: false,
-      pure_getters: true,
-      collapse_vars: true,
-      unsafe: true,
-      warnings: false,
-      screw_ie8: true,
-      sequences: true,
-      dead_code: true,
-      drop_debugger: true,
-      comparisons: true,
-      conditionals: true,
-      evaluate: true,
-      booleans: true,
-      loops: true,
-      unused: true,
-      hoist_funs: true,
-      if_return: true,
-      join_vars: true,
-      cascade: true,
-      drop_console: true,
-    }
-   }));
+  plugins.push(new webpack.optimize.UglifyJsPlugin());
 
   // Strip out babel-helper invariant checks 
-  plugins.push(new ReplacePlugin([
+  /*plugins.push(new ReplacePlugin([
     {
       // This is actually the property name https://github.com/kimhou/replace-bundle-webpack-plugin/issues/1
       partten: /throw\s+(new\s+)?[a-zA-Z]+Error\s*\(/g,
       replacement: () => 'return;(',
     },
-  ]));
+  ]));*/
 }
 
 module.exports = { 
@@ -73,12 +44,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: [ PATHS.SRC ],
-      //   enforce: 'pre',
-      //   use: 'source-map-loader',
-      // },
       { 
         test: /\.jsx?$/,
         include: [ PATHS.SRC ],
@@ -98,28 +63,6 @@ module.exports = {
         exclude: [ PATHS.MODULES ],
         loader: 'style-loader!css-loader',
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style-loader!css-loader',
-      // },
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   use: 'babel-loader',
-      // },
-      // {
-      //   test: /\.json$/,
-      //   use: 'json-loader',
-      // },
-      // {
-      //   test: /\.(xml|html|txt|md)$/,
-      //   use: 'raw-loader',
-      // },
-      // {
-      //   test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-      //   // use: ENV === "production" ? "file-loader" : "url-loader"
-      //   use: 'url-loader',
-      // },
     ],
   },
   plugins: plugins,
@@ -132,9 +75,9 @@ module.exports = {
     ],
     alias: {
       'components': path.resolve(__dirname, 'src/components'), // used for tests
-      // style: path.resolve(__dirname, 'src/style'),
+      'react-dom/server': 'preact-render-to-string',
       'react': 'preact-compat',
-      'react-dom': 'preact-compat',
+      'react-dom': 'preact-compat'
     },
   },
 

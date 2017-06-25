@@ -1,10 +1,9 @@
-/* const render = require('preact-render-to-string');
- * const App = require('../thing');*/
-import render from 'preact-render-to-string';
 import { h } from 'preact';
+import render from 'preact-render-to-string';
+
 import ThemeProvider from '.';
 
-describe('App component', () => {
+describe('<ThemeProvider />', () => {
   it('should render ', () => {
     const tree = render(<ThemeProvider />);
     expect(tree).toMatchSnapshot();

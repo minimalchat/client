@@ -2,6 +2,9 @@ import { render, h } from 'preact';
 import App from './components/App';
 
 // Render the app
-const mount = document.getElementById('mount');
+const div = document.createElement('div');
+document.body.appendChild(div);
 
-render(<App />, mount);
+div.id = 'mnml-chat';
+
+render(<App />, div);

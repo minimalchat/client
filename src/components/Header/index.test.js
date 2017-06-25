@@ -1,11 +1,10 @@
-import render from 'preact-render-to-string';
 import { h } from 'preact';
+import render from 'preact-render-to-string';
+
 import Header from '.';
 
-describe('Header component', () => {
+describe('<Header />', () => {
   it('should render ', () => {
-    const props = {};
-
     const tree = render(<Header />);
     expect(tree).toMatchSnapshot();
   });

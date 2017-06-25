@@ -17,6 +17,7 @@
 
 .Header__title--messenger {
   align-self: center;
+  color: white;
 }
 
 .Header__closeBtn--messenger {

@@ -1,11 +1,10 @@
-/* const render = require('preact-render-to-string');
- * const App = require('../thing');*/
-import render from 'preact-render-to-string';
 import { h } from 'preact';
+import render from 'preact-render-to-string';
+
 import ClosedState from '.';
 
-describe('App component', () => {
-  it('should render ', () => {
+describe('<ClosedState />', () => {
+  it('matches snapshot', () => {
     const tree = render(<ClosedState />);
     expect(tree).toMatchSnapshot();
   });

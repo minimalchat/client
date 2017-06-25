@@ -173,7 +173,7 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={this.state.theme}>
-        <div className={`mnml mnml--${theme} ${visibility}`}>
+        <div className={`mnml--${theme} ${visibility}`}>
           {this.renderChat()}
         </div>
       </ThemeProvider>

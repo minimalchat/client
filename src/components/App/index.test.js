@@ -1,11 +1,11 @@
-/* const render = require('preact-render-to-string');
- * const App = require('../thing');*/
-import render from 'preact-render-to-string';
 import { h } from 'preact';
+import render from 'preact-render-to-string';
+import io from 'socket.io-client';
+
 import App from '.';
 
-describe('App component', () => {
-  it('should render ', () => {
+describe('<App />', () => {
+  it('matches snapshot', () => {
     const tree = render(<App />);
     expect(tree).toMatchSnapshot();
   });

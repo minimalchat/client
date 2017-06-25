@@ -9,7 +9,6 @@ import './style.css';
 * Header
 *
 */
-
 class Header extends Component {
   propTypes = {
     toggleChat: PropTypes.func,

@@ -3,8 +3,8 @@ import render from 'preact-render-to-string';
 
 import Message from '.';
 
-describe('Message component', () => {
-  it('should render ', () => {
+describe('<Message />', () => {
+  it('matches snapshot', () => {
     const props = {
       content: [], // message content
       type: 'client-TEST',
