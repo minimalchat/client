@@ -3,6 +3,8 @@ NPM_CMD ?= npm
 
 .PHONY: coverage test
 
+default: test lint compile
+
 run: test format lint compile start
 
 lint:
