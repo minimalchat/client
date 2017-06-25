@@ -18,7 +18,7 @@ The client script is embedded into a html page just before the `</body>` tag.
 ### Usage
 
 ```javascript
-<!-- Start of Async LetsChat Code -->
+<!-- Start of Async Minimal Chat Code -->
 <script>
 !function() {
   o = document.createElement("script"),
@@ -26,7 +26,7 @@ The client script is embedded into a html page just before the `</body>` tag.
   n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
 }();
 </script>
-<!-- End of Async LetsChat Code -->
+<!-- End of Async Minimal Chat Code -->
 ```
 
 ### Development
