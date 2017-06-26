@@ -25,13 +25,13 @@ if (!development) {
   plugins.push(new webpack.optimize.UglifyJsPlugin());
 
   // Strip out babel-helper invariant checks 
-  /*plugins.push(new ReplacePlugin([
+  plugins.push(new ReplacePlugin([
     {
       // This is actually the property name https://github.com/kimhou/replace-bundle-webpack-plugin/issues/1
       partten: /throw\s+(new\s+)?[a-zA-Z]+Error\s*\(/g,
       replacement: () => 'return;(',
     },
-  ]));*/
+  ]));
 }
 
 module.exports = { 

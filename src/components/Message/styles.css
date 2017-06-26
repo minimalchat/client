@@ -10,7 +10,6 @@
   color: white;
   display: inline-block;
   font-size: 12px;
-  letter-spacing: 1px;
   margin: 0;
   max-width: 95%;
   min-width: 160px;
@@ -35,7 +34,6 @@
   color: #333;
   display: inline-block;
   font-size: 12px;
-  letter-spacing: 1px;
   list-style: none;
   max-width: 70%;
   padding: 0.5rem;
