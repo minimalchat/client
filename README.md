@@ -11,6 +11,12 @@ Minimal Chat is:
 -   **minimal**: simple, lightweight, accessible
 -   **extensible**: modular, pluggable, hookable, composable
 
+
+Screenshot
+---
+![client-screenshot-0](https://user-images.githubusercontent.com/563301/27521430-eb5f8124-59ea-11e7-81af-1b543fb1f104.png)
+
+
 ---
 
 The client script is embedded into a html page just before the `</body>` tag.
