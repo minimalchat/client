@@ -4,6 +4,9 @@ import io from 'socket.io-client';
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
 import { ThemeProvider } from '../ThemeProvider';
+import {
+  canCombineLastMessage,
+} from './functions.js';
 
 import './styles.css';
 
@@ -64,7 +67,7 @@ class App extends Component {
   saveMessageToState = msg => {
     const formattedMsg = this.formatMessage(msg, 'local');
 
-    if (this.combineLastMessage(formattedMsg)) {
+    if (canCombineLastMessage(formattedMsg, this.state.messages)) {
       const messages = this.state.messages;
       messages[messages.length - 1].content.push(...formattedMsg.content);
 
@@ -102,7 +105,7 @@ class App extends Component {
     const msg = JSON.parse(data); // in arr so it can be combined
     msg.content = [msg.content];
 
-    if (this.combineLastMessage(msg)) {
+    if (canCombineLastMessage(msg, this.state.messages)) {
       const messages = this.state.messages;
       messages[messages.length - 1].content.push(...msg.content);
 
@@ -144,12 +147,6 @@ class App extends Component {
    * @returns {boolean}
    */
   combineLastMessage = msg => {
-    const previousMessage = this.state.messages[this.state.messages.length - 1];
-    if (!previousMessage) return false; // return if this is the first message in the conversation
-    if (msg.author !== previousMessage.author) {
-      return false;
-    }
-    return true;
   };
 
   renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
