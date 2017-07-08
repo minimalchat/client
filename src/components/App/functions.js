@@ -5,6 +5,9 @@ const remotePort = process.env.REMOTE_PORT || '8000';
 
 const socketPath = `http://${remoteHost}:${remotePort}`;
 
+// Socket Functions
+//
+
 export function createSocket (app) {
   const socket = io.connect(socketPath, {
     secure: false,
@@ -17,6 +20,9 @@ export function createSocket (app) {
 
   return socket;
 }
+
+// Message Functions
+//
 
 export function canCombineLastMessage (msg, messages) {
   const lastMsg = messages[messages.length - 1];
@@ -67,4 +73,21 @@ export function combineLastMessage (msg, messages) {
   }
 
   return [...messages, newMsg];
+}
+
+export function formatMessage (content, clientID, sessionID) {
+  return {
+    timestamp: new Date().toISOString(),
+    author: `client-${clientID}`,
+    content,
+    chat: sessionID,
+  };
+}
+
+export function formatMessageForClient (msg, clientID, sessionID) {
+  return formatMessage([msg], clientID, sessionID);
+}
+
+export function formatMessageForServer (msg, clientID, sessionID) {
+  return formatMessage(msg, clientID, sessionID);
 }

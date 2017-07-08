@@ -3,7 +3,12 @@ import { h, Component } from 'preact';
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
 import { ThemeProvider } from '../ThemeProvider';
-import { combineLastMessage, createSocket } from './functions';
+import {
+  formatMessageForClient,
+  formatMessageForServer,
+  combineLastMessage,
+  createSocket,
+} from './functions';
 
 import './styles.css';
 
@@ -49,7 +54,11 @@ class App extends Component {
   // TODO: docstring
   // save the message to local stage: either combining them or not.
   saveMessageToState = msg => {
-    const formattedMsg = this.formatMessage(msg, 'local');
+    const formattedMsg = formatMessageForClient(
+      msg,
+      this.state.session.client.id,
+      this.state.session.id
+    );
 
     this.setState({
       messages: combineLastMessage(formattedMsg, this.state.messages),
@@ -58,7 +67,11 @@ class App extends Component {
   };
 
   saveMessageToServer = msg => {
-    const formattedMsg = this.formatMessage(msg);
+    const formattedMsg = formatMessageForServer(
+      msg,
+      this.state.session.client.id,
+      this.state.session.id
+    );
 
     this.socket.emit('client:message', JSON.stringify(formattedMsg));
   };
@@ -69,37 +82,27 @@ class App extends Component {
    * @param {object} e - event object; used to prevent refreshing the page
    */
   sendMessage = e => {
-    e.preventDefault(); // must be the first thing to happen
+    e.preventDefault(); // Must prevent default behavior first
+
     if (this.state.textBox === '') return;
+
     const msg = this.state.textBox;
+
     this.saveMessageToState(msg);
+
     this.saveMessageToServer(msg);
   };
 
   receiveMessage = data => {
-    const msg = JSON.parse(data); // in arr so it can be combined
+    const msg = JSON.parse(data); // Data comes in as a string
 
     this.setState({
       messages: combineLastMessage(msg, this.state.messages),
     });
   };
 
-  /** Format Message
-   * @description: Formats a message to a proper object with metadata
-   * @param {msg}: takes a plain ol' string that is a chat message
-   * @param {destination}: format the message differently based on the destination it's going to.
-   * @returns {obj} with timestamp, author data, and content.
-   */
-  formatMessage = (msg, destination) => {
-    const content = destination === 'local' ? [msg] : msg;
-
-    return {
-      timestamp: new Date().toISOString(),
-      author: `client-${this.state.session.client.id}`,
-      content,
-      chat: this.state.session.id,
-    };
-  };
+  // Render
+  //
 
   renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
 
@@ -113,8 +116,6 @@ class App extends Component {
     />);
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
-
-  // -- Component Return -- //
 
   render () {
     const { theme, chatOpen } = this.state;

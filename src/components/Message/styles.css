@@ -36,6 +36,7 @@
   font-size: 12px;
   list-style: none;
   max-width: 70%;
+  min-width: 120px;
   padding: 0.5rem;
   text-align: left;
 }
