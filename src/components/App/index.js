@@ -4,9 +4,7 @@ import io from 'socket.io-client';
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
 import { ThemeProvider } from '../ThemeProvider';
-import {
-  canCombineLastMessage,
-} from './functions.js';
+import { combineLastMessage } from './functions';
 
 import './styles.css';
 
@@ -67,24 +65,15 @@ class App extends Component {
   saveMessageToState = msg => {
     const formattedMsg = this.formatMessage(msg, 'local');
 
-    if (canCombineLastMessage(formattedMsg, this.state.messages)) {
-      const messages = this.state.messages;
-      messages[messages.length - 1].content.push(...formattedMsg.content);
-
-      this.setState({
-        messages,
-        textBox: '',
-      });
-    } else {
-      this.setState({
-        messages: [...this.state.messages, formattedMsg],
-        textBox: '',
-      });
-    }
+    this.setState({
+      messages: combineLastMessage(formattedMsg, this.state.messages),
+      textBox: '',
+    });
   };
 
   saveMessageToServer = msg => {
     const formattedMsg = this.formatMessage(msg);
+
     this.socket.emit('client:message', JSON.stringify(formattedMsg));
   };
 
@@ -103,25 +92,10 @@ class App extends Component {
 
   receiveMessage = data => {
     const msg = JSON.parse(data); // in arr so it can be combined
-    msg.content = [msg.content];
 
-    if (canCombineLastMessage(msg, this.state.messages)) {
-      const messages = this.state.messages;
-      messages[messages.length - 1].content.push(...msg.content);
-
-      this.setState({
-        messages,
-        textBox: '',
-      });
-    } else {
-      this.setState({
-        messages: [...this.state.messages, msg],
-        textBox: '',
-      });
-    }
-    /* this.setState({
-     *   messages: [...this.state.messages, { content: [msg.content], author: 'operator' }],
-     * });*/
+    this.setState({
+      messages: combineLastMessage(msg, this.state.messages),
+    });
   };
 
   /** Format Message
@@ -146,8 +120,7 @@ class App extends Component {
    * @param {object} msg - A message from a user
    * @returns {boolean}
    */
-  combineLastMessage = msg => {
-  };
+  combineLastMessage = msg => {};
 
   renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
 
