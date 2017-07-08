@@ -1,21 +1,18 @@
 import { h, Component } from 'preact';
-import io from 'socket.io-client';
 
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
 import { ThemeProvider } from '../ThemeProvider';
-import { combineLastMessage } from './functions';
+import {
+  combineLastMessage,
+  createSocket,
+} from './functions';
 
 import './styles.css';
 
 const MESSENGER = 'messenger';
 const FLOAT = 'float';
 const SIDEPANEL = 'side';
-
-const remoteHost = process.env.REMOTE_HOST || 'localhost';
-const remotePort = process.env.REMOTE_PORT || '8000';
-
-const socketPath = `http://${remoteHost}:${remotePort}`;
 
 class App extends Component {
   state = {
@@ -26,15 +23,7 @@ class App extends Component {
   };
 
   componentDidMount () {
-    window.jam = this;
-    this.socket = io.connect(socketPath, {
-      secure: false,
-      reconnectionAttempts: 10,
-      query: 'type=client',
-    });
-
-    this.socket.on('operator:message', this.receiveMessage);
-    this.socket.on('chat:new', this.handleNewConnection);
+    this.socket = createSocket(this);
   }
 
   // Event Handlers
@@ -115,23 +104,21 @@ class App extends Component {
     };
   };
 
-  /**
-   * @summary Checks if message can combine with prev. message in local state.
-   * @param {object} msg - A message from a user
-   * @returns {boolean}
-   */
-  combineLastMessage = msg => {};
+  renderClosedChat = () => (
+    <ClosedState
+     toggleChat={this.toggleChat}
+    />
+  );
 
-  renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
-
-  renderOpenChat = () =>
-    (<Chat
+  renderOpenChat = () => (
+    <Chat
       toggleChat={this.toggleChat}
       messages={this.state.messages}
       textBox={this.state.textBox}
       handleInput={this.handleInput}
       sendMessage={this.sendMessage}
-    />);
+    />
+  );
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 

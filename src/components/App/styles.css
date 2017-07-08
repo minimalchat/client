@@ -4,7 +4,7 @@
 
 #mnml-chat {
   font-size: 12px;
-  font-family: 'Open Sans', Arial;
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -32,3 +32,12 @@
 
 /* Float Theme */
 
+.mnml--float {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.mnml--float.closed {
+
+}

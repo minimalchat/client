@@ -43,20 +43,34 @@
 
 /* Float Theme */
 
+.Header--float { }
+
+.closed .Header--float {
+  position: relative;
+  right: 10px;
+  bottom: 30px;
+}
+    
+.Header__title--float {
+  display: none;
+}
+
 .Header__closeBtn--float {
   position: absolute;
-  bottom: -48px;
-  /* right: -48px; */
+  bottom: 0;
+  right: 0;
   display: block;
   width: 42px;
   height: 42px;
-  padding: 11px 5px 11px 6px;
+  padding: 4px 6px;
   box-sizing: border-box;
   box-shadow: #dddddd 1px 1px 8px 0;
   border-radius: 21px;
-  font-size: 13px;
-  font-family: 'Arial', sans-serif;
+  font-size: 32px;
+  font-family: sans-serif;
   color: #ffffff;
+  cursor: pointer;
+  outline: none;
   background-color: #72a0e5;
   border: 0;
 }

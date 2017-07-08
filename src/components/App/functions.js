@@ -1,3 +1,24 @@
+import io from 'socket.io-client';
+
+const remoteHost = process.env.REMOTE_HOST || 'localhost';
+const remotePort = process.env.REMOTE_PORT || '8000';
+
+const socketPath = `http://${remoteHost}:${remotePort}`;
+
+
+export function createSocket (app) {
+  const socket = io.connect(socketPath, {
+    secure: false,
+    reconnectionAttempts: 10,
+    query: 'type=client',
+  });
+
+  socket.on('operator:message', app.receiveMessage);
+  socket.on('chat:new', app.handleNewConnection);
+
+  return socket;
+}
+
 export function canCombineLastMessage (msg, messages) {
   const lastMsg = messages[messages.length - 1];
 

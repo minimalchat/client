@@ -52,19 +52,19 @@
 /* Top level container around an <li> message */
 .Message__box--float{
     margin: 7px 0;
-    padding-right: 10px; /* move msgs away from scrollbar */
 }
 
 .Message__avatar--float {
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  margin-top: -24px;
 }
 
 .Message__operatorWrapper--float {
   align-items: flex-start;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .Message__operator--float {
@@ -75,8 +75,7 @@
   text-align: left;
   background: #ffffff;
   color: #000000;
-  margin-top: 4px;
-  margin-left: 4px;
+  margin-right: 12px;
   box-shadow: #dddddd 1px 1px 8px 0;
   border-radius: 10px 0px 10px 0px;
   padding: 16px;

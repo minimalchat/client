@@ -28,24 +28,27 @@
 /* Float Theme */
 
 .Chat--float {
-  position: absolute;
-  right: 30px;
-  bottom: 60px;
+  position: relative;
+  right: 10px;
+  bottom: 30px;
   background-color: transparent;
 }
 
 .Chat__body--float {
-  display: block;
-  width: 280px;
-  height: 80vh;
-  overflow: scroll;
+  width: 310px;
+  bottom: 110px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+  position: absolute;
   display: flex;
   flex-direction: column;
   list-style: none;
   flex-grow: 1;
   justify-content: flex-end;
-  padding-bottom: 64px;
-  /* Push last message down; gives <Input /> room to breathe */
 }
 
 
