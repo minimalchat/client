@@ -1,7 +1,49 @@
+import io from 'socket.io-client';
+
 import {
+  createSocket,
   canCombineLastMessage,
   combineLastMessage,
 } from './functions.js';
+
+describe('createSocket', () => {
+  it('initiates a socket connection', () => {
+    const app = {
+      receiveMessage: jest.fn(),
+      handleNewConnection: jest.fn(),
+    };
+
+    const socket = {
+      on: jest.fn()
+    };
+
+    // Mock the socket library
+    io.connect = jest.fn(() => socket);
+
+    createSocket(app);
+
+    expect(io.connect).toHaveBeenCalled();
+  });
+
+  it('listens for events', () => {
+    const app = {
+      receiveMessage: jest.fn(),
+      handleNewConnection: jest.fn(),
+    };
+
+    const socket = {
+      on: jest.fn()
+    };
+
+    // Mock the socket library
+    io.connect = jest.fn(() => socket);
+
+    createSocket(app);
+
+    expect(socket.on).toHaveBeenCalledWith('chat:new', app.handleNewConnection);
+    expect(socket.on).toHaveBeenCalledWith('operator:message', app.receiveMessage);
+  });
+});
 
 describe('canCombineLastMessage', () => {
   it('returns false if there are no messages', () => {

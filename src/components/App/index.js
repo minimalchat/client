@@ -3,10 +3,7 @@ import { h, Component } from 'preact';
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
 import { ThemeProvider } from '../ThemeProvider';
-import {
-  combineLastMessage,
-  createSocket,
-} from './functions';
+import { combineLastMessage, createSocket } from './functions';
 
 import './styles.css';
 
@@ -104,21 +101,16 @@ class App extends Component {
     };
   };
 
-  renderClosedChat = () => (
-    <ClosedState
-      toggleChat={this.toggleChat}
-    />
-  );
+  renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
 
-  renderOpenChat = () => (
-    <Chat
+  renderOpenChat = () =>
+    (<Chat
       toggleChat={this.toggleChat}
       messages={this.state.messages}
       textBox={this.state.textBox}
       handleInput={this.handleInput}
       sendMessage={this.sendMessage}
-    />
-  );
+    />);
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 

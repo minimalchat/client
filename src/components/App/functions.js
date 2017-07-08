@@ -5,7 +5,6 @@ const remotePort = process.env.REMOTE_PORT || '8000';
 
 const socketPath = `http://${remoteHost}:${remotePort}`;
 
-
 export function createSocket (app) {
   const socket = io.connect(socketPath, {
     secure: false,
