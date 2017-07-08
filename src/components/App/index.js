@@ -106,7 +106,7 @@ class App extends Component {
 
   renderClosedChat = () => (
     <ClosedState
-     toggleChat={this.toggleChat}
+      toggleChat={this.toggleChat}
     />
   );
 
