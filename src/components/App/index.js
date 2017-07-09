@@ -50,6 +50,7 @@ class App extends Component {
   };
 
   //  Message Methods
+  //
 
   // TODO: docstring
   // save the message to local stage: either combining them or not.

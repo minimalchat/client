@@ -78,7 +78,7 @@ export function combineLastMessage (msg, messages) {
 export function formatMessage (content, clientID, sessionID) {
   return {
     timestamp: new Date().toISOString(),
-    author: `client-${clientID}`,
+    author: `client.${clientID}`,
     content,
     chat: sessionID,
   };
