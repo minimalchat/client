@@ -41,21 +41,18 @@ jspm_packages
 .node_repl_history
 
 
-# webpack output
-dist
-
+# Vim files
 *.swo
 *.swp
 
-/node_modules
-/npm-debug.log
-/build
-.DS_Store
-/coverage
-/.idea
+# Tyler sloane idea files
+*.idea
+
+# Yarn lock file
 yarn.lock
-/.vscode
-*.swp
-*.swo
-/dist/*.js
-/dist/*.js.map
+
+# VSCode files
+*.vscode
+
+# Artillery load test reports
+artillery*.json

@@ -6,6 +6,7 @@
   "repository": "minimalchat/client.git",
   "license": "BSD-3-Clause",
   "scripts": {
+    "load": "artillery run test/client.load.yaml",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "build": "npm run build:dev",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "artillery": "^1.6.0-2",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.2",
     "babel-loader": "^7.0.0",
