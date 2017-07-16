@@ -19,7 +19,7 @@ class Chat extends Component {
     toggleChat: PropTypes.func,
     handleInput: PropTypes.func,
     sendMessage: PropTypes.func,
-
+    chatOpen: PropTypes.boolean,
     theme: PropTypes.string,
     textBox: PropTypes.string,
     messages: PropTypes.arrayOf({
@@ -51,7 +51,10 @@ class Chat extends Component {
 
     return (
       <section className={`Chat--${theme}`}>
-        <Header toggleChat={() => toggleChat(false)} />
+        <Header
+          toggleChat={() => toggleChat(false)}
+          chatOpen={this.props.chatOpen}
+        />
 
         {/* Container for text input and reading messages */}
         <ul className={`Chat__body--${theme}`} ref={c => (this.container = c)}>

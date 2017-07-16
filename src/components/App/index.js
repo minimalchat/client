@@ -18,7 +18,7 @@ const SIDEPANEL = 'side';
 
 class App extends Component {
   state = {
-    chatOpen: true,
+    chatOpen: false,
     messages: [],
     textBox: '',
     theme: MESSENGER, // wrapped with theme provider + HOC
@@ -104,7 +104,12 @@ class App extends Component {
   // Render
   //
 
-  renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
+  renderClosedChat = () => (
+    <ClosedState
+      chatOpen={this.state.chatOpen}
+      toggleChat={this.toggleChat}
+    />
+  )
 
   renderOpenChat = () =>
     (<Chat
@@ -113,6 +118,7 @@ class App extends Component {
       textBox={this.state.textBox}
       handleInput={this.handleInput}
       sendMessage={this.sendMessage}
+      chatOpen={this.state.chatOpen}
     />);
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
