@@ -29,7 +29,7 @@ class App extends Component {
     this.socket = createSocket(this);
   }
 
-  // UI / Event
+  // --- UI / Event Methods
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -120,8 +120,7 @@ class App extends Component {
     });
   };
 
-  // Render
-  //
+  // --- Render + Render methods
 
   renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
 
