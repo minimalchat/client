@@ -1,34 +1,35 @@
-import { h, Component } from 'preact';
+import { h, Component } from "preact";
 
-import Chat from '../Chat';
-import ClosedState from '../ClosedState';
-import { ThemeProvider } from '../ThemeProvider';
+import Chat from "../Chat";
+import ClosedState from "../ClosedState";
+import { ThemeProvider } from "../ThemeProvider";
 import {
   formatMessageForClient,
   formatMessageForServer,
   combineLastMessage,
-  createSocket,
-} from './functions';
+  createSocket
+} from "./functions";
 
-import './styles.css';
+import "./styles.css";
 
-const MESSENGER = 'messenger';
-const FLOAT = 'float';
-const SIDEPANEL = 'side';
+const MESSENGER = "messenger";
+const FLOAT = "float";
+const SIDEPANEL = "side";
 
 class App extends Component {
   state = {
     chatOpen: true,
     messages: [],
-    textBox: '',
-    theme: MESSENGER, // wrapped with theme provider + HOC
+    textBox: "",
+    network: "",
+    theme: MESSENGER // wrapped with theme provider + HOC
   };
 
-  componentDidMount () {
+  componentDidMount() {
     this.socket = createSocket(this);
   }
 
-  // Event Handlers
+  // UI / Event
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -38,20 +39,42 @@ class App extends Component {
     this.setState({ textBox: e.target.value });
   };
 
-  //  Socket Methods
+  // ---  Socket Methods
 
   /**
   * @description On connecting to the socket server save a session object into the state
   */
   handleNewConnection = e => {
     this.setState({
-      session: JSON.parse(e),
+      session: JSON.parse(e)
     });
   };
 
-  //  Message Methods
+  handleDisconnected = () => {
+    this.setState({
+      network: "disconnected"
+    });
+  };
 
-  // TODO: docstring
+  handleReconnecting = attempts => {
+    const attemptLimit = this.socket.io._reconnectionAttempts;
+    if (attempts < attemptLimit) {
+      this.setState({
+        network: "reconnecting"
+      });
+    } else {
+      this.handleDisconnected();
+    }
+  };
+
+  handleReconnected = () => {
+    this.setState({
+      network: "reconnected"
+    });
+  };
+
+  // ---  Message Methods
+
   // save the message to local stage: either combining them or not.
   saveMessageToState = msg => {
     const formattedMsg = formatMessageForClient(
@@ -62,7 +85,7 @@ class App extends Component {
 
     this.setState({
       messages: combineLastMessage(formattedMsg, this.state.messages),
-      textBox: '',
+      textBox: ""
     });
   };
 
@@ -73,7 +96,7 @@ class App extends Component {
       this.state.session.id
     );
 
-    this.socket.emit('client:message', JSON.stringify(formattedMsg));
+    this.socket.emit("client:message", JSON.stringify(formattedMsg));
   };
 
   /** Send Message
@@ -83,13 +106,9 @@ class App extends Component {
    */
   sendMessage = e => {
     e.preventDefault(); // Must prevent default behavior first
-
-    if (this.state.textBox === '') return;
-
+    if (this.state.textBox === "") return;
     const msg = this.state.textBox;
-
     this.saveMessageToState(msg);
-
     this.saveMessageToServer(msg);
   };
 
@@ -97,7 +116,7 @@ class App extends Component {
     const msg = JSON.parse(data); // Data comes in as a string
 
     this.setState({
-      messages: combineLastMessage(msg, this.state.messages),
+      messages: combineLastMessage(msg, this.state.messages)
     });
   };
 
@@ -107,19 +126,21 @@ class App extends Component {
   renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
 
   renderOpenChat = () =>
-    (<Chat
-      toggleChat={this.toggleChat}
+    <Chat
       messages={this.state.messages}
+      network={this.state.network}
       textBox={this.state.textBox}
+      toggleChat={this.toggleChat}
       handleInput={this.handleInput}
       sendMessage={this.sendMessage}
-    />);
+    />;
 
-  renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
+  renderChat = () =>
+    this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat();
 
-  render () {
+  render() {
     const { theme, chatOpen } = this.state;
-    const visibility = chatOpen ? 'open' : 'closed';
+    const visibility = chatOpen ? "open" : "closed";
 
     return (
       <ThemeProvider theme={this.state.theme}>
