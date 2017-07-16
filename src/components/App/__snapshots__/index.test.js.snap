@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> matches snapshot 1`] = `"<div class=\\"mnml--messenger open\\"><section class=\\"Chat--messenger\\"><header class=\\"Header--messenger\\"><span class=\\"Header__title--messenger\\">Chat with John</span><button class=\\"Header__closeBtn--messenger\\">×</button></header><ul class=\\"Chat__body--messenger\\"></ul><form class=\\"Input__form--messenger\\"><input class=\\"Input--messenger\\" placeholder=\\"Type Here\\" name=\\"messages\\" value /></form></section></div>"`;
+exports[`<App /> matches snapshot 1`] = `"<div class=\\"mnml--messenger closed\\"><header class=\\"Header--messenger\\"><span class=\\"Header__title--messenger\\">Chat with John</span><button class=\\"Header__closeBtn--messenger\\"><span>⬆</span></button></header></div>"`;
