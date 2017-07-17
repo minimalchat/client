@@ -20,7 +20,7 @@ class Chat extends Component {
     toggleChat: PropTypes.func,
     handleInput: PropTypes.func,
     sendMessage: PropTypes.func,
-
+    network: PropTypes.string,
     theme: PropTypes.string,
     textBox: PropTypes.string,
     messages: PropTypes.arrayOf({

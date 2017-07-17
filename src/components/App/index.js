@@ -57,7 +57,8 @@ class App extends Component {
   };
 
   handleReconnecting = attempts => {
-    const attemptLimit = this.socket.io._reconnectionAttempts;
+    // eslint-disable-next-line
+    const attemptLimit = this.socket.io._reconnectionAttempts; 
     if (attempts < attemptLimit) {
       this.setState({
         network: 'reconnecting',
