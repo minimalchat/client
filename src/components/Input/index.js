@@ -6,13 +6,14 @@ import { applyTheme } from '../ThemeProvider';
 import './styles.css';
 
 const Input = props => {
-  const { sendMessage, theme, textBox, handleInput } = props;
+  const { sendMessage, theme, textBox, handleInput, handleKeyDown } = props;
   return (
     <form className={`Input__form--${theme}`} onSubmit={sendMessage}>
       <input
         className={`Input--${theme}`}
         placeholder="Type Here"
         onChange={e => handleInput(e)}
+        onKeyDown={e => handleKeyDown(e)}
         name="messages"
         value={textBox}
       />
@@ -22,6 +23,7 @@ const Input = props => {
 
 Input.propTypes = {
   handleInput: PropTypes.func,
+  handleKeyDown: PropTypes.func,
   sendMessage: PropTypes.func,
 
   theme: PropTypes.string,
