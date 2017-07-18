@@ -1,0 +1,40 @@
+/* Messenger Theme */
+
+.Notification__messenger {
+  display: flex;
+  background: rgba(243, 156, 18, 0.5);
+  padding: 8px;
+}
+
+.Notification__messenger-disconnected {
+  display: flex;
+  background: rgba(243, 6, 8, 0.3);
+  padding: 8px;
+}
+
+.Notification__messenger-reconnected {
+  display: flex;
+  background: rgba(3, 146, 8, 0.3);
+  padding: 8px;
+}
+
+.Notification__messenger-reconnecting {
+  display: flex;
+  background: rgba(210, 200, 50, 0.3);
+  padding: 8px;
+}
+
+
+/* Float Theme */
+
+/* .Notification--float {
+}
+
+.closed .Notification--float {
+}
+
+.Notification__title--float {
+}
+
+.Notification__closeBtn--float {
+} */

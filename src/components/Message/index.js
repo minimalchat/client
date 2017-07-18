@@ -7,7 +7,11 @@ import './styles.css';
 
 const Message = props => {
   // our message's content
-  const content = props.content.map((msg, i) => <li key={i}>{msg}</li>);
+  const content = props.content.map((msg, i) =>
+    (<li key={i}>
+      {msg}
+    </li>)
+  );
 
   // our default message is a client message
   let message = (
