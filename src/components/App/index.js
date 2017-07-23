@@ -21,6 +21,7 @@ class App extends Component {
     chatOpen: false,
     messages: [],
     textBox: '',
+    network: '',
     theme: MESSENGER, // wrapped with theme provider + HOC
   };
 
@@ -28,7 +29,7 @@ class App extends Component {
     this.socket = createSocket(this);
   }
 
-  // Event Handlers
+  // --- UI / Event Methods
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -38,7 +39,7 @@ class App extends Component {
     this.setState({ textBox: e.target.value });
   };
 
-  //  Socket Methods
+  // ---  Socket Methods
 
   /**
   * @description On connecting to the socket server save a session object into the state
@@ -49,9 +50,32 @@ class App extends Component {
     });
   };
 
-  //  Message Methods
+  handleDisconnected = () => {
+    this.setState({
+      network: 'disconnected',
+    });
+  };
 
-  // TODO: docstring
+  handleReconnecting = attempts => {
+    // eslint-disable-next-line
+    const attemptLimit = this.socket.io._reconnectionAttempts; 
+    if (attempts < attemptLimit) {
+      this.setState({
+        network: 'reconnecting',
+      });
+    } else {
+      this.handleDisconnected();
+    }
+  };
+
+  handleReconnected = () => {
+    this.setState({
+      network: 'reconnected',
+    });
+  };
+
+  // ---  Message Methods
+
   // save the message to local stage: either combining them or not.
   saveMessageToState = msg => {
     const formattedMsg = formatMessageForClient(
@@ -83,13 +107,9 @@ class App extends Component {
    */
   sendMessage = e => {
     e.preventDefault(); // Must prevent default behavior first
-
     if (this.state.textBox === '') return;
-
     const msg = this.state.textBox;
-
     this.saveMessageToState(msg);
-
     this.saveMessageToServer(msg);
   };
 
@@ -101,8 +121,7 @@ class App extends Component {
     });
   };
 
-  // Render
-  //
+  // --- Render + Render methods
 
   renderClosedChat = () => (
     <ClosedState
@@ -113,9 +132,10 @@ class App extends Component {
 
   renderOpenChat = () =>
     (<Chat
-      toggleChat={this.toggleChat}
       messages={this.state.messages}
+      network={this.state.network}
       textBox={this.state.textBox}
+      toggleChat={this.toggleChat}
       handleInput={this.handleInput}
       sendMessage={this.sendMessage}
       chatOpen={this.state.chatOpen}

@@ -11,12 +11,14 @@ const socketPath = `http://${remoteHost}:${remotePort}`;
 export function createSocket (app) {
   const socket = io.connect(socketPath, {
     secure: false,
-    reconnectionAttempts: 10,
+    reconnectionAttempts: 3,
     query: 'type=client',
   });
 
   socket.on('operator:message', app.receiveMessage);
   socket.on('chat:new', app.handleNewConnection);
+  socket.on('disconnect', app.handleDisconnected);
+  socket.on('reconnecting', app.handleReconnecting);
 
   return socket;
 }

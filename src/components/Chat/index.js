@@ -7,6 +7,7 @@ import Input from '../Input';
 import { applyTheme } from '../ThemeProvider';
 
 import './styles.css';
+import Notification from '../Notification/index';
 
 /**
  * Main chat component handles displaying chat messages and passes
@@ -20,6 +21,7 @@ class Chat extends Component {
     handleInput: PropTypes.func,
     sendMessage: PropTypes.func,
     chatOpen: PropTypes.boolean,
+    network: PropTypes.string,
     theme: PropTypes.string,
     textBox: PropTypes.string,
     messages: PropTypes.arrayOf({
@@ -55,6 +57,8 @@ class Chat extends Component {
           toggleChat={() => toggleChat(false)}
           chatOpen={this.props.chatOpen}
         />
+        <Header toggleChat={() => toggleChat(false)} />
+        <Notification network={this.props.network} />
 
         {/* Container for text input and reading messages */}
         <ul className={`Chat__body--${theme}`} ref={c => (this.container = c)}>
