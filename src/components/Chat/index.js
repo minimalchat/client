@@ -20,6 +20,7 @@ class Chat extends Component {
     toggleChat: PropTypes.func,
     handleInput: PropTypes.func,
     sendMessage: PropTypes.func,
+    chatOpen: PropTypes.boolean,
     network: PropTypes.string,
     theme: PropTypes.string,
     textBox: PropTypes.string,
@@ -52,6 +53,10 @@ class Chat extends Component {
 
     return (
       <section className={`Chat--${theme}`}>
+        <Header
+          toggleChat={() => toggleChat(false)}
+          chatOpen={this.props.chatOpen}
+        />
         <Header toggleChat={() => toggleChat(false)} />
         <Notification network={this.props.network} />
 
