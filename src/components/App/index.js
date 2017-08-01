@@ -19,7 +19,7 @@ const TYPING_TIMEOUT_DELAY = 1000;
 
 class App extends Component {
   state = {
-    chatOpen: true,
+    chatOpen: false,
     messages: [],
     textBox: '',
     network: '',
@@ -151,9 +151,14 @@ class App extends Component {
 
   // --- Render + Render methods
 
-  renderClosedChat = () => <ClosedState toggleChat={this.toggleChat} />;
+  renderClosedChat = () => (
+    <ClosedState
+      chatOpen={this.state.chatOpen}
+      toggleChat={this.toggleChat}
+    />
+  )
 
-  renderOpenChat = () =>
+  renderOpenChat = () => (
     <Chat
       messages={this.state.messages}
       network={this.state.network}
@@ -162,7 +167,9 @@ class App extends Component {
       handleInput={this.handleInput}
       handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}
-    />;
+      chatOpen={this.state.chatOpen}
+    />
+  );
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 
