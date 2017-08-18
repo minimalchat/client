@@ -19,6 +19,7 @@ class Chat extends Component {
   propTypes = {
     toggleChat: PropTypes.func,
     handleInput: PropTypes.func,
+    handleKeyDown: PropTypes.func,
     sendMessage: PropTypes.func,
     chatOpen: PropTypes.boolean,
     network: PropTypes.string,
@@ -49,7 +50,7 @@ class Chat extends Component {
     this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />);
 
   render () {
-    const { toggleChat, textBox, handleInput, sendMessage, theme } = this.props;
+    const { toggleChat, textBox, handleInput, handleKeyDown, sendMessage, theme } = this.props;
 
     return (
       <section className={`Chat--${theme}`}>
@@ -65,7 +66,12 @@ class Chat extends Component {
           {this.renderMessages()}
         </ul>
 
-        <Input sendMessage={sendMessage} textBox={textBox} handleInput={handleInput} />
+        <Input
+          sendMessage={sendMessage}
+          textBox={textBox}
+          handleInput={handleInput}
+          handleKeyDown={handleKeyDown}
+        />
       </section>
     );
   }

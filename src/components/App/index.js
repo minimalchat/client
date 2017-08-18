@@ -15,6 +15,7 @@ import './styles.css';
 const MESSENGER = 'messenger';
 const FLOAT = 'float';
 const SIDEPANEL = 'side';
+const TYPING_TIMEOUT_DELAY = 1000;
 
 class App extends Component {
   state = {
@@ -27,9 +28,14 @@ class App extends Component {
 
   componentDidMount () {
     this.socket = createSocket(this);
+    this.typingTimeout = null;
   }
 
-  // --- UI / Event Methods
+  componentWillUnmount () {
+    window.clearTimeout(this.state.typingTimeout);
+  }
+
+  // --- UI / Event Handlers
 
   toggleChat = bool => {
     this.setState({ chatOpen: bool });
@@ -39,7 +45,29 @@ class App extends Component {
     this.setState({ textBox: e.target.value });
   };
 
-  // ---  Socket Methods
+  // --- Socket Methods
+
+  handleKeyDown = e => {
+    const payload = JSON.stringify(
+      formatMessageForServer(null, this.state.session.client.id, this.state.session.id)
+    );
+
+    // user is still typing
+    window.clearTimeout(this.typingTimeout);
+
+    // sending message
+    if (e.key === 'Enter') {
+      this.socket.emit('client:idle', payload);
+      return
+    }
+
+    this.socket.emit('client:typing', payload);
+
+    this.typingTimeout = window.setTimeout(() => {
+      // user is no longer typing
+      this.socket.emit('client:idle', payload);
+    }, TYPING_TIMEOUT_DELAY);
+  };
 
   /**
   * @description On connecting to the socket server save a session object into the state
@@ -58,7 +86,7 @@ class App extends Component {
 
   handleReconnecting = attempts => {
     // eslint-disable-next-line
-    const attemptLimit = this.socket.io._reconnectionAttempts; 
+    const attemptLimit = this.socket.io._reconnectionAttempts;
     if (attempts < attemptLimit) {
       this.setState({
         network: 'reconnecting',
@@ -130,16 +158,18 @@ class App extends Component {
     />
   )
 
-  renderOpenChat = () =>
-    (<Chat
+  renderOpenChat = () => (
+    <Chat
       messages={this.state.messages}
       network={this.state.network}
       textBox={this.state.textBox}
       toggleChat={this.toggleChat}
       handleInput={this.handleInput}
+      handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}
       chatOpen={this.state.chatOpen}
-    />);
+    />
+  );
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 

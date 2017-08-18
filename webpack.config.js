@@ -24,7 +24,7 @@ if (!development) {
   // Minify source on production only
   plugins.push(new webpack.optimize.UglifyJsPlugin());
 
-  // Strip out babel-helper invariant checks 
+  // Strip out babel-helper invariant checks
   plugins.push(new ReplacePlugin([
     {
       // This is actually the property name https://github.com/kimhou/replace-bundle-webpack-plugin/issues/1
@@ -34,7 +34,7 @@ if (!development) {
   ]));
 }
 
-module.exports = { 
+module.exports = {
   context: PATHS.SRC,
   entry: PATHS.SRC + '/index.js',
   output: {
@@ -44,7 +44,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { 
+      {
         test: /\.jsx?$/,
         include: [ PATHS.SRC ],
         exclude: [ PATHS.MODULES ],
@@ -55,7 +55,7 @@ module.exports = {
             'transform-decorators-legacy',
             [ 'transform-react-jsx', { 'pragma': 'h' } ],
           ],
-        },  
+        },
       },
       {
         test: /\.css$/,
@@ -84,7 +84,7 @@ module.exports = {
   // TODO: What is cheap-module-eval-source-map?
   devtool: development ? 'source-map' : false,
   devServer: {
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 3000,
     host: process.env.HOST || 'localhost',
     publicPath: '/',
     contentBase: './example',
