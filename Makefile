@@ -7,6 +7,9 @@ default: test lint coverage compile
 
 run: test format lint coverage compile start
 
+load:
+	$(NPM_CMD) run load
+
 lint:
 	$(NPM_CMD) run lint
 

@@ -1,0 +1,21 @@
+config:
+  target: "http://minimal.chat:8888?type=client"
+  phases:
+    -
+      duration: 120
+      arrivalRate: 5
+      name: "Warm up"
+    -
+      pause: 10
+    -
+      duration: 60
+      arrivalRate: 30
+      name: "High load phase"
+scenarios:
+  -
+    engine: "socketio"
+    flow:
+      -
+        emit:
+          channel: "client:message"
+          data: "{\"timestamp\":\"2017-07-09T01:51:37.539Z\",\"author\":\"client.FwbvVrxfGjw13HTNmv4a\",\"content\":\"Cool beans!\",\"chat\":\"FwbvVrxfGjw13HTNmv4a\"}"
