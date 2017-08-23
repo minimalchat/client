@@ -54,10 +54,7 @@ class Chat extends Component {
 
     return (
       <section className={`Chat--${theme}`}>
-        <Header
-          toggleChat={() => toggleChat(false)}
-          chatOpen={this.props.chatOpen}
-        />
+        <Header toggleChat={() => toggleChat(false)} chatOpen={this.props.chatOpen} />
         <Notification network={this.props.network} />
 
         {/* Container for text input and reading messages */}

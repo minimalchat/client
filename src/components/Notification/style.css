@@ -8,19 +8,22 @@
 
 .Notification__messenger-disconnected {
   display: flex;
-  background: rgba(243, 6, 8, 0.3);
+  background: rgba(235, 110, 96, 1);
+  color: rgba(255, 255, 255, 1);
   padding: 8px;
 }
 
 .Notification__messenger-reconnected {
   display: flex;
-  background: rgba(3, 146, 8, 0.3);
+  background: rgba(137, 220, 203, 1);
+  color: rgba(255, 255, 255, 1);
   padding: 8px;
 }
 
 .Notification__messenger-reconnecting {
   display: flex;
-  background: rgba(210, 200, 50, 0.3);
+  background: rgba(235, 190, 117, 1);
+  color: rgba(255, 255, 255, 1);
   padding: 8px;
 }
 
