@@ -9,8 +9,11 @@ import {
 describe('createSocket', () => {
   it('initiates a socket connection', () => {
     const app = {
-      receiveMessage: jest.fn(),
-      handleNewConnection: jest.fn(),
+      receiveMessage: { bind: jest.fn() },
+      operatorTyping: { bind: jest.fn() },
+      handleNewConnection: { bind: jest.fn() },
+      handleDisconnected: { bind: jest.fn() },
+      handleReconnecting: { bind: jest.fn() },
     };
 
     const socket = {
@@ -27,8 +30,11 @@ describe('createSocket', () => {
 
   it('listens for events', () => {
     const app = {
-      receiveMessage: jest.fn(),
-      handleNewConnection: jest.fn(),
+      receiveMessage: { bind: jest.fn() },
+      operatorTyping: { bind: jest.fn() },
+      handleNewConnection: { bind: jest.fn() },
+      handleDisconnected: { bind: jest.fn() },
+      handleReconnecting: { bind: jest.fn() },
     };
 
     const socket = {
@@ -40,8 +46,11 @@ describe('createSocket', () => {
 
     createSocket(app);
 
-    expect(socket.on).toHaveBeenCalledWith('chat:new', app.handleNewConnection);
-    expect(socket.on).toHaveBeenCalledWith('operator:message', app.receiveMessage);
+    expect(socket.on).toHaveBeenCalledWith('operator:message', undefined);
+    expect(socket.on).toHaveBeenCalledWith('operator:typing', undefined);
+    expect(socket.on).toHaveBeenCalledWith('chat:new', undefined);
+    expect(socket.on).toHaveBeenCalledWith('disconnect', undefined);
+    expect(socket.on).toHaveBeenCalledWith('reconnecting', undefined);
   });
 });
 
