@@ -15,7 +15,8 @@ import './styles.css';
 const MESSENGER = 'messenger';
 const FLOAT = 'float';
 const SIDEPANEL = 'side';
-const TYPING_TIMEOUT_DELAY = 1000;
+
+const TYPING_TIMEOUT = 3000;
 
 class App extends Component {
   state = {
@@ -28,11 +29,12 @@ class App extends Component {
 
   componentDidMount () {
     this.socket = createSocket(this);
-    this.typingTimeout = null;
+    this.typing = null;
   }
 
-  componentWillUnmount () {
-    window.clearTimeout(this.state.typingTimeout);
+  componentWillUnMount () {
+    window.clearTimeout(this.typing);
+    this.typing = null;
   }
 
   // --- UI / Event Handlers
@@ -52,21 +54,7 @@ class App extends Component {
       formatMessageForServer(null, this.state.session.client.id, this.state.session.id)
     );
 
-    // user is still typing
-    window.clearTimeout(this.typingTimeout);
-
-    // sending message
-    if (e.key === 'Enter') {
-      this.socket.emit('client:idle', payload);
-      return;
-    }
-
     this.socket.emit('client:typing', payload);
-
-    this.typingTimeout = window.setTimeout(() => {
-      // user is no longer typing
-      this.socket.emit('client:idle', payload);
-    }, TYPING_TIMEOUT_DELAY);
   };
 
   /**
@@ -141,11 +129,43 @@ class App extends Component {
     this.saveMessageToServer(msg);
   };
 
+  /** Recieve Message
+   * @summary - Takes data sent to user from socket/operator and consumes it
+   * @description - Takes data from websocket clears typing timeout and combines the data 
+   * with the last message if necessary
+   * @param {string} data - JSON string of data being sent back
+   */
   receiveMessage = data => {
     const msg = JSON.parse(data); // Data comes in as a string
 
+    // Clear the typing timeout if we receive a message
+    window.clearTimeout(this.typing);
+    this.typing = null;
+
     this.setState({
+      typing: false,
       messages: combineLastMessage(msg, this.state.messages),
+    });
+  };
+
+  /** Operator Typing
+   * @summary - Handles debouncing operator typing chat bubble
+   * @description - Sets a timeout to remove chat bubble after receiving indication from
+   * the daemon that the operator is typing, resetting the timeout each time and updating
+   * the state to reflect the typing
+   */
+  operatorTyping = () => {
+    window.clearTimeout(this.typing);
+
+    this.typing = window.setTimeout(() => {
+      // Clear the typing variable
+      this.setState({
+        typing: false,
+      });
+    }, TYPING_TIMEOUT);
+
+    this.setState({
+      typing: true,
     });
   };
 
@@ -160,6 +180,7 @@ class App extends Component {
       network={this.state.network}
       textBox={this.state.textBox}
       toggleChat={this.toggleChat}
+      typing={this.state.typing}
       handleInput={this.handleInput}
       handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}

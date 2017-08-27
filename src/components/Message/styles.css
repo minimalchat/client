@@ -41,6 +41,12 @@
   text-align: left;
 }
 
+.Message__box-typing--messenger
+.Message__operator--messenger {
+  min-width: auto;
+  padding: 2px 8px;
+}
+
 .Message__avatar--messenger {
   width: 40px;
   height: 40px;

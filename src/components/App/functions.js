@@ -15,10 +15,11 @@ export function createSocket (app) {
     query: 'type=client',
   });
 
-  socket.on('operator:message', app.receiveMessage);
-  socket.on('chat:new', app.handleNewConnection);
-  socket.on('disconnect', app.handleDisconnected);
-  socket.on('reconnecting', app.handleReconnecting);
+  socket.on('operator:message', app.receiveMessage.bind(app));
+  socket.on('operator:typing', app.operatorTyping.bind(app));
+  socket.on('chat:new', app.handleNewConnection.bind(app));
+  socket.on('disconnect', app.handleDisconnected.bind(app));
+  socket.on('reconnecting', app.handleReconnecting.bind(app));
 
   return socket;
 }
@@ -80,7 +81,7 @@ export function combineLastMessage (msg, messages) {
 export function formatMessage (content, clientID, sessionID) {
   return {
     timestamp: new Date().toISOString(),
-    author: `client-${clientID}`,
+    author: `client.${clientID}`,
     content,
     chat: sessionID,
   };
