@@ -32,7 +32,7 @@ class App extends Component {
     this.typing = null;
   }
 
-  componentWillUnmound () {
+  componentWillUnMount () {
     window.clearTimeout(this.typing);
     this.typing = null;
   }
@@ -129,6 +129,12 @@ class App extends Component {
     this.saveMessageToServer(msg);
   };
 
+  /** Recieve Message
+   * @summary - Takes data sent to user from socket/operator and consumes it
+   * @description - Takes data from websocket clears typing timeout and combines the data 
+   * with the last message if necessary
+   * @param {string} data - JSON string of data being sent back
+   */
   receiveMessage = data => {
     const msg = JSON.parse(data); // Data comes in as a string
 
@@ -142,7 +148,13 @@ class App extends Component {
     });
   };
 
-  operatorTyping = data => {
+  /** Operator Typing
+   * @summary - Handles debouncing operator typing chat bubble
+   * @description - Sets a timeout to remove chat bubble after receiving indication from
+   * the daemon that the operator is typing, resetting the timeout each time and updating
+   * the state to reflect the typing
+   */
+  operatorTyping = () => {
     window.clearTimeout(this.typing);
 
     this.typing = window.setTimeout(() => {

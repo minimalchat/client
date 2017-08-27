@@ -44,6 +44,7 @@
 .Message__box-typing--messenger
 .Message__operator--messenger {
   min-width: auto;
+  padding: 2px 8px;
 }
 
 .Message__avatar--messenger {
