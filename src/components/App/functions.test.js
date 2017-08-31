@@ -7,8 +7,16 @@ import {
 } from './functions.js';
 
 describe('createSocket', () => {
-  it('initiates a socket connection', () => {
-    const app = {
+  let app;
+  let socket;
+
+  beforeEach(() => {
+    global.localStorage = {
+      setItem: jest.fn(),
+      getItem: jest.fn(),
+    };
+
+    app = {
       receiveMessage: { bind: jest.fn() },
       operatorTyping: { bind: jest.fn() },
       handleNewConnection: { bind: jest.fn() },
@@ -16,41 +24,36 @@ describe('createSocket', () => {
       handleReconnecting: { bind: jest.fn() },
     };
 
-    const socket = {
+    socket = {
       on: jest.fn()
     };
 
     // Mock the socket library
     io.connect = jest.fn(() => socket);
+  });
 
+  it('initiates a socket connection', () => {
     createSocket(app);
 
     expect(io.connect).toHaveBeenCalled();
   });
 
   it('listens for events', () => {
-    const app = {
-      receiveMessage: { bind: jest.fn() },
-      operatorTyping: { bind: jest.fn() },
-      handleNewConnection: { bind: jest.fn() },
-      handleDisconnected: { bind: jest.fn() },
-      handleReconnecting: { bind: jest.fn() },
-    };
-
-    const socket = {
-      on: jest.fn()
-    };
-
-    // Mock the socket library
-    io.connect = jest.fn(() => socket);
-
     createSocket(app);
 
     expect(socket.on).toHaveBeenCalledWith('operator:message', undefined);
     expect(socket.on).toHaveBeenCalledWith('operator:typing', undefined);
-    expect(socket.on).toHaveBeenCalledWith('chat:new', undefined);
+    expect(socket.on).toHaveBeenCalledWith('chat:new', expect.any(Function));
     expect(socket.on).toHaveBeenCalledWith('disconnect', undefined);
     expect(socket.on).toHaveBeenCalledWith('reconnecting', undefined);
+  });
+
+  it('gets stored sessionId', () => {
+    createSocket(app);
+
+    const sessionStorageKey = 'minimalchat-session';
+
+    expect(localStorage.getItem).toHaveBeenCalledWith(sessionStorageKey);
   });
 });
 

@@ -5,19 +5,34 @@ const remotePort = process.env.REMOTE_PORT || '8000';
 
 const socketPath = `http://${remoteHost}:${remotePort}`;
 
+const sessionStorageKey = 'minimalchat-session';
+
 // Socket Functions
 //
 
 export function createSocket (app) {
+  const localStorage = window.localStorage;
+
+  let storedSessionId = localStorage.getItem(sessionStorageKey);
+
   const socket = io.connect(socketPath, {
     secure: false,
     reconnectionAttempts: 3,
-    query: 'type=client',
+    query: `type=client&sessionId=${storedSessionId}`,
   });
 
   socket.on('operator:message', app.receiveMessage.bind(app));
   socket.on('operator:typing', app.operatorTyping.bind(app));
-  socket.on('chat:new', app.handleNewConnection.bind(app));
+  socket.on('chat:new', e => {
+    const session = JSON.parse(e);
+
+    if (storedSessionId == null) {
+      localStorage.setItem(sessionStorageKey, session.id);
+      storedSessionId = session.id;
+    }
+
+    return app.handleNewConnection(session);
+  });
   socket.on('disconnect', app.handleDisconnected.bind(app));
   socket.on('reconnecting', app.handleReconnecting.bind(app));
 

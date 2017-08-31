@@ -60,9 +60,9 @@ class App extends Component {
   /**
   * @description On connecting to the socket server save a session object into the state
   */
-  handleNewConnection = e => {
+  handleNewConnection = session => {
     this.setState({
-      session: JSON.parse(e),
+      session,
     });
   };
 
@@ -131,7 +131,7 @@ class App extends Component {
 
   /** Recieve Message
    * @summary - Takes data sent to user from socket/operator and consumes it
-   * @description - Takes data from websocket clears typing timeout and combines the data 
+   * @description - Takes data from websocket clears typing timeout and combines the data
    * with the last message if necessary
    * @param {string} data - JSON string of data being sent back
    */
