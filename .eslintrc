@@ -28,6 +28,7 @@
     "react/react-in-jsx-scope": 0,
     "react/no-multi-comp": ["warn"],
     "react/prefer-stateless-function": ["warn"],
+    "react/no-array-index-key": ["warn"],
     "jsx-a11y/no-static-element-interactions": ["warn"]
   }
 }

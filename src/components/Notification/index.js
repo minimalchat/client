@@ -33,9 +33,7 @@ class Notification extends Component {
     };
 
     return (
-      <section className={`Notification__${theme}-${network}`}>
-        {renderNotification()}
-      </section>
+      <section className={`Notification__${theme}-${network}`}>{renderNotification()}</section>
     );
   }
 }
