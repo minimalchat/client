@@ -22,12 +22,12 @@ const Input = props => {
 };
 
 Input.propTypes = {
-  handleInput: PropTypes.func,
-  handleKeyDown: PropTypes.func,
-  sendMessage: PropTypes.func,
+  handleInput: PropTypes.func.isRequired,
+  handleKeyDown: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
 
-  theme: PropTypes.string,
-  textBox: PropTypes.string,
+  theme: PropTypes.string.isRequired,
+  textBox: PropTypes.string.isRequired,
 };
 
 export default applyTheme(Input);

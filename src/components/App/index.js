@@ -171,10 +171,11 @@ class App extends Component {
 
   // --- Render + Render methods
 
-  renderClosedChat = () =>
-    <ClosedState chatOpen={this.state.chatOpen} toggleChat={this.toggleChat} />;
+  renderClosedChat = () => (
+    <ClosedState chatOpen={this.state.chatOpen} toggleChat={this.toggleChat} />
+  );
 
-  renderOpenChat = () =>
+  renderOpenChat = () => (
     <Chat
       messages={this.state.messages}
       network={this.state.network}
@@ -185,7 +186,8 @@ class App extends Component {
       handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}
       chatOpen={this.state.chatOpen}
-    />;
+    />
+  );
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 
@@ -195,9 +197,7 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={this.state.theme}>
-        <div className={`mnml--${theme} ${visibility}`}>
-          {this.renderChat()}
-        </div>
+        <div className={`mnml--${theme} ${visibility}`}>{this.renderChat()}</div>
       </ThemeProvider>
     );
   }

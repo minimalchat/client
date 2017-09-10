@@ -50,7 +50,7 @@ class Chat extends Component {
   renderMessages = () =>
     this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />);
 
-  renderTyping = () =>
+  renderTyping = () => (
     <div className={`Message__operatorWrapper--${this.props.theme}`}>
       <ul className={`Message__operator--${this.props.theme}`}>
         <li>
@@ -103,7 +103,8 @@ class Chat extends Component {
         className={`Message__avatar--${this.props.theme}`}
         src="http://placehold.it/40x40/"
       />
-    </div>;
+    </div>
+  );
 
   render () {
     const {
@@ -122,7 +123,13 @@ class Chat extends Component {
         <Notification network={this.props.network} />
 
         {/* Container for text input and reading messages */}
-        <ul className={`Chat__body--${theme}`} ref={c => (this.container = c)}>
+        <ul
+          className={`Chat__body--${theme}`}
+          ref={c => {
+            this.container = c;
+            return c;
+          }}
+        >
           {this.renderMessages()}
           <li
             style={{ display: typing ? 'block' : 'none' }}

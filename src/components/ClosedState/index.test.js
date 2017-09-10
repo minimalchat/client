@@ -5,7 +5,7 @@ import ClosedState from '.';
 
 describe('<ClosedState />', () => {
   it('matches snapshot', () => {
-    const tree = render(<ClosedState />);
+    const tree = render(<ClosedState toggleChat={jest.fn()} />);
     expect(tree).toMatchSnapshot();
   });
 });
