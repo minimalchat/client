@@ -14,14 +14,21 @@ Please fill out the information below to expedite the review and (hopefully)
 merge of your pull request!
 -->
 
+
+## Description
 <!-- What changes are being made? (What feature/bug is being fixed here?) -->
-**What**:
 
+### Motivation
 <!-- Why are these changes necessary? -->
-**Why**:
 
+### Changes
 <!-- How were these changes implemented? -->
-**How**:
+- 
+- 
 
 
-<!-- feel free to add additional comments -->
+<!-- 
+Feel free to add additional comments
+
+Or Screenshots (bonus points for this!)
+-->
