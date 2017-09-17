@@ -1,9 +1,7 @@
 import io from 'socket.io-client';
 
-const remoteHost = process.env.REMOTE_HOST || 'localhost';
-const remotePort = process.env.REMOTE_PORT || '8000';
-
-const socketPath = `http://${remoteHost}:${remotePort}`;
+const remoteHost = process.env.REMOTE_HOST || 'localhost:8000';
+const socketPath = `http://${remoteHost}`;
 
 const sessionStorageKey = 'minimalchat-session';
 
@@ -16,7 +14,6 @@ export function createSocket (app) {
   let storedSessionId = localStorage.getItem(sessionStorageKey);
 
   const socket = io.connect(socketPath, {
-    secure: false,
     reconnectionAttempts: 3,
     query: `type=client&sessionId=${storedSessionId}`,
   });
