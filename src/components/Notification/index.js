@@ -26,14 +26,16 @@ class Notification extends Component {
         case 'reconnecting':
           return 'Disconnected; trying to reconnect...';
         case 'reconnected':
-          return 'Disconnected; trying to reconnect...';
+          return 'Back in Business!';
         default:
           return '';
       }
     };
 
     return (
-      <section className={`Notification__${theme}-${network}`}>{renderNotification()}</section>
+      <section className={`Notification__${theme}-${network}`}>
+        {renderNotification()}
+      </section>
     );
   }
 }
