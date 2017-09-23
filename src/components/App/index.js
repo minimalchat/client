@@ -8,6 +8,7 @@ import {
   formatMessageForServer,
   combineLastMessage,
   createSocket,
+  queryMessages,
 } from './functions';
 
 import './styles.css';
@@ -66,6 +67,14 @@ class App extends Component {
     });
   };
 
+  handleExistingConnection = session => {
+    this.setState({
+      session,
+    });
+
+    queryMessages(this);
+  };
+
   handleDisconnected = () => {
     this.setState({
       network: 'disconnected',
@@ -92,7 +101,26 @@ class App extends Component {
 
   // ---  Message Methods
 
-  // save the message to local stage: either combining them or not.
+  loadMessages = msgs => {
+    let messages = [];
+
+    // Since these are all 'new' we have to run though each and combine accordingly
+    for (let msg of msgs) {
+        messages = combineLastMessage(
+          Object.assign({}, {
+            ...msg,
+            content: [msg.content],
+          }),
+          messages
+        );
+    }
+
+    this.setState({
+      messages: messages,
+    });
+  };
+
+  // Save the message to local state
   saveMessageToState = msg => {
     const formattedMsg = formatMessageForClient(
       msg,
