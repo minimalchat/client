@@ -22,6 +22,7 @@ describe('createSocket', () => {
       handleNewConnection: { bind: jest.fn() },
       handleDisconnected: { bind: jest.fn() },
       handleReconnecting: { bind: jest.fn() },
+      handleReconnected: { bind: jest.fn() },
     };
 
     socket = {
