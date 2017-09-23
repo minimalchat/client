@@ -7,7 +7,9 @@ import './style.css';
 
 /**
 * Notification
-*
+* NOTE: this notificatin is tailored towards displaying network notifications; it has
+* not been built with other types of notifications in mind (ex: '6 new messages!')
+* Possible future feature refactor
 */
 class Notification extends Component {
   propTypes = {
@@ -17,7 +19,7 @@ class Notification extends Component {
 
   render () {
     const { theme, network } = this.props;
-    if (network === '') return null;
+    if (network === '' || network === 'connected') return null;
 
     const renderNotification = () => {
       switch (network) {

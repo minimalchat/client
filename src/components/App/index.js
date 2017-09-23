@@ -84,10 +84,18 @@ class App extends Component {
     }
   };
 
+  /**
+  * HandleReconnected changes our network state based on the socket state.
+  * It uses a set timeout to move from a state of "reconnected" back to the standard state.
+  * This is primarily for the notification component for displaying network issues.
+  */
   handleReconnected = () => {
+    // prettier-ignore
     this.setState({
       network: 'reconnected',
-    });
+    }, setTimeout(() => {
+      this.setState({network: ""})
+    }, 2000))
   };
 
   // ---  Message Methods
@@ -175,7 +183,7 @@ class App extends Component {
     <ClosedState chatOpen={this.state.chatOpen} toggleChat={this.toggleChat} />;
 
   renderOpenChat = () =>
-    <Chat
+    (<Chat
       messages={this.state.messages}
       network={this.state.network}
       textBox={this.state.textBox}
@@ -185,7 +193,7 @@ class App extends Component {
       handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}
       chatOpen={this.state.chatOpen}
-    />;
+    />);
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 

@@ -51,7 +51,7 @@ class Chat extends Component {
     this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />);
 
   renderTyping = () =>
-    <div className={`Message__operatorWrapper--${this.props.theme}`}>
+    (<div className={`Message__operatorWrapper--${this.props.theme}`}>
       <ul className={`Message__operator--${this.props.theme}`}>
         <li>
           <svg width="32" height="20">
@@ -103,7 +103,7 @@ class Chat extends Component {
         className={`Message__avatar--${this.props.theme}`}
         src="http://placehold.it/40x40/"
       />
-    </div>;
+    </div>);
 
   render () {
     const {
