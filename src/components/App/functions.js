@@ -20,13 +20,19 @@ export function createSocket (app) {
 
   socket.on('operator:message', app.receiveMessage.bind(app));
   socket.on('operator:typing', app.operatorTyping.bind(app));
-  socket.on('chat:new', e => {
-    const session = JSON.parse(e);
+  socket.on('chat:existing', data => {
+    const session = JSON.parse(data);
 
-    if (storedSessionId == null) {
-      localStorage.setItem(sessionStorageKey, session.id);
-      storedSessionId = session.id;
-    }
+    // TODO: Check if local storage ID different from chat ID
+
+    return app.handleExistingConnection(session);
+  });
+  socket.on('chat:new', data => {
+    const session = JSON.parse(data);
+
+    // Set the session in local storage incase they refresh
+    localStorage.setItem(sessionStorageKey, session.id);
+    storedSessionId = session.id;
 
     return app.handleNewConnection(session);
   });
@@ -35,6 +41,20 @@ export function createSocket (app) {
   socket.on('reconnecting', app.handleReconnecting.bind(app));
 
   return socket;
+}
+
+// Fetch past messages from the API
+export function fetchMessages (app) {
+  // TODO: Query past messages
+  const { session } = app.state;
+
+  // TODO: Decide whether we should be hitting http or https somehow, somewhere
+  return fetch(`http://${remoteHost}/api/chat/${session.id}/messages`)
+    .then(res => res.json())
+    .then(data => app.loadMessages(data.messages || []))
+    .catch(err => {
+      console.error('Failed to load past messages', err);
+    });
 }
 
 // Message Functions
