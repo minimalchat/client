@@ -8,7 +8,7 @@ import {
   formatMessageForServer,
   combineLastMessage,
   createSocket,
-  queryMessages,
+  fetchMessages,
 } from './functions';
 
 import './styles.css';
@@ -72,7 +72,7 @@ class App extends Component {
       session,
     });
 
-    queryMessages(this);
+    fetchMessages(this);
   };
 
   handleDisconnected = () => {

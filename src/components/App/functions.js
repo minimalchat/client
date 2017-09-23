@@ -42,7 +42,8 @@ export function createSocket (app) {
   return socket;
 }
 
-export function queryMessages (app) {
+// Fetch past messages from the API
+export function fetchMessages (app) {
   // TODO: Query past messages
   const { session } = app.state;
 
