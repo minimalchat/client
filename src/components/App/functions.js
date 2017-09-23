@@ -30,6 +30,7 @@ export function createSocket (app) {
 
     return app.handleNewConnection(session);
   });
+  socket.on('reconnect', app.handleReconnected.bind(app));
   socket.on('disconnect', app.handleDisconnected.bind(app));
   socket.on('reconnecting', app.handleReconnecting.bind(app));
 
