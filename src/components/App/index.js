@@ -105,18 +105,18 @@ class App extends Component {
     let messages = [];
 
     // Since these are all 'new' we have to run though each and combine accordingly
-    for (let msg of msgs) {
+    for (let i = 0; i < msgs.length; i += 1) {
         messages = combineLastMessage(
           Object.assign({}, {
-            ...msg,
-            content: [msg.content],
+            ...msgs[i],
+            content: [msgs[i].content],
           }),
           messages
         );
     }
 
     this.setState({
-      messages: messages,
+      messages,
     });
   };
 
