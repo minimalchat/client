@@ -114,11 +114,12 @@ class Chat extends Component {
       handleKeyDown,
       sendMessage,
       theme,
+      chatOpen,
     } = this.props;
 
     return (
       <section className={`Chat--${theme}`}>
-        <Header toggleChat={() => toggleChat(false)} chatOpen={this.props.chatOpen} />
+        <Header toggleChat={() => toggleChat(false)} chatOpen={chatOpen} />
         <Notification network={this.props.network} />
 
         {/* Container for text input and reading messages */}
