@@ -16,7 +16,7 @@ class Header extends Component {
     chatOpen: PropTypes.boolean,
   };
 
-  renderToggleChatButton = () => (this.props.chatOpen ? <span>×</span> : <span>⬆</span>);
+  renderToggleChatButton = () => (this.props.chatOpen ? <span>×</span> : <span>...</span>);
 
   render () {
     const { toggleChat, theme } = this.props;
