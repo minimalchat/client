@@ -22,7 +22,9 @@ class Input extends Component {
     return (
       <form className={`Input__form--${theme}`} onSubmit={sendMessage}>
         <input
-          ref={(input) => { this.input = input; }}
+          ref={input => {
+            this.input = input;
+          }}
           className={`Input--${theme}`}
           placeholder="Type Here"
           onChange={e => handleInput(e)}
@@ -33,7 +35,7 @@ class Input extends Component {
       </form>
     );
   }
-};
+}
 
 Input.propTypes = {
   handleInput: PropTypes.func.isRequired,

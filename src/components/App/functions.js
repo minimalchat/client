@@ -49,7 +49,11 @@ export function fetchMessages (app) {
   const { session } = app.state;
 
   // TODO: Decide whether we should be hitting http or https somehow, somewhere
-  return fetch(`http${process.env.NODE_ENV === 'development' ? '' : 's'}://${remoteHost}/api/chat/${session.id}/messages`)
+  return fetch(
+    `http${process.env.NODE_ENV === 'development'
+      ? ''
+      : 's'}://${remoteHost}/api/chat/${session.id}/messages`
+  )
     .then(res => res.json())
     .then(data => app.loadMessages(data.messages || []))
     .catch(err => {

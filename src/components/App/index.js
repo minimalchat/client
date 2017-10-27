@@ -114,13 +114,16 @@ class App extends Component {
 
     // Since these are all 'new' we have to run though each and combine accordingly
     for (let i = 0; i < msgs.length; i += 1) {
-        messages = combineLastMessage(
-          Object.assign({}, {
+      messages = combineLastMessage(
+        Object.assign(
+          {},
+          {
             ...msgs[i],
             content: [msgs[i].content],
-          }),
-          messages
-        );
+          }
+        ),
+        messages
+      );
     }
 
     this.setState({
@@ -207,11 +210,12 @@ class App extends Component {
 
   // --- Render + Render methods
 
-  renderClosedChat = () =>
-    <ClosedState chatOpen={this.state.chatOpen} toggleChat={this.toggleChat} />;
+  renderClosedChat = () => (
+    <ClosedState chatOpen={this.state.chatOpen} toggleChat={this.toggleChat} />
+  );
 
-  renderOpenChat = () =>
-    (<Chat
+  renderOpenChat = () => (
+    <Chat
       messages={this.state.messages}
       network={this.state.network}
       textBox={this.state.textBox}
@@ -221,7 +225,8 @@ class App extends Component {
       handleKeyDown={this.handleKeyDown}
       sendMessage={this.sendMessage}
       chatOpen={this.state.chatOpen}
-    />);
+    />
+  );
 
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 
@@ -231,9 +236,7 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={this.state.theme}>
-        <div className={`mnml--${theme} ${visibility}`}>
-          {this.renderChat()}
-        </div>
+        <div className={`mnml--${theme} ${visibility}`}>{this.renderChat()}</div>
       </ThemeProvider>
     );
   }

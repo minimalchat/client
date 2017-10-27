@@ -5,8 +5,9 @@ import Header from '../Header';
 
 import './styles.css';
 
-const ClosedState = props =>
-  <Header chatOpen={props.chatOpen} toggleChat={() => props.toggleChat(true)} />;
+const ClosedState = props => (
+  <Header chatOpen={props.chatOpen} toggleChat={() => props.toggleChat(true)} />
+);
 
 ClosedState.defaultProps = {
   chatOpen: false,

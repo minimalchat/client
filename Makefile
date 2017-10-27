@@ -26,5 +26,8 @@ coverage:
 test:
 	$(NPM_CMD) test
 
+dependencies:
+	$(NPM_CMD) install
+
 start:
 	$(NPM_CMD) start

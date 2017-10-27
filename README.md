@@ -38,13 +38,9 @@ The client script is embedded into a html page just before the `</body>` tag.
 
 ### Development
 
-Developing for the client is fairly easy, but does require a seperate example website that is not included in this repository currently. All of the Minimal Chat repositories are run through `make`. To get the code running:
+Developing for the client is fairly straight forward. All of the Minimal Chat repositories are run through `make`. To get the code running:
 
 1.  Clone the repository
-2.  `npm install`
-3.  `make`
-4.  Copy the contents of the `dist/` folder into your test website
-5.  Add the embed code (found below) into your test website
-6.  Run test website (you'll want to mount this on a server if it's a static site to avoid CORS issues.)
-7.  Profit!
-
+2.  `make dependencies`
+3.  `make run`
+4.  Browse to http://localhost:3000
