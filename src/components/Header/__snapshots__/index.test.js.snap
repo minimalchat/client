@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> should render  1`] = `"<header class=\\"Header--undefined\\"><span class=\\"Header__title--undefined\\">Chat with John</span><button class=\\"Header__closeBtn--undefined\\"><span>⬆</span></button></header>"`;
+exports[`<Header /> should render  1`] = `"<header class=\\"Header--undefined\\"><span class=\\"Header__title--undefined\\">Chat with John</span><button class=\\"Header__closeBtn--undefined\\"><span>...</span></button></header>"`;
