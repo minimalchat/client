@@ -69,7 +69,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.0",
     "preact-jsx-chai": "^2.2.1",
-    "preact-render-to-string": "^3.6.0",
+    "preact-render-to-string": "^3.7.0",
     "prettier-eslint": "^8.0.0",
     "prettier-eslint-cli": "4.3.0",
     "replace-bundle-webpack-plugin": "^1.0.0",
