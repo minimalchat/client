@@ -14,7 +14,8 @@ Minimal Chat is:
 
 Screenshot
 ---
-![client-screenshot-0](https://user-images.githubusercontent.com/563301/27521430-eb5f8124-59ea-11e7-81af-1b543fb1f104.png)
+![client-screenshot-1](https://user-images.githubusercontent.com/563301/32126485-e6cc2850-bb3e-11e7-9526-eed26b217289.png)
+
 
 
 ---
