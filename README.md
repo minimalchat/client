@@ -11,7 +11,7 @@ Minimal Chat is:
 -   **minimal**: simple, lightweight, accessible
 -   **extensible**: modular, pluggable, hookable, composable
 
-We're glad you're interested in contributing, feel free to create an [issue](https://github.com/minimalchat/client/issues/new) or pick one up but first check out our [CONTRIBUTING.md](https://github.com/minimalchat/client/blob/master/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](https://github.com/minimalchat/client/blob/master/CODE_OF_CONDUCT.md). Check out our [Design Documentation](https://github.com/minimalchat/client/wiki/Design-Documentation) as well.
+We're glad you're interested in contributing, feel free to create an [issue](https://github.com/minimalchat/client/issues/new) or pick one up but first check out our [contributing doc](https://github.com/minimalchat/client/blob/master/CONTRIBUTING.md) and [code of conduct](https://github.com/minimalchat/client/blob/master/CODE_OF_CONDUCT.md). Check out our [design documentation](https://github.com/minimalchat/client/wiki/Design-Documentation) as well.
 
 Screenshot
 ---
