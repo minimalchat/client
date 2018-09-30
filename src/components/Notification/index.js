@@ -6,11 +6,11 @@ import { applyTheme } from '../ThemeProvider/';
 import './style.css';
 
 /**
-* Notification
-* NOTE: this notificatin is tailored towards displaying network notifications; it has
-* not been built with other types of notifications in mind (ex: '6 new messages!')
-* Possible future feature refactor
-*/
+ * Notification
+ * NOTE: this notificatin is tailored towards displaying network notifications; it has
+ * not been built with other types of notifications in mind (ex: '6 new messages!')
+ * Possible future feature refactor
+ */
 class Notification extends Component {
   propTypes = {
     theme: PropTypes.string,
