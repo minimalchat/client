@@ -59,8 +59,8 @@ class App extends Component {
   };
 
   /**
-  * @description On connecting to the socket server save a session object into the state
-  */
+   * @description On connecting to the socket server save a session object into the state
+   */
   handleNewConnection = session => {
     this.setState({
       session,
@@ -94,10 +94,10 @@ class App extends Component {
   };
 
   /**
-  * HandleReconnected changes our network state based on the socket state.
-  * It uses a set timeout to move from a state of "reconnected" back to the standard state.
-  * This is primarily for the notification component for displaying network issues.
-  */
+   * HandleReconnected changes our network state based on the socket state.
+   * It uses a set timeout to move from a state of "reconnected" back to the standard state.
+   * This is primarily for the notification component for displaying network issues.
+   */
   handleReconnected = () => {
     // prettier-ignore
     this.setState({
