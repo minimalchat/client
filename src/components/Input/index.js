@@ -17,15 +17,15 @@ class Input extends Component {
   }
 
   render () {
-    const { sendMessage, theme, textBox, handleInput, handleKeyDown } = this.props;
+    const { sendMessage, style, textBox, handleInput, handleKeyDown } = this.props;
 
     return (
-      <form className={`Input__form--${theme}`} onSubmit={sendMessage}>
+      <form className={`Input__form--${style}`} onSubmit={sendMessage}>
         <input
           ref={input => {
             this.input = input;
           }}
-          className={`Input--${theme}`}
+          className={`Input--${style}`}
           placeholder="Type Here"
           onChange={e => handleInput(e)}
           onKeyDown={e => handleKeyDown(e)}
@@ -42,7 +42,7 @@ Input.propTypes = {
   handleKeyDown: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
 
-  theme: PropTypes.string.isRequired,
+  style: PropTypes.string.isRequired,
   textBox: PropTypes.string.isRequired,
 };
 

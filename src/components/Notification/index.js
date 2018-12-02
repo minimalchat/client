@@ -13,12 +13,12 @@ import './style.css';
 */
 class Notification extends Component {
   propTypes = {
-    theme: PropTypes.string,
+    style: PropTypes.string,
     network: PropTypes.string,
   };
 
   render () {
-    const { theme, network } = this.props;
+    const { style, network } = this.props;
     if (network === '' || network === 'connected') return null;
 
     const renderNotification = () => {
@@ -35,7 +35,7 @@ class Notification extends Component {
     };
 
     return (
-      <section className={`Notification__${theme}-${network}`}>{renderNotification()}</section>
+      <section className={`Notification__${style}-${network}`}>{renderNotification()}</section>
     );
   }
 }

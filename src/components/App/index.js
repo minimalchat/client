@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import PropTypes from 'prop-types';
 
 import Chat from '../Chat';
 import ClosedState from '../ClosedState';
@@ -20,12 +21,16 @@ const SIDEPANEL = 'side';
 const TYPING_TIMEOUT = 3000;
 
 class App extends Component {
+  propTypes = {
+    theme: PropTypes.objectOf(PropTypes.string),
+  };
+
   state = {
     chatOpen: false,
     messages: [],
     textBox: '',
     network: '',
-    theme: MESSENGER, // wrapped with theme provider + HOC
+    style: MESSENGER, // wrapped with theme provider + HOC
   };
 
   componentDidMount () {
@@ -231,12 +236,13 @@ class App extends Component {
   renderChat = () => (this.state.chatOpen ? this.renderOpenChat() : this.renderClosedChat());
 
   render () {
-    const { theme, chatOpen } = this.state;
+    const { theme } = this.props;
+    const { style, chatOpen } = this.state;
     const visibility = chatOpen ? 'open' : 'closed';
 
     return (
-      <ThemeProvider theme={this.state.theme}>
-        <div className={`mnml--${theme} ${visibility}`}>{this.renderChat()}</div>
+      <ThemeProvider theme={theme} style={style}>
+        <div className={`mnml--${style} ${visibility}`}>{this.renderChat()}</div>
       </ThemeProvider>
     );
   }

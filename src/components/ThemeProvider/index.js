@@ -20,7 +20,7 @@ export class ThemeProvider extends Component {
 export const applyTheme = ComponentToWrap =>
   class ThemeComponent extends Component {
     render () {
-      const { theme } = this.context;
-      return <ComponentToWrap {...this.props} theme={theme} />;
+      const { theme, style } = this.context;
+      return <ComponentToWrap {...this.props} theme={theme} style={style} />;
     }
   };
