@@ -17,7 +17,7 @@ format:
 	$(NPM_CMD) run format
 
 compile:
-	[[ -d 'dist' ]] || mkdir dist
+	mkdir -p dist
 	$(NPM_CMD) run build:production
 
 coverage:
