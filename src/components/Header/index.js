@@ -19,10 +19,10 @@ class Header extends Component {
   renderToggleChatButton = () => (this.props.chatOpen ? <span>×</span> : <span>...</span>);
 
   render () {
-    const { toggleChat, style } = this.props;
+    const { toggleChat, style, theme } = this.props;
 
     return (
-      <header className={`Header--${style}`} onClick={() => toggleChat(true)}>
+      <header style={{ 'background': theme.primaryColour }} className={`Header--${style}`} onClick={() => toggleChat(true)}>
         <span className={`Header__title--${style}`}>Chat with John</span>
         <button className={`Header__closeBtn--${style}`} onClick={() => toggleChat(true)}>
           {this.renderToggleChatButton()}
