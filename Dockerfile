@@ -8,15 +8,18 @@ WORKDIR /tmp/client
 RUN apt update && \
       apt install -y git build-essential
 
-RUN git clone https://github.com/minimalchat/client.git /tmp/client
 
 RUN apt autoremove -y
+
+# RUN git clone https://github.com/minimalchat/client.git /tmp/client
+COPY . .
 
 ENV REMOTE_HOST "localhost"
 ENV REMOTE_PORT "8000"
 
 # ENV DIGITAL_OCEAN_SPACES_KEY
 # ENV CLIENT_KEY
+
 
 # TODO: Is this the best way to go about supplying the theme details?
 # ENV CLIENT_THEME_PRIMARY_COLOUR

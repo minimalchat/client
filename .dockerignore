@@ -1,0 +1,8 @@
+node_modules
+.git
+.github
+docs
+example
+.cmds
+*.swp
+*.swo
