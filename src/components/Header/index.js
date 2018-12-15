@@ -12,19 +12,19 @@ import './style.css';
 class Header extends Component {
   propTypes = {
     toggleChat: PropTypes.func,
-    theme: PropTypes.string,
+    style: PropTypes.string,
     chatOpen: PropTypes.boolean,
   };
 
   renderToggleChatButton = () => (this.props.chatOpen ? <span>×</span> : <span>...</span>);
 
   render () {
-    const { toggleChat, theme } = this.props;
+    const { toggleChat, style, theme } = this.props;
 
     return (
-      <header className={`Header--${theme}`} onClick={() => toggleChat(true)}>
-        <span className={`Header__title--${theme}`}>Chat with John</span>
-        <button className={`Header__closeBtn--${theme}`} onClick={() => toggleChat(true)}>
+      <header style={{ 'background': theme.primary_colour }} className={`Header--${style}`} onClick={() => toggleChat(true)}>
+        <span className={`Header__title--${style}`}>Chat with John</span>
+        <button className={`Header__closeBtn--${style}`} onClick={() => toggleChat(true)}>
           {this.renderToggleChatButton()}
         </button>
       </header>

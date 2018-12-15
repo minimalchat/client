@@ -24,7 +24,7 @@ class Chat extends Component {
     sendMessage: PropTypes.func,
     chatOpen: PropTypes.boolean,
     network: PropTypes.string,
-    theme: PropTypes.string,
+    style: PropTypes.string,
     textBox: PropTypes.string,
     messages: PropTypes.arrayOf({
       timestamp: PropTypes.string,
@@ -51,8 +51,8 @@ class Chat extends Component {
     this.props.messages.map(msg => <Message type={msg.author} content={msg.content} />);
 
   renderTyping = () => (
-    <div className={`Message__operatorWrapper--${this.props.theme}`}>
-      <ul className={`Message__operator--${this.props.theme}`}>
+    <div className={`Message__operatorWrapper--${this.props.style}`}>
+      <ul className={`Message__operator--${this.props.style}`}>
         <li>
           <svg width="32" height="20">
             <circle id="typing-circle-1" r="3" cx="8" cy="16" fill="#aeaeae" />
@@ -100,7 +100,7 @@ class Chat extends Component {
       </ul>
       <img
         alt="Operator"
-        className={`Message__avatar--${this.props.theme}`}
+        className={`Message__avatar--${this.props.style}`}
         src="http://placehold.it/40x40/"
       />
     </div>
@@ -114,18 +114,18 @@ class Chat extends Component {
       handleInput,
       handleKeyDown,
       sendMessage,
-      theme,
+      style,
       chatOpen,
     } = this.props;
 
     return (
-      <section className={`Chat--${theme}`}>
+      <section className={`Chat--${style}`}>
         <Header toggleChat={() => toggleChat(false)} chatOpen={chatOpen} />
         <Notification network={this.props.network} />
 
         {/* Container for text input and reading messages */}
         <ul
-          className={`Chat__body--${theme}`}
+          className={`Chat__body--${style}`}
           ref={c => {
             this.container = c;
             return c;
@@ -134,7 +134,7 @@ class Chat extends Component {
           {this.renderMessages()}
           <li
             style={{ display: typing ? 'block' : 'none' }}
-            className={`Message__box-typing--${theme}`}
+            className={`Message__box-typing--${style}`}
           >
             {this.renderTyping()}
           </li>
