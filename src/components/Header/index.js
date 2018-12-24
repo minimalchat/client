@@ -13,6 +13,9 @@ class Header extends Component {
   propTypes = {
     toggleChat: PropTypes.func,
     style: PropTypes.string,
+    theme: PropTypes.shape({
+      primary_colour: PropTypes.string.isRequired,
+    }),
     chatOpen: PropTypes.boolean,
   };
 
@@ -22,7 +25,7 @@ class Header extends Component {
     const { toggleChat, style, theme } = this.props;
 
     return (
-      <header style={{ 'background': theme.primary_colour }} className={`Header--${style}`} onClick={() => toggleChat(true)}>
+      <header style={{ 'backgroundColor': theme.primary_colour }} className={`Header--${style}`} onClick={() => toggleChat(true)}>
         <span className={`Header__title--${style}`}>Chat with John</span>
         <button className={`Header__closeBtn--${style}`} onClick={() => toggleChat(true)}>
           {this.renderToggleChatButton()}

@@ -6,7 +6,10 @@ import App from '.';
 
 describe('<App />', () => {
   it('matches snapshot', () => {
-    const tree = render(<App />);
+    const theme = {
+      primary_colour: 'test',
+    };
+    const tree = render(<App theme={theme} />);
     expect(tree).toMatchSnapshot();
   });
 });

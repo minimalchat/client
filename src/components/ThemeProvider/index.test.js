@@ -6,7 +6,9 @@ import ThemeProvider from '.';
 
 describe('<ThemeProvider />', () => {
   it('should render ', () => {
-    const tree = render(<ThemeProvider theme="messenger"><span>Hello World</span></ThemeProvider>);
+    const theme = {};
+    const style = 'messenger'; 
+    const tree = render(<ThemeProvider theme={theme} style={style}><span>Hello World</span></ThemeProvider>);
     expect(tree).toMatchSnapshot();
   });
 });
