@@ -1,4 +1,6 @@
 // import 'regenerator-runtime/runtime';
+//
+import 'jest-localstorage-mock';
 import chai from 'chai';
 import assertJsx, { options } from 'preact-jsx-chai';
 

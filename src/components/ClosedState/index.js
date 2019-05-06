@@ -15,7 +15,7 @@ ClosedState.defaultProps = {
 
 ClosedState.propTypes = {
   toggleChat: PropTypes.func.isRequired,
-  chatOpen: PropTypes.boolean,
+  chatOpen: PropTypes.bool,
 };
 
 export default ClosedState;
