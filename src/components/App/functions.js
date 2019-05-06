@@ -9,14 +9,17 @@ const sessionStorageKey = 'minimalchat-session';
 //
 
 export function createSocket (app) {
-  const localStorage = window.localStorage;
+  const { localStorage } = window;
 
   let storedSessionId = localStorage.getItem(sessionStorageKey);
 
-  const socket = io.connect(socketPath, {
-    reconnectionAttempts: 3,
-    query: `type=client&sessionId=${storedSessionId}`,
-  });
+  const socket = io.connect(
+    socketPath,
+    {
+      reconnectionAttempts: 3,
+      query: `type=client&sessionId=${storedSessionId}`,
+    }
+  );
 
   socket.on('operator:message', app.receiveMessage.bind(app));
   socket.on('operator:typing', app.operatorTyping.bind(app));
@@ -50,9 +53,9 @@ export function fetchMessages (app) {
 
   // TODO: Decide whether we should be hitting http or https somehow, somewhere
   return fetch(
-    `http${process.env.NODE_ENV === 'development'
-      ? ''
-      : 's'}://${remoteHost}/api/chat/${session.id}/messages`
+    `http${process.env.NODE_ENV === 'development' ? '' : 's'}://${remoteHost}/api/chat/${
+      session.id
+    }/messages`
   )
     .then(res => res.json())
     .then(data => app.loadMessages(data.messages || []))

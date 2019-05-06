@@ -38,7 +38,7 @@ class App extends Component {
     this.typing = null;
   }
 
-  componentWillUnMount () {
+  componentWillUnmount () {
     window.clearTimeout(this.typing);
     this.typing = null;
   }
@@ -55,7 +55,7 @@ class App extends Component {
 
   // --- Socket Methods
 
-  handleKeyDown = e => {
+  handleKeyDown = () => {
     const payload = JSON.stringify(
       formatMessageForServer(null, this.state.session.client.id, this.state.session.id)
     );

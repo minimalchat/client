@@ -54,7 +54,7 @@ describe('createSocket', () => {
 
     const sessionStorageKey = 'minimalchat-session';
 
-    expect(localStorage.getItem).toHaveBeenCalledWith(sessionStorageKey);
+    expect(global.localStorage.getItem).toHaveBeenCalledWith(sessionStorageKey);
   });
 });
 

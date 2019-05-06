@@ -17,12 +17,12 @@ const PATHS = {
 let plugins = [
   // TODO: What does this do?
   new webpack.NoEmitOnErrorsPlugin(),
-  new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'REMOTE_HOST','REMOTE_PORT'])
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT', 'REMOTE_HOST'])
 ];
 
 if (!development) {
   // Minify source on production only
-  plugins.push(new webpack.optimize.UglifyJsPlugin());
+  // plugins.push(new webpack.optimize.UglifyJsPlugin());
 
   // Strip out babel-helper invariant checks
   plugins.push(new ReplacePlugin([
@@ -42,6 +42,9 @@ module.exports = {
     path: PATHS.BUILD,
     publicPath: '/',
   },
+  optimization: {
+    minimize: !development,
+  },
   module: {
     rules: [
       {
@@ -50,10 +53,10 @@ module.exports = {
         exclude: [ PATHS.MODULES ],
         loader: 'babel-loader',
         options: {
-          presets: [ 'es2015', 'stage-0' ],
+          presets: [ '@babel/preset-env' ],
           plugins: [
-            'transform-decorators-legacy',
-            [ 'transform-react-jsx', { 'pragma': 'h' } ],
+            [ '@babel/plugin-proposal-class-properties' ],
+            [ '@babel/plugin-transform-react-jsx', { 'pragma': 'h' } ],
           ],
         },
       },
