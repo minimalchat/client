@@ -10,7 +10,7 @@
     "test:watch": "npm run test -- --watchAll",
     "build": "npm run build:dev",
     "build:dev": "cross-env NODE_ENV=development webpack --progress --colors",
-    "build:production": "cross-env NODE_ENV=production webpack -p --progress --colors",
+    "build:production": "cross-env NODE_ENV=production webpack -p --progress --colors --display-modules",
     "build:watch": "npm run build:dev -- --watch",
     "format": "prettier-eslint --trailing-comma es5 --single-quote --print-width 100 --write \"src/**/*.js\"",
     "lint": "eslint src test",
@@ -74,7 +74,6 @@
     "prettier-eslint-cli": "^4.7.1",
     "replace-bundle-webpack-plugin": "^1.0.0",
     "style-loader": "^0.18.2",
-    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1"

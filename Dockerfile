@@ -14,8 +14,7 @@ RUN apt autoremove -y
 # RUN git clone https://github.com/minimalchat/client.git /tmp/client
 COPY . .
 
-ENV REMOTE_HOST "localhost"
-ENV REMOTE_PORT "8000"
+ENV REMOTE_HOST "localhost:8000"
 
 # ENV DIGITAL_OCEAN_SPACES_KEY
 # ENV CLIENT_KEY
