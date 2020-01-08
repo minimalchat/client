@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/minimalchat/client.svg?branch=master)](https://travis-ci.org/minimalchat/client)
 [![Coverage Status](https://coveralls.io/repos/github/minimalchat/client/badge.svg?branch=master)](https://coveralls.io/github/minimalchat/client?branch=master)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fminimalchat%2Fclient.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fminimalchat%2Fclient?ref=badge_shield)
 
 ---
 
@@ -45,3 +46,7 @@ Developing for the client is fairly straight forward. All of the Minimal Chat re
 2.  `make dependencies`
 3.  `make run`
 4.  Browse to http://localhost:3000
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fminimalchat%2Fclient.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fminimalchat%2Fclient?ref=badge_large)
